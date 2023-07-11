@@ -158,6 +158,8 @@ Vous pouvez vérifier que les conteneurs sont bien démarrés avec la commande :
 ```
 docker ps
 ```
+![openvas-04](./images/openvas-04.png)
+
 - Synchronisation des tests de vulnérabilités et des données de vulnérabilités. Cette phase va être plus longue, l’injection des données de vulnérabilités et les tests, pour le moment OpenVAS ne contient aucune données.
 
 Pour cette partie, il faut prévoir 1 à 2 heures.
@@ -192,6 +194,11 @@ Depuis un navigateur, entrer l’ip ou l’url du serveur sur le port (9392) :
 ```
 http://mon-ip-srv-openvas:9392
 ```
-
 Les identifiants par défaut sont admin / admin.
+
+- Note pour stopper la stack ~/containers/openvas/
+```
+docker-compose -p greenbone-community-edition stop
+```
+![openvas-05](./images/openvas-05.png)
 
