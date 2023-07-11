@@ -19,8 +19,9 @@ Prenez à stocker vos containers de la manière suivante :
 ~/containers/<stack-name>
 ```
 ```
-mkdir -p ~/containers/<stack-name>
-mkdir -p ~/containers/openvas
+mkdir -p ~/containers/<stack-name>/
+mkdir -p ~/containers/openvas/
+cd ~/containers/openvas/
 ```
 Déploiement des conteneurs pour OpenVas :
 
@@ -144,6 +145,8 @@ Télécharger les différentes images :
 ```
 docker-compose -p greenbone-community-edition pull
 ```
+![openvas-01](./images/openvas-01.png)
+
 Une fois les images téléchargés, démarrer les :
 ```
 docker-compose -p greenbone-community-edition up -d
