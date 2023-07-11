@@ -137,7 +137,6 @@ volumes:
   gvmd_socket_vol:
   ospd_openvas_socket_vol:
   redis_socket_vol:
-
 ```
 Enregistrer et fermer le fichier docker-compose.yml.
 
