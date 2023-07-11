@@ -166,6 +166,26 @@ Pour cette partie, il faut prévoir 1 à 2 heures.
 On va commencer par injecter les différents tests de vulnérabilité, pour cela entrer la commande :
 ```
 docker-compose -p greenbone-community-edition exec -u ospd-openvas ospd-openvas greenbone-nvt-sync
+
+         13,036 100%   18.42kB/s    0:00:00 (xfr#757, ir-chk=4737/5526)
+gb_dns_os_detection.nasl
+         10,170 100%   14.37kB/s    0:00:00 (xfr#758, ir-chk=4736/5526)
+gb_dnsmasq_consolidation.nasl
+          3,758 100%    5.31kB/s    0:00:00 (xfr#759, ir-chk=4735/5526)
+gb_dnsmasq_dns_detect.nasl
+          2,341 100%    3.31kB/s    0:00:00 (xfr#760, ir-chk=4734/5526)
+gb_dnsmasq_ssh_login_detect.nasl
+          3,798 100%    5.37kB/s    0:00:00 (xfr#761, ir-chk=4733/5526)
+gb_docker_desktop_ce_detect.nasl
+          3,633 100%    5.13kB/s    0:00:00 (xfr#762, ir-chk=4732/5526)
+gb_docker_for_windows_detect.nasl
+          3,866 100%    5.46kB/s    0:00:00 (xfr#763, ir-chk=4731/5526)
+gb_docker_http_rest_api_detect.nasl
+          6,051 100%    8.54kB/s    0:00:00 (xfr#764, ir-chk=4730/5526)
+gb_docker_ssh_login_detect.nasl
+          6,845 100%    9.66kB/s    0:00:00 (xfr#765, ir-chk=4729/5526)
+gb_document_manager_detect.nasl
+          3,928 100%    5.54kB/s    0:00:00 (xfr#766, ir-chk=4728/5526)
 ```
 Il faut maintenant patienter pour passer à la suite, car celle-ci sont en cours d’injection dans la base de données, le seul moyen que j’ai trouvé pour vérifier l’avancement, c’est de vérifier la charge CPU avec la commande htop.
 
@@ -199,10 +219,44 @@ nvdcve-2.0-2022.xml
 - CERT :
 ```
 docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type CERT
+
+All transactions are logged.
+
+If you have any questions, please use the Greenbone community portal.
+See https://community.greenbone.net for details.
+
+By using this service you agree to our terms and conditions.
+
+Only one sync per time, otherwise the source ip will be temporarily blocked.
+
+receiving incremental file list
+timestamp
+             13 100%   12.70kB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+sent 43 bytes  received 109 bytes  101.33 bytes/sec
+total size is 13  speedup is 0.09
+Sync in progress, exiting.
 ```
 - GVMD :
 ```
 docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type GVMD_DATA
+
+All transactions are logged.
+
+If you have any questions, please use the Greenbone community portal.
+See https://community.greenbone.net for details.
+
+By using this service you agree to our terms and conditions.
+
+Only one sync per time, otherwise the source ip will be temporarily blocked.
+
+receiving incremental file list
+timestamp
+             13 100%    2.54kB/s    0:00:00 (xfr#1, to-chk=0/1)
+
+sent 43 bytes  received 109 bytes  60.80 bytes/sec
+total size is 13  speedup is 0.09
+Sync in progress, exiting.
 ```
 Le scanner de vulnérabilité est à présent opérationnel.
 
