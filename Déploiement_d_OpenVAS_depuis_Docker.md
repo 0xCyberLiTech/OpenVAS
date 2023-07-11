@@ -417,6 +417,9 @@ Exécuter le programme d’installation et démarrer le script.
 ```
 ./setup-and-start-greenbone-community-edition.sh
 ```
+![openvas-07](./images/openvas-07.png)
+![openvas-08](./images/openvas-08.png)
+
 Dépannage :
 
 Avertissement.
