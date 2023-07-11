@@ -11,6 +11,7 @@
 | - C. | [ ](#balise_03) |
 | - D. | [ ](#balise_04) |
 
+<a name="balise_01"></a>
 Qu'es qu'un scanner de vulnérabilités.
 
 En sécurité informatique, un scanner de vulnérabilités est un programme conçu pour identifier des vulnérabilités dans une application, un système d'exploitation ou un réseau.
