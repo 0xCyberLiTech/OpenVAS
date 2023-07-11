@@ -18,6 +18,14 @@ Conditions préalables :
 
 - Note.
 
+Si vous avez installer une DEBIAN de base, sudo n'est pas pris en charge.
+
+```
+su - root
+apt install sudo
+adduser cyberlitech sudo
+init 6
+```
 Veuillez suivre le guide étape par étape. Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
 
 La commande sudo est utilisée pour exécuter des commandes qui nécessitent un privilège accès sur le système.
