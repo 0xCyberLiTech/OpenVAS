@@ -180,6 +180,23 @@ Maintenant, on va passer à la synchronisation des données SCAP, CERT et GVMD, 
 - SCAP :
 ```
 docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type SCAP
+
+     30,569,278 100%  983.72kB/s    0:00:30 (xfr#14, to-chk=29/44)
+nvdcve-2.0-2015.xml
+     32,900,521 100%  983.90kB/s    0:00:32 (xfr#15, to-chk=28/44)
+nvdcve-2.0-2016.xml
+     44,989,299 100%  979.46kB/s    0:00:44 (xfr#16, to-chk=27/44)
+nvdcve-2.0-2017.xml
+     65,483,335 100%  987.73kB/s    0:01:04 (xfr#17, to-chk=26/44)
+nvdcve-2.0-2018.xml
+     76,891,279 100%  995.23kB/s    0:01:15 (xfr#18, to-chk=25/44)
+nvdcve-2.0-2019.xml
+     93,951,030 100% 1002.19kB/s    0:01:31 (xfr#19, to-chk=24/44)
+nvdcve-2.0-2020.xml
+     94,636,614 100%  999.83kB/s    0:01:32 (xfr#20, to-chk=23/44)
+nvdcve-2.0-2021.xml
+    104,810,861 100%  990.53kB/s    0:01:43 (xfr#21, to-chk=22/44)
+nvdcve-2.0-2022.xml
 ```
 - CERT :
 ```
