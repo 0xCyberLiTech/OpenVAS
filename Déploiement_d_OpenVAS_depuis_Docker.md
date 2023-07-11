@@ -14,7 +14,7 @@ Vous trouverez ici un tutoriel sur l’installation de Docker, Docker-compose & 
 
 - Installation manuelle de Portainer, [disponible ici](https://github.com/0xCyberLiTech/Docker/blob/main/README.md#mise-%C3%A0-jour-manuelle-de-portainer)
 
-Prenez par habitude de stocker vos containers de la manière suivante :
+Prenez à stocker vos containers de la manière suivante :
 ```
 ~/containers/<stack-name>
 ```
