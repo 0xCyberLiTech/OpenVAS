@@ -17,7 +17,7 @@
 
 En sécurité informatique, un scanner de vulnérabilités est un programme conçu pour identifier des vulnérabilités dans une application, un système d'exploitation ou un réseau.
 
-## Utilisation :
+## Utilisation.
 
 Les scanners de vulnérabilités peuvent être utilisés dans des objectifs licites ou illicites :
 
@@ -47,7 +47,7 @@ Un scanner de vulnérabilités se "lance" sur une ou plusieurs cibles, dans un r
 Un scanner de vulnérabilités est donc un outil complexe qui peut faire appel à de nombreux programmes spécifiques pour chacune des tâches pré-citées.
 
 <a name="balise_03"></a>
-# Cibles :
+# - C. Cibles.
 
 Un scanner de vulnérabilités est théoriquement capable de tester tout élément joignable par une adresse IP :
 
@@ -65,7 +65,8 @@ Un scanner de vulnérabilités est théoriquement capable de tester tout éléme
 Le fait de pouvoir atteindre un équipement n'implique cependant pas forcément que son niveau de sécurité puisse être audité correctement. Pour cela, le scanner doit embarquer les modules de sécurité idoines dans son catalogue. Par exemple, si une cible ne possède que le port UDP 161 ouvert avec le service SNMP, un scanner pourra reconnaître que cette cible est active mais ne pourra juger son niveau de sécurité qu'en incorporant des modules d'attaque contre SNMP.
 
 <a name="balise_04"></a>
-# Méthodes de détection.
+# - D. Méthodes de détection.
+
 Pour établir la présence d'une vulnérabilité, un scanner dispose de plusieurs méthodes.
 
 - Footprinting de version.
@@ -94,7 +95,7 @@ Pour établir la présence d'une vulnérabilité, un scanner dispose de plusieur
   le NVD4 et la terminologie CPE. Or, une telle machine disposant des correctifs de sécurité appropriés (KB40122135) sera bel et bien protégée de cette vulnérabilité, et représentera ainsi un faux positif.
   Il faut donc affiner une telle analyse à partir des alertes de sécurité en provenance des éditeurs, qui indiquent de manière plus précise les conditions de vulnérabilité.
 
-- Exploitation active :
+- Exploitation active.
 
   Lorsque des vulnérabilités sont publiquement dévoilées, elles sont parfois accompagnées d'un exploit (terme anglosaxon prononcé "exploite" ou "exploïte") qui est un programme permettant de les exploiter automatiquement.
 
@@ -161,7 +162,7 @@ Pour établir la présence d'une vulnérabilité, un scanner dispose de plusieur
   utilisés, comme WPScan [archive] pour l'analyse de sites WordPress.
 
 <a name="balise_05"></a>
-# Restitution des résultats.
+# - E. Restitution des résultats.
 
 La visualisation et la restitution des résultats se fait traditionnellement via deux paradigmes[réf. nécessaire]. Premièrement, une vue par vulnérabilité permettant de lister toutes les vulnérabilités identifiées dans le scan et de donner pour chacune d'elles la liste des machines affectées. Deuxièmement, une vue par machine listant les cibles de l'audit associées à la liste de leur vulnérabilités respectives.
 
