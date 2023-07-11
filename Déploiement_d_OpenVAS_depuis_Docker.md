@@ -157,7 +157,6 @@ Vous pouvez vérifier que les conteneurs sont bien démarrés avec la commande :
 ```
 docker ps
 ```
-![openvas-04](./images/openvas-04.png)
 
 - Synchronisation des tests de vulnérabilités et des données de vulnérabilités. Cette phase va être plus longue, l’injection des données de vulnérabilités et les tests, pour le moment OpenVAS ne contient aucune données.
 
