@@ -32,8 +32,8 @@ nano docker-compose.yml
 ```
 Copier le code au complet ci-dessous dans le fichier docker-compose.yml.
 ```
-version: '3.8'
-# Ubuntu 22.04
+version: '3.7'
+
 services:
   redis-server:
     image: greenbone/redis-server
@@ -137,6 +137,7 @@ volumes:
   gvmd_socket_vol:
   ospd_openvas_socket_vol:
   redis_socket_vol:
+
 ```
 Enregistrer et fermer le fichier docker-compose.yml.
 
