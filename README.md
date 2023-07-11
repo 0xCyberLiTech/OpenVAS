@@ -1,9 +1,4 @@
-![OpenVAS](./OpenVAS.png)
-
-# Installation de Nagios-core & Nagios-plugins sur DEBIAN 11 & 12.
-Celle-ci est effectuée depuis les sources.
-
-https://openvas.org/index.html
+![OpenVAS](./images/OpenVAS.png)
 
 # OnpenVAS
 
