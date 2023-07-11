@@ -38,7 +38,7 @@ Curl est requis pour télécharger des fichiers à partir de ce guide.
 ```
 sudo apt install curl
 ```
-Installation de docker-compose.
+Installation de docker-compose. Si cette étape est déjà réalisée passer à : Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe pour l’environnement shell actuel.
 
 docker-compose version 1.29.0 ou plus récente est requis pour démarrer et se connecter les services de Greenbone Community Edition. La description du service L’orchestration s’effectue à l’aide de fichiers de composition. Un fichier de composition pour Greenbone Community Edition est fourni ultérieurement.
 
@@ -281,12 +281,19 @@ Lancement des conteneurs communautaires Greenbone.
 
 Téléchargement des conteneurs communautaires Greenbone.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
 Lancement des conteneurs communautaires Greenbone.
 ```
 docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 ```
+![OpenVAS](./images/OpenVAS.png)
+
+![OpenVAS](./images/OpenVAS.png)
+
+
+
+
 Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante commander:
 
 Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
