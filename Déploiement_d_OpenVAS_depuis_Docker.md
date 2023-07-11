@@ -284,7 +284,6 @@ Téléchargement des conteneurs communautaires Greenbone.
 cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
 ![openvas-02](./images/openvas-02.png)
-
 ![openvas-03](./images/openvas-03.png)
 
 Lancement des conteneurs communautaires Greenbone.
@@ -330,9 +329,6 @@ Le navigateur affichera la page de connexion de GSA et après avoir utilisé les
 
 ![openvas-06](./images/openvas-06.png)
 
-
-
-
 Greenbone Security Assistant après s’être connecté pour la première fois.
 
 Configuration et script de démarrage :
@@ -347,6 +343,73 @@ Téléchargement du script d’installation et de démarrage dans le répertoire
 
 ```
 curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
+```
+```
+cat setup-and-start-greenbone-community-edition.sh
+
+#!/bin/bash
+# Copyright (C) 2022 - 2023 Greenbone AG
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+DOWNLOAD_DIR=$HOME/greenbone-community-container
+
+installed() {
+    # $1 should be the command to look for
+    if ! [ -x "$(command -v $1)" ]; then
+        echo "$1 is not available. See https://greenbone.github.io/docs/latest/$RELEASE/container/#prerequisites."
+        exit 1
+    fi
+}
+
+RELEASE="22.4"
+
+installed curl
+installed docker
+installed docker-compose
+
+echo "Using Greenbone Community Containers $RELEASE"
+
+mkdir -p $DOWNLOAD_DIR && cd $DOWNLOAD_DIR
+
+echo "Downloading docker-compose file..."
+curl -f -O https://greenbone.github.io/docs/latest/_static/docker-compose-$RELEASE.yml
+
+echo "Pulling Greenbone Community Containers $RELEASE"
+docker-compose -f $DOWNLOAD_DIR/docker-compose-$RELEASE.yml -p greenbone-community-edition pull
+echo
+
+echo "Starting Greenbone Community Containers $RELEASE"
+docker-compose -f $DOWNLOAD_DIR/docker-compose-$RELEASE.yml -p greenbone-community-edition up -d
+echo
+
+read -s -p "Password for admin user: " password
+docker-compose -f $DOWNLOAD_DIR/docker-compose-$RELEASE.yml -p greenbone-community-edition \
+    exec -u gvmd gvmd gvmd --user=admin --new-password=$password
+
+echo
+echo "The feed data will be loaded now. This process may take several minutes up to hours."
+echo "Before the data is not loaded completely, scans will show insufficient or erroneous results."
+echo "See https://greenbone.github.io/docs/latest/$RELEASE/container/workflows.html#loading-the-feed-changes for more details."
+echo
+echo "Press Enter to open the Greenbone Security Assistant web interface in the web browser."
+read
+xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 ```
 Pour exécuter le script, la commande suivante doit être exécutée.
 
@@ -384,10 +447,6 @@ Vérifier si la liste des ports est déjà synchronisée.
 ```
 find /var/lib/gvm/data-objects/ -name "*33d0cd82-57c6-11e1-8ed1-406186ea4fc5*.xml"
 ```
-
-
-
-
 Si la commande find ne renvoie pas de fichier XML pour votre version, le Les objets de données n’ont pas (encore) été synchronisés à partir du flux.
 
 Synchronisation des objets de données traités par gvmd.
