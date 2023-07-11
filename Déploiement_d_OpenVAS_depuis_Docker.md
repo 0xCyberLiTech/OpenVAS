@@ -146,6 +146,7 @@ Télécharger les différentes images :
 docker-compose -p greenbone-community-edition pull
 ```
 ![openvas-01](./images/openvas-01.png)
+![openvas-02](./images/openvas-02.png)
 
 Une fois les images téléchargés, démarrer les :
 ```
