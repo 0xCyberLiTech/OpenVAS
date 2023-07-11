@@ -25,26 +25,103 @@ cd ~/containers/openvas/
 ```
 Déploiement des conteneurs pour OpenVas :
 
-On va commencer pas créer le fichier docker-compose.yml et ensuite l’ouvrir avec nano :
-```
-touch docker-compose.yml
-nano docker-compose.yml
-```
-Copier le code au complet ci-dessous dans le fichier docker-compose.yml.
-```
-version: '3.7'
+Conditions préalables :
 
+- Note.
+
+Veuillez suivre le guide étape par étape. Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
+
+La commande sudo est utilisée pour exécuter des commandes qui nécessitent un privilège accès sur le système.
+
+- Installer curl :
+
+Curl est requis pour télécharger des fichiers à partir de ce guide.
+```
+sudo apt install curl
+```
+Installation de docker-compose.
+
+docker-compose version 1.29.0 ou plus récente est requis pour démarrer et se connecter les services de Greenbone Community Edition. La description du service L’orchestration s’effectue à l’aide de fichiers de composition. Un fichier de composition pour Greenbone Community Edition est fourni ultérieurement.
+
+
+Installer le paquet Debian docker-compose.
+```
+sudo apt install python3 python3-pip
+python3 -m pip install --user docker-compose
+```
+Coup monté.
+
+Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker. Pour modifier le groupe Effectivement, déconnectez-vous et reconnectez-vous ou utilisez SU.
+
+Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe pour l’environnement shell actuel.
+```
+sudo usermod -aG docker $USER && su $USER
+```
+Pour télécharger le fichier de composition docker Greenbone Community Edition, un Le répertoire de destination doit être créé.
+
+Créer un répertoire de téléchargement.
+```
+export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
+```
+Fichier de composition Docker.
+
+Pour exécuter Greenbone Community Edition avec des conteneurs, les éléments suivants sont composés doit être utilisé:
+
+Fichier de composition Docker.
+
+```
 services:
-  redis-server:
-    image: greenbone/redis-server
-    restart: on-failure
+  vulnerability-tests:
+    image: greenbone/vulnerability-tests
+    environment:
+      STORAGE_PATH: /var/lib/openvas/22.04/vt-data/nasl
     volumes:
-      - redis_socket_vol:/run/redis/
+      - vt_data_vol:/mnt
+
+  notus-data:
+    image: greenbone/notus-data
+    volumes:
+      - notus_data_vol:/mnt
+
+  scap-data:
+    image: greenbone/scap-data
+    volumes:
+      - scap_data_vol:/mnt
+
+  cert-bund-data:
+    image: greenbone/cert-bund-data
+    volumes:
+      - cert_data_vol:/mnt
+
+  dfn-cert-data:
+    image: greenbone/dfn-cert-data
+    volumes:
+      - cert_data_vol:/mnt
+    depends_on:
+      - cert-bund-data
+
+  data-objects:
+    image: greenbone/data-objects
+    volumes:
+      - data_objects_vol:/mnt
+
+  report-formats:
+    image: greenbone/report-formats
+    volumes:
+      - data_objects_vol:/mnt
+    depends_on:
+      - data-objects
 
   gpg-data:
     image: greenbone/gpg-data
     volumes:
       - gpg_data_vol:/mnt
+
+  redis-server:
+    image: greenbone/redis-server
+    restart: on-failure
+    volumes:
+      - redis_socket_vol:/run/redis/
 
   pg-gvm:
     image: greenbone/pg-gvm:stable
@@ -58,13 +135,27 @@ services:
     restart: on-failure
     volumes:
       - gvmd_data_vol:/var/lib/gvm
-      - vt_data_vol:/var/lib/openvas
+      - scap_data_vol:/var/lib/gvm/scap-data/
+      - cert_data_vol:/var/lib/gvm/cert-data
+      - data_objects_vol:/var/lib/gvm/data-objects/gvmd
+      - vt_data_vol:/var/lib/openvas/plugins
       - psql_data_vol:/var/lib/postgresql
       - gvmd_socket_vol:/run/gvmd
       - ospd_openvas_socket_vol:/run/ospd
       - psql_socket_vol:/var/run/postgresql
     depends_on:
-      - pg-gvm
+      pg-gvm:
+        condition: service_started
+      scap-data:
+        condition: service_completed_successfully
+      cert-bund-data:
+        condition: service_completed_successfully
+      dfn-cert-data:
+        condition: service_completed_successfully
+      data-objects:
+        condition: service_completed_successfully
+      report-formats:
+        condition: service_completed_successfully
 
   gsa:
     image: greenbone/gsa:stable
@@ -79,29 +170,40 @@ services:
   ospd-openvas:
     image: greenbone/ospd-openvas:stable
     restart: on-failure
+    init: true
+    hostname: ospd-openvas.local
     cap_add:
       - NET_ADMIN # for capturing packages in promiscuous mode
       - NET_RAW # for raw sockets e.g. used for the boreas alive detection
     security_opt:
       - seccomp=unconfined
       - apparmor=unconfined
-    command: [
-      "ospd-openvas",
-      "-f",
-      "--config", "/etc/gvm/ospd-openvas.conf",
-      "--mqtt-broker-address", "mqtt-broker",
-      "--notus-feed-dir", "/var/lib/notus/advisories",
-      "-m", "666",
-    ]
+    command:
+      [
+        "ospd-openvas",
+        "-f",
+        "--config",
+        "/etc/gvm/ospd-openvas.conf",
+        "--mqtt-broker-address",
+        "mqtt-broker",
+        "--notus-feed-dir",
+        "/var/lib/notus/advisories",
+        "-m",
+        "666"
+      ]
     volumes:
       - gpg_data_vol:/etc/openvas/gnupg
-      - vt_data_vol:/var/lib/openvas
+      - vt_data_vol:/var/lib/openvas/plugins
       - notus_data_vol:/var/lib/notus
       - ospd_openvas_socket_vol:/run/ospd
       - redis_socket_vol:/run/redis/
     depends_on:
-      - redis-server
-      - gpg-data
+      redis-server:
+        condition: service_started
+      gpg-data:
+        condition: service_completed_successfully
+      vulnerability-tests:
+        condition: service_completed_successfully
 
   mqtt-broker:
     restart: on-failure
@@ -122,13 +224,26 @@ services:
       - gpg_data_vol:/etc/openvas/gnupg
     environment:
       NOTUS_SCANNER_MQTT_BROKER_ADDRESS: mqtt-broker
-      NOTUS_SCANNER_PRODUCTS_DIRECTORY: /var/lib/notus
+      NOTUS_SCANNER_PRODUCTS_DIRECTORY: /var/lib/notus/products
     depends_on:
       - mqtt-broker
       - gpg-data
+      - vulnerability-tests
+
+  gvm-tools:
+    image: greenbone/gvm-tools
+    volumes:
+      - gvmd_socket_vol:/run/gvmd
+      - ospd_openvas_socket_vol:/run/ospd
+    depends_on:
+      - gvmd
+      - ospd-openvas
 
 volumes:
   gpg_data_vol:
+  scap_data_vol:
+  cert_data_vol:
+  data_objects_vol:
   gvmd_data_vol:
   psql_data_vol:
   vt_data_vol:
@@ -138,139 +253,7 @@ volumes:
   ospd_openvas_socket_vol:
   redis_socket_vol:
 ```
-Enregistrer et fermer le fichier docker-compose.yml.
+Description.
 
-Télécharger les différentes images :
-```
-docker-compose -p greenbone-community-edition pull
-```
-![openvas-01](./images/openvas-01.png)
-![openvas-02](./images/openvas-02.png)
-
-Une fois les images téléchargés, démarrer les :
-```
-docker-compose -p greenbone-community-edition up -d
-```
-![openvas-03](./images/openvas-03.png)
-
-Vous pouvez vérifier que les conteneurs sont bien démarrés avec la commande :
-```
-docker ps
-```
-![openvas-08](./images/openvas-08.png)
-
-- Synchronisation des tests de vulnérabilités et des données de vulnérabilités. Cette phase va être plus longue, l’injection des données de vulnérabilités et les tests, pour le moment OpenVAS ne contient aucune données.
-
-Pour cette partie, il faut prévoir 1 à 2 heures.
-
-On va commencer par injecter les différents tests de vulnérabilité, pour cela entrer la commande :
-```
-docker-compose -p greenbone-community-edition exec -u ospd-openvas ospd-openvas greenbone-nvt-sync
-
-         13,036 100%   18.42kB/s    0:00:00 (xfr#757, ir-chk=4737/5526)
-gb_dns_os_detection.nasl
-         10,170 100%   14.37kB/s    0:00:00 (xfr#758, ir-chk=4736/5526)
-gb_dnsmasq_consolidation.nasl
-          3,758 100%    5.31kB/s    0:00:00 (xfr#759, ir-chk=4735/5526)
-gb_dnsmasq_dns_detect.nasl
-          2,341 100%    3.31kB/s    0:00:00 (xfr#760, ir-chk=4734/5526)
-gb_dnsmasq_ssh_login_detect.nasl
-          3,798 100%    5.37kB/s    0:00:00 (xfr#761, ir-chk=4733/5526)
-gb_docker_desktop_ce_detect.nasl
-          3,633 100%    5.13kB/s    0:00:00 (xfr#762, ir-chk=4732/5526)
-gb_docker_for_windows_detect.nasl
-          3,866 100%    5.46kB/s    0:00:00 (xfr#763, ir-chk=4731/5526)
-gb_docker_http_rest_api_detect.nasl
-          6,051 100%    8.54kB/s    0:00:00 (xfr#764, ir-chk=4730/5526)
-gb_docker_ssh_login_detect.nasl
-          6,845 100%    9.66kB/s    0:00:00 (xfr#765, ir-chk=4729/5526)
-gb_document_manager_detect.nasl
-          3,928 100%    5.54kB/s    0:00:00 (xfr#766, ir-chk=4728/5526)
-```
-Il faut maintenant patienter pour passer à la suite, car celle-ci sont en cours d’injection dans la base de données, le seul moyen que j’ai trouvé pour vérifier l’avancement, c’est de vérifier la charge CPU avec la commande htop.
-
-Quand la charge du serveur est de nouveau faible, on peut considérer que l’injection des données en base est terminée.
-
-- Synchronisation des données SCAP, CERT et GVMD.
-
-Maintenant, on va passer à la synchronisation des données SCAP, CERT et GVMD, la procédure est identique pour la synchronisation des tests, après le téléchargement, patienter pendant l’injection dans la base de données.
-
-- SCAP :
-```
-docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type SCAP
-
-     30,569,278 100%  983.72kB/s    0:00:30 (xfr#14, to-chk=29/44)
-nvdcve-2.0-2015.xml
-     32,900,521 100%  983.90kB/s    0:00:32 (xfr#15, to-chk=28/44)
-nvdcve-2.0-2016.xml
-     44,989,299 100%  979.46kB/s    0:00:44 (xfr#16, to-chk=27/44)
-nvdcve-2.0-2017.xml
-     65,483,335 100%  987.73kB/s    0:01:04 (xfr#17, to-chk=26/44)
-nvdcve-2.0-2018.xml
-     76,891,279 100%  995.23kB/s    0:01:15 (xfr#18, to-chk=25/44)
-nvdcve-2.0-2019.xml
-     93,951,030 100% 1002.19kB/s    0:01:31 (xfr#19, to-chk=24/44)
-nvdcve-2.0-2020.xml
-     94,636,614 100%  999.83kB/s    0:01:32 (xfr#20, to-chk=23/44)
-nvdcve-2.0-2021.xml
-    104,810,861 100%  990.53kB/s    0:01:43 (xfr#21, to-chk=22/44)
-nvdcve-2.0-2022.xml
-```
-- CERT :
-```
-docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type CERT
-
-All transactions are logged.
-
-If you have any questions, please use the Greenbone community portal.
-See https://community.greenbone.net for details.
-
-By using this service you agree to our terms and conditions.
-
-Only one sync per time, otherwise the source ip will be temporarily blocked.
-
-receiving incremental file list
-timestamp
-             13 100%   12.70kB/s    0:00:00 (xfr#1, to-chk=0/1)
-
-sent 43 bytes  received 109 bytes  101.33 bytes/sec
-total size is 13  speedup is 0.09
-Sync in progress, exiting.
-```
-- GVMD :
-```
-docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type GVMD_DATA
-
-All transactions are logged.
-
-If you have any questions, please use the Greenbone community portal.
-See https://community.greenbone.net for details.
-
-By using this service you agree to our terms and conditions.
-
-Only one sync per time, otherwise the source ip will be temporarily blocked.
-
-receiving incremental file list
-timestamp
-             13 100%    2.54kB/s    0:00:00 (xfr#1, to-chk=0/1)
-
-sent 43 bytes  received 109 bytes  60.80 bytes/sec
-total size is 13  speedup is 0.09
-Sync in progress, exiting.
-```
-Le scanner de vulnérabilité est à présent opérationnel.
-
-Depuis un navigateur, entrer l’ip ou l’url du serveur sur le port (9392) :
-```
-http://mon-ip-srv-openvas:9392
-```
-Les identifiants par défaut sont admin / admin.
-
-![openvas-06](./images/openvas-06.png)
-
-- Note pour stopper la stack ~/containers/openvas/
-```
-docker-compose -p greenbone-community-edition stop
-```
-![openvas-05](./images/openvas-05.png)
+Le tableau suivant décrit les conteneurs fournis du fichier de composition docker et leurs services en détail.
 
