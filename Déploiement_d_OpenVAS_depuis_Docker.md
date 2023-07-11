@@ -152,6 +152,8 @@ Une fois les images téléchargés, démarrer les :
 ```
 docker-compose -p greenbone-community-edition up -d
 ```
+![openvas-03](./images/openvas-03.png)
+
 Vous pouvez vérifier que les conteneurs sont bien démarrés avec la commande :
 ```
 sudo docker ps
