@@ -291,10 +291,7 @@ Lancement des conteneurs communautaires Greenbone.
 ```
 docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 ```
-
-
-
-
+![openvas-04](./images/openvas-04.png)
 
 Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante commander:
 
