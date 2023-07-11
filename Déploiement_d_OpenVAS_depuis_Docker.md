@@ -18,15 +18,15 @@ Conditions préalables :
 
 - Note.
 
-Si vous avez installer une DEBIAN de base, sudo n'est pas pris en charge.
+Si vous avez installer une DEBIAN 11 ou DEBIAN 12 de base, sudo n'est pas installé.
 
 ```
 su - root
 apt install sudo
-adduser cyberlitech sudo
+adduser mmalet sudo
 init 6
 ```
-Se connecter au terminal, avec le user (ex, cyberlitech).
+Se connecter au terminal, avec le user (ex, mmalet).
 
 Veuillez suivre le guide étape par étape. Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
 
