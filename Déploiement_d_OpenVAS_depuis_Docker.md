@@ -26,6 +26,8 @@ apt install sudo
 adduser cyberlitech sudo
 init 6
 ```
+Se connecter au terminal, avec le user (ex, cyberlitech).
+
 Veuillez suivre le guide étape par étape. Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
 
 La commande sudo est utilisée pour exécuter des commandes qui nécessitent un privilège accès sur le système.
