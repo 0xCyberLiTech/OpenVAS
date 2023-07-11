@@ -197,6 +197,8 @@ http://mon-ip-srv-openvas:9392
 ```
 Les identifiants par défaut sont admin / admin.
 
+![openvas-06](./images/openvas-06.png)
+
 - Note pour stopper la stack ~/containers/openvas/
 ```
 docker-compose -p greenbone-community-edition stop
