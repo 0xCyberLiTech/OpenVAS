@@ -167,6 +167,8 @@ On va commencer par injecter les différents tests de vulnérabilité, pour cela
 ```
 docker-compose -p greenbone-community-edition exec -u ospd-openvas ospd-openvas greenbone-nvt-sync
 ```
+![openvas-07](./images/openvas-07.png)
+
 Il faut maintenant patienter pour passer à la suite, car celle-ci sont en cours d’injection dans la base de données, le seul moyen que j’ai trouvé pour vérifier l’avancement, c’est de vérifier la charge CPU avec la commande htop.
 
 Quand la charge du serveur est de nouveau faible, on peut considérer que l’injection des données en base est terminée.
