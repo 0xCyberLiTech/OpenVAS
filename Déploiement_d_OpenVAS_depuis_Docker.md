@@ -299,6 +299,8 @@ Afficher les messages de journal de tous les services à partir des conteneurs e
 ```
 docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition logs -f
 ```
+![openvas-05](./images/openvas-05.png)
+
 Le flux de journaux peut être arrêté en appuyant sur . Ctrl + c
 
 Configuration d’un utilisateur administrateur.
@@ -326,7 +328,10 @@ xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 ```
 Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d’identification Créé auparavant, il est possible de commencer par l’analyse des vulnérabilités.
 
-![openvas-01](./images/openvas-01.png)
+![openvas-06](./images/openvas-06.png)
+
+
+
 
 Greenbone Security Assistant après s’être connecté pour la première fois.
 
