@@ -166,7 +166,7 @@ Quand la charge du serveur est de nouveau faible, on peut considérer que l’in
 
 - Synchronisation des données SCAP, CERT et GVMD.
 
-Maintenant, on va passer à la synchronisation des données SCAP, CERT et GVMD, le procédure est identique pour la synchronisation des tests, après le téléchargement, patienter pendant l’injection dans la base de données.
+Maintenant, on va passer à la synchronisation des données SCAP, CERT et GVMD, la procédure est identique pour la synchronisation des tests, après le téléchargement, patienter pendant l’injection dans la base de données.
 
 - SCAP :
 ```
@@ -180,11 +180,12 @@ docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-s
 ```
 docker-compose -p greenbone-community-edition exec -u gvmd gvmd greenbone-feed-sync --type GVMD_DATA
 ```
-Le scanner de vulnérabilité est prêt à être utilser.
+Le scanner de vulnérabilité est à présent opérationnel.
 
-Utiliser le scanner de vulnérabilités – Greenbone – OpenVAS
-
-OpenVAS s’utilise à l’aide d’un navigateur Internet, depuis un navigateur Internet, entrer l’ip ou l’url du serveur sur le port 9392 : http://ip:9392
+Depuis un navigateur, entrer l’ip ou l’url du serveur sur le port (9392) :
+```
+http://mon-ip-srv-openvas:9392
+```
 
 Les identifiants par défaut sont admin / admin.
 
