@@ -40,19 +40,23 @@ Pour télécharger les dernières images de conteneur de données de flux, exéc
 
 Téléchargement des conteneurs de données de flux Greenbone Community Edition.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+docker-compose -f docker-compose.yml -p greenbone-community-edition pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
 ```
 Pour copier les données des images vers les volumes exécutés.
 
 Démarrage des conteneurs de données de flux Greenbone Community.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+docker-compose -f docker-compose.yml -p greenbone-community-edition up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
 ```
 Chargement des modifications de flux.
 
 Important :
 
-Lorsque le contenu du flux a été téléchargé, les nouvelles données doivent être chargées par le démons correspondants. Cela peut prendre plusieurs minutes jusqu’à plusieurs heures, en particulier pour le chargement initial des données. Sans données chargées, les analyses contiendront résultats incomplets et erronés.
+Lorsque le contenu du flux a été téléchargé, les nouvelles données doivent être chargées par le démons correspondants. 
+
+Cela peut prendre plusieurs minutes jusqu’à plusieurs heures, en particulier pour le chargement initial des données. 
+
+Sans données chargées, les analyses contiendront résultats incomplets et erronés.
 
 Une fois les conteneurs communautaires Greenbone démarrés, les démons en cours d’exécution récupérera toujours le contenu du flux et chargera les données automatiquement.
 
@@ -84,10 +88,8 @@ VT gvmd chargement du journal terminé.
 Updating VTs in database ... done (X VTs).
 ```
 Données SCAP.
-```
-gvmd commence à charger les données SCAP contenant les informations CPE et CVE lorsque le
-```
-message suivant se trouve dans les journaux :
+
+gvmd commence à charger les données SCAP contenant les informations CPE et CVE lorsque le message suivant se trouve dans les journaux :
 
 Message du journal de chargement des données SCAP gvmd.
 ```
