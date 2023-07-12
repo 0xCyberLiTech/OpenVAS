@@ -508,10 +508,10 @@ Cela peut avoir plusieurs raisons. Très probablement, la synchronisation du flu
 
 Note :
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition pull (Télécharger les images)
-docker-compose -f docker-compose.yml -p greenbone-community-edition up -d (Démarrer les containers)
-docker-compose -f docker-compose.yml -p greenbone-community-edition stop (Stopper les containers)
-docker-compose -f docker-compose.yml -p greenbone-community-edition down (Supprimer les containers)
+docker-compose -f docker-compose.yml -p greenbone-community-edition pull (Télécharger les conteneurs communautaires Greenbone)
+docker-compose -f docker-compose.yml -p greenbone-community-edition up -d (Démarrer les conteneurs communautaires Greenbone)
+docker-compose -f docker-compose.yml -p greenbone-community-edition stop (Stopper les conteneurs communautaires Greenbone)
+docker-compose -f docker-compose.yml -p greenbone-community-edition down (Supprimer les conteneurs communautaires Greenbone)
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
 
