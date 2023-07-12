@@ -18,7 +18,7 @@ Conditions préalables :
 
 - Note.
 
-Si vous avez installer une DEBIAN 11 ou DEBIAN 12 de base, sudo n'est pas installé.
+Si vous avez installer une DEBIAN 12 de base, (sudo) n'est pas installé.
 
 ```
 su - root
