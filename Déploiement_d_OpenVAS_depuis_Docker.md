@@ -288,14 +288,16 @@ cd ~/greenbone-community-container/
 ```
 curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
-![openvas-12](./images/openvas-12.png)
-
-![openvas-03](./images/openvas-03.png)
+![openvas-10](./images/openvas-10.png)
 
 Lancement des conteneurs communautaires Greenbone.
 ```
 docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
 ```
+![openvas-12](./images/openvas-12.png)
+
+![openvas-03](./images/openvas-03.png)
+
 ![openvas-04](./images/openvas-04.png)
 
 Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante commander:
