@@ -77,8 +77,62 @@ VT gvmd chargement du journal terminé.
 ```
 Updating VTs in database ... done (X VTs).
 ```
+Données SCAP.
+```
+gvmd commence à charger les données SCAP contenant les informations CPE et CVE lorsque le
+```
+message suivant se trouve dans les journaux :
 
+Message du journal de chargement des données SCAP gvmd.
+```
+update_scap: Updating data from feed
+```
+Les données SCAP sont chargées et la synchronisation est terminée lorsque le journal (gvmd).
 
+Contient le message suivant :
 
+gvmd message du journal SCAP de chargement des données terminé.
+```
+update_scap_end: Updating SCAP info succeeded
+```
+Données CERT.
+
+gvmd commence à charger les données CERT contenant les avis DFN-CERT et CERT-Bund lorsque le message suivant se trouve dans les journaux :
+
+Message du journal de chargement des données gvmd CERT.
+```
+sync_cert: Updating data from feed
+```
+Les données CERT sont chargées et la synchronisation est terminée lorsque le journal (gvmd) 
+Contient le message suivant :
+
+gvmd CERT data finished loading log message.
+```
+sync_cert: Updating CERT info succeeded.
+```
+Données GVMD.
+
+Le journal contient plusieurs messages lorsque les données gvmd sont chargées. Pour les listes de ports, Ces messages sont semblables à :
+
+Message de journal chargé de la liste des ports gvmd.
+```
+Port list All IANA assigned TCP (33d0cd82-57c6-11e1-8ed1-406186ea4fc5) has been created by admin
+```
+Pour les formats de rapport :
+
+Format de rapport gvmd Message de journal chargé.
+```
+Report format XML (a994b278-1f62-11e1-96ac-406186ea4fc5) has been created by admin
+```
+Indice.
+
+Les configurations d’analyse ne peuvent être chargées que si les données VT sont disponibles dans gvmd et un flux Propriétaire de l’importation est défini.
+
+Pour les configurations d’analyse :
+
+Message du journal chargé de la configuration de l’analyse gvmd.
+```
+Scan config Full and fast (daba56c8-73ec-11df-a475-002264764cea) has been created by admin
+```
 
 
