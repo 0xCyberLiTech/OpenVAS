@@ -1,6 +1,6 @@
 ![OpenVAS](./images/OpenVAS.png)
 
-# OnpenVAS
+# OpenVAS
 
 Prérequis :
 
@@ -23,10 +23,10 @@ Si vous avez installer une DEBIAN 11 ou DEBIAN 12 de base, sudo n'est pas instal
 ```
 su - root
 apt install sudo
-adduser mmalet sudo
+adduser cyberlitech sudo
 init 6
 ```
-Se connecter au terminal, avec le user (ex, mmalet).
+Se connecter au terminal, avec le user (ex, cyberlitech).
 
 Veuillez suivre le guide étape par étape. Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
 
@@ -316,7 +316,7 @@ Pour mettre à jour l’utilisateur administrateur avec un mot de passe de votre
 Mise à jour du mot de passe de l’utilisateur administrateur.
 ```
 docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition \
-    exec -u gvmd gvmd gvmd --user=admin --new-password=<password>
+    exec -u gvmd gvmd gvmd --user=admin --new-password=admin
 ```
 Démarrage de la gestion des vulnérabilités.
 
