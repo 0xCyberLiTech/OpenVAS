@@ -4,7 +4,7 @@
 
 Prérequis :
 
-Cette procédure à été testée depuis une machine sous Linux (Debian 12) avec Docker d’installé et docker-compose.
+Cette procédure à été testée depuis une machine sous (Debian 12) avec Docker d’installé et docker-compose.
 
 Vous trouverez ici un tutoriel sur l’installation de Docker, Docker-compose & Portainer.
 
