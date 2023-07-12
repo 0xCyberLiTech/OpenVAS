@@ -6,11 +6,12 @@ Pour mettre à jour les conteneurs communautaires Greenbone vers la dernière ve
 
 Téléchargement des conteneurs communautaires Greenbone.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+cd ~/greenbone-community-container/
+docker-compose -f docker-compose.yml -p greenbone-community-edition pull
 ```
 Lancement des conteneurs communautaires Greenbone.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
 ```
 Exécution d’une synchronisation de flux.
 
@@ -22,13 +23,18 @@ Téléchargement des modifications via l’extraction de nouvelles images de con
 
 Chargement des modifications en mémoire et dans une base de données par un démon.
 
-Les deux étapes peuvent prendre un certain temps, de quelques minutes à quelques heures, en particulier pour le synchronisation initiale. Ce n’est que si les deux étapes sont terminées que les données synchronisées est à jour et peut être utilisé.
+Les deux étapes peuvent prendre un certain temps, de quelques minutes à quelques heures, en particulier pour le synchronisation initiale. 
+Ce n’est que si les deux étapes sont terminées que les données synchronisées est à jour et peut être utilisé.
 
 La première étape se fait via le docker-compose pull. La deuxième étape est Effectué automatiquement lorsque les démons sont en cours d’exécution.
 
 Téléchargement des modifications de flux.
 
-Les données du Greenbone Community Feed sont fournies via plusieurs Images de conteneurs. Lorsque ces images sont démarrées, elles copient les données dans le Volumes Docker automatiquement. Ensuite, les données sont récupérées à partir du volumes par les démons en cours d’exécution .
+Les données du Greenbone Community Feed sont fournies via plusieurs Images de conteneurs. 
+
+Lorsque ces images sont démarrées, elles copient les données dans le Volumes Docker automatiquement. 
+
+Ensuite, les données sont récupérées à partir du volumes par les démons en cours d’exécution.
 
 Pour télécharger les dernières images de conteneur de données de flux, exécutez.
 
