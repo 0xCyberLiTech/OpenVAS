@@ -1,6 +1,6 @@
 ![OpenVAS](./images/OpenVAS.png)
 
-# OnpenVAS
+# OpenVAS
 
 ## Sommaire :
 
