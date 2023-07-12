@@ -7,6 +7,8 @@ Pour mettre à jour les conteneurs communautaires Greenbone vers la dernière ve
 Téléchargement des conteneurs communautaires Greenbone.
 ```
 cd ~/greenbone-community-container/
+```
+```
 docker-compose -f docker-compose.yml -p greenbone-community-edition pull
 ```
 Lancement des conteneurs communautaires Greenbone.
