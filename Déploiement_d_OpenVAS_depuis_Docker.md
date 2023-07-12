@@ -506,6 +506,13 @@ Un rapport d’analyse ne contient aucun résultat ou certaines vulnérabilités
 
 Cela peut avoir plusieurs raisons. Très probablement, la synchronisation du flux n’est pas C’est encore terminé. Les données de flux ont été téléchargées dans le système de fichiers du local machine put gvmd et ospd-openvas n’avaient pas assez de ressources pour les charger dans leurs bases de données et leur mémoire. Cela peut être vérifié en regardant sur la page SecInfo ‣ NVT si les VT sont répertoriés ici et sur la page Administration ‣ État du flux pour un processus de synchronisation dans l’interface utilisateur Web.
 
+Note :
+```
+docker-compose -f docker-compose.yml -p greenbone-community-edition pull (Télécharger les images)
+docker-compose -f docker-compose.yml -p greenbone-community-edition up -d (Démarrer les containers)
+docker-compose -f docker-compose.yml -p greenbone-community-edition stop (Stopper les containers)
+docker-compose -f docker-compose.yml -p greenbone-community-edition down (Supprimer les containers)
+```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
 
 
