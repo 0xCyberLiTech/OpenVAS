@@ -31,7 +31,7 @@ Ce n’est que si les deux étapes sont terminées que les données synchronisé
 
 1) - La première étape se fait via le docker-compose pull. 
 
-2) - La deuxième étape est Effectué automatiquement lorsque les démons sont en cours d’exécution.
+2) - La deuxième étape est effectué automatiquement lorsque les démons sont en cours d’exécution.
 
 Téléchargement des modifications de flux.
 
