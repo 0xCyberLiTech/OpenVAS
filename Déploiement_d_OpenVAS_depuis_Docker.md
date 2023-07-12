@@ -38,7 +38,11 @@ Curl est requis pour télécharger des fichiers à partir de ce guide.
 ```
 sudo apt install curl
 ```
-Installation de docker-compose. Si cette étape est déjà réalisée passer à : Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe pour l’environnement shell actuel.
+Installation de docker-compose. 
+
+Si cette étape est déjà réalisée passer à : Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe pour l’environnement shell actuel.
+
+[disponible ici](https://github.com/0xCyberLiTech/Docker/blob/main/README.md#installation-manuelle-de-docker)
 
 docker-compose version 1.29.0 ou plus récente est requis pour démarrer et se connecter les services de Greenbone Community Edition. La description du service L’orchestration s’effectue à l’aide de fichiers de composition. Un fichier de composition pour Greenbone Community Edition est fourni ultérieurement.
 
