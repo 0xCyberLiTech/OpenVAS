@@ -60,7 +60,7 @@ Pour télécharger le fichier de composition docker Greenbone Community Edition,
 
 Créer un répertoire de téléchargement.
 ```
-export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
+mkdir ~/greenbone-community-container
 ```
 Fichier de composition Docker.
 
@@ -281,7 +281,8 @@ Lancement des conteneurs communautaires Greenbone.
 
 Téléchargement des conteneurs communautaires Greenbone.
 ```
-cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
+~/greenbone-community-container/
+curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
 ![openvas-12](./images/openvas-12.png)
 
@@ -289,7 +290,7 @@ cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/d
 
 Lancement des conteneurs communautaires Greenbone.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
 ```
 ![openvas-04](./images/openvas-04.png)
 
@@ -297,7 +298,7 @@ Pour obtenir un flux continu de la sortie du journal de tous les services, exéc
 
 Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition logs -f
+docker-compose -f docker-compose.yml -p greenbone-community-edition logs -f
 ```
 ![openvas-05](./images/openvas-05.png)
 
@@ -315,7 +316,7 @@ Pour mettre à jour l’utilisateur administrateur avec un mot de passe de votre
 
 Mise à jour du mot de passe de l’utilisateur administrateur.
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition \
+docker-compose -f docker-compose.yml -p greenbone-community-edition \
     exec -u gvmd gvmd gvmd --user=admin --new-password=admin
 ```
 Démarrage de la gestion des vulnérabilités.
@@ -514,7 +515,3 @@ docker-compose -f docker-compose.yml -p greenbone-community-edition stop (Stoppe
 docker-compose -f docker-compose.yml -p greenbone-community-edition down (Supprimer les conteneurs communautaires Greenbone)
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
-
-
-
-
