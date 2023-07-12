@@ -28,7 +28,9 @@ init 6
 ```
 Se connecter au terminal, avec le user (ex, cyberlitech).
 
-Veuillez suivre le guide étape par étape. Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
+Veuillez suivre le guide étape par étape.
+
+Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
 
 La commande sudo est utilisée pour exécuter des commandes qui nécessitent un privilège accès sur le système.
 
@@ -40,7 +42,7 @@ sudo apt install curl
 ```
 Installation de docker-compose. 
 
-Si cette étape est déjà réalisée passer à la suivante ( Ajouter l’utilisateur actuel au groupe docker... ) [cliquer ici](#balise_01)
+Si cette étape est déjà réalisée passer à la suivante qui est : [(Ajouter l’utilisateur actuel au groupe docker... )](#balise_01)
 
 docker-compose version 1.29.0 ou plus récente est requis pour démarrer et se connecter les services de Greenbone Community Edition. La description du service L’orchestration s’effectue à l’aide de fichiers de composition. Un fichier de composition pour Greenbone Community Edition est fourni ultérieurement.
 
