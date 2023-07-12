@@ -345,7 +345,9 @@ Note.
 
 N’oubliez pas de suivre d’abord les instructions décrites dans les conditions préalables.
 
-Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un seul script. Ceci Le script peut être téléchargé directement avec la commande suivante:
+Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un seul script. 
+
+Ceci Le script peut être téléchargé directement avec la commande suivante :
 
 Téléchargement du script d’installation et de démarrage dans le répertoire de travail actuel.
 
