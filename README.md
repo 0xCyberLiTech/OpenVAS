@@ -6,7 +6,7 @@
 
 | Cat | Etapes |
 |------|------| 
-| - A. | [Qu'es qu'un scanner de vulnérabilités.](#balise_01) |
+| - A. | [Qu'est-ce qu'un scanner de vulnérabilités.](#balise_01) |
 | - B. | [Principes de fonctionnement.](#balise_02) |
 | - C. | [Cibles.](#balise_03) |
 | - D. | [Méthodes de détection.](#balise_04) |
@@ -14,7 +14,7 @@
 | - F. | [Déploiement d'OpenVAS depuis Docker.](Déploiement_d_OpenVAS_depuis_Docker.md) |
 
 <a name="balise_01"></a>
-# - A. Qu'es qu'un scanner de vulnérabilités.
+# - A. Qu'est-ce qu'un scanner de vulnérabilités.
 
 En sécurité informatique, un scanner de vulnérabilités est un programme conçu pour identifier des vulnérabilités dans une application, un système d'exploitation ou un réseau.
 
