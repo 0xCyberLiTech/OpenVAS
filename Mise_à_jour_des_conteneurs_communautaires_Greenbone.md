@@ -2,7 +2,7 @@
 
 # Mise à jour des conteneurs communautaires Greenbone.
 
-Pour mettre à jour les conteneurs communautaires Greenbone vers la dernière version, il est nécessaire pour extraire les images et redémarrer les conteneurs qui ont de nouvelles images. Cela peut En finir avec :
+Pour mettre à jour les conteneurs communautaires Greenbone vers la dernière version, il est nécessaire de lancer la commande suivante :
 
 Téléchargement des conteneurs communautaires Greenbone.
 ```
