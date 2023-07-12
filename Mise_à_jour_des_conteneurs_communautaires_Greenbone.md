@@ -15,7 +15,9 @@ docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
 ```
 Exécution d’une synchronisation de flux.
 
-Pour l’analyse des vulnérabilités, les tests de vulnérabilité, des informations de sécurité telles que les CVE, les listes de ports et les configurations d’analyse sont requises. Toutes ces données sont fournies par le Greenbone Community Feed via un flux dédié Images de conteneur de données.
+Pour l’analyse des vulnérabilités, les tests de vulnérabilité, des informations de sécurité telles que les CVE, les listes de ports et les configurations d’analyse sont requises.
+
+Toutes ces données sont fournies par le Greenbone Community Feed via un flux dédié Images de conteneur de données.
 
 Une synchronisation de flux se compose toujours de deux parties :
 
@@ -23,10 +25,13 @@ Téléchargement des modifications via l’extraction de nouvelles images de con
 
 Chargement des modifications en mémoire et dans une base de données par un démon.
 
-Les deux étapes peuvent prendre un certain temps, de quelques minutes à quelques heures, en particulier pour le synchronisation initiale. 
+Les deux étapes peuvent prendre un certain temps, de quelques minutes à quelques heures, en particulier pour le synchronisation initiale.
+
 Ce n’est que si les deux étapes sont terminées que les données synchronisées est à jour et peut être utilisé.
 
-La première étape se fait via le docker-compose pull. La deuxième étape est Effectué automatiquement lorsque les démons sont en cours d’exécution.
+1) - La première étape se fait via le docker-compose pull. 
+
+2) - La deuxième étape est Effectué automatiquement lorsque les démons sont en cours d’exécution.
 
 Téléchargement des modifications de flux.
 
