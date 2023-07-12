@@ -63,14 +63,13 @@ Pour télécharger le fichier de composition docker Greenbone Community Edition,
 
 Créer un répertoire de téléchargement.
 ```
-mkdir ~/greenbone-community-container
+mkdir ~/greenbone-community-container/
 ```
 Fichier de composition Docker.
 
 Pour exécuter Greenbone Community Edition avec des conteneurs, les éléments suivants sont composés doit être utilisé:
 
 Fichier de composition Docker.
-
 ```
 services:
   vulnerability-tests:
@@ -284,7 +283,7 @@ Lancement des conteneurs communautaires Greenbone.
 
 Téléchargement des conteneurs communautaires Greenbone.
 ```
-~/greenbone-community-container/
+cd ~/greenbone-community-container/
 curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
 ![openvas-12](./images/openvas-12.png)
