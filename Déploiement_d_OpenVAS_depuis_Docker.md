@@ -284,6 +284,8 @@ Lancement des conteneurs communautaires Greenbone.
 Téléchargement des conteneurs communautaires Greenbone.
 ```
 cd ~/greenbone-community-container/
+```
+```
 curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
 ![openvas-12](./images/openvas-12.png)
