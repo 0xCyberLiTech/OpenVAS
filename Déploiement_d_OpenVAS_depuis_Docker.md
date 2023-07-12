@@ -341,7 +341,7 @@ Le navigateur affichera la page de connexion de GSA et après avoir utilisé les
 
 Greenbone Security Assistant après s’être connecté pour la première fois.
 
-Configuration et script de démarrage :
+# Configuration et script de démarrage :
 
 Note.
 
@@ -435,7 +435,7 @@ Exécuter le programme d’installation et démarrer le script.
 
 ![openvas-09](./images/openvas-09.png)
 
-Dépannage :
+# Dépannage :
 
 Avertissement.
 
