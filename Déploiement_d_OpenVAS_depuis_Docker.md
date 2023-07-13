@@ -444,7 +444,7 @@ docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
 ```
 docker-compose -f docker-compose.yml -p greenbone-community-edition stop
 ```
-(Supprimer les conteneurs communautaires Greenbone)
+- (Supprimer les conteneurs communautaires Greenbone)
 ```
 docker-compose -f docker-compose.yml -p greenbone-community-edition down
 ```
