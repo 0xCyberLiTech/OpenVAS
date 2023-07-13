@@ -296,7 +296,7 @@ docker-compose -f docker-compose.yml -p greenbone-community-edition logs -f
 ```
 ![openvas-15](./images/openvas-15.png)
 
-Le flux de journaux peut être arrêté en appuyant sur . Ctrl + c
+Le flux du journal de logs peut être arrêté en appuyant sur . Ctrl + c
 
 Configuration d’un utilisateur administrateur.
 
@@ -304,7 +304,7 @@ Avertissement :
 
 Par défaut, un administrateur utilisateur avec le mot de passe admin est créé. 
 
-Ce n’est pas sûr Et il est fortement recommandé de définir un nouveau mot de passe.
+Ce n’est pas sûr. Et il est fortement recommandé de définir un nouveau mot de passe.
 
 Pour mettre à jour l’utilisateur administrateur avec un mot de passe de votre choix au lieu du mot de passe généré, la commande suivante peut être utilisée :
 
