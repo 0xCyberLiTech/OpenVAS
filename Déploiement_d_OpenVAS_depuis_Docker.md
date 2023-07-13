@@ -329,7 +329,9 @@ Le navigateur affichera la page de connexion de GSA et après avoir utilisé les
 
 Avertissement.
 
-Les commandes des instructions de dépannage suivantes ne sont valides que si vous a suivi la documentation de génération source. Si vous avez installé le Greenbone Community Edition via une distribution Linux (par exemple Kali Linux), le Les commandes peuvent être légèrement différentes et doivent être ajustées.
+Les commandes des instructions de dépannage suivantes ne sont valides que si vous a suivi la documentation de génération source.
+
+Si vous avez installé le Greenbone Community Edition via une distribution Linux (par exemple Kali Linux), le Les commandes peuvent être légèrement différentes et doivent être ajustées.
 
 Faire face à un problème avec l’édition Greenbone Community.
 
@@ -345,11 +347,15 @@ Sinon, le fichier doit être inspecté.
 ```
 Ensuite, l’utilisation des messages d’erreur collectés dans la recherche de notre forum communautaire peut faire apparaître des résultats possibles pour résoudre le problème déjà.
 
-Si aucun résultat approprié ne peut être trouvé, n’hésitez pas à créer un nouveau sujet sur notre forum communautaire. Un message dans le forum devrait contiennent toujours la méthode d’installation et la version du Greenbone Community Edition (construit à partir de la source via ce guide, communauté officielle conteneurs, colis Kali, ...) et le message d’erreur trouvé.
+Si aucun résultat approprié ne peut être trouvé, n’hésitez pas à créer un nouveau sujet sur notre forum communautaire.
+
+Un message dans le forum devrait contiennent toujours la méthode d’installation et la version du Greenbone Community Edition (construit à partir de la source via ce guide, communauté officielle conteneurs, colis Kali, ...) et le message d’erreur trouvé.
 
 Impossible de trouver port_list '33d0cd82-57c6-11e1-8ed1-406186ea4fc5'
 
-Cette erreur peut se produire lors de la liaison à l’aide de l’Assistant Tâche pour créer une analyse rapide après la configuration initiale. Cela est dû au fait que gvmd ne peut pas charger Le port répertorie les listes du flux dans sa base de données. Pour résoudre ce problème, vous besoin de vérifier si contient le code XML de la liste des ports lime:/var/lib/gvm/data-objects/
+Cette erreur peut se produire lors de la liaison à l’aide de l’Assistant Tâche pour créer une analyse rapide après la configuration initiale.
+
+Cela est dû au fait que gvmd ne peut pas charger Le port répertorie les listes du flux dans sa base de données. Pour résoudre ce problème, vous besoin de vérifier si contient le code XML de la liste des ports lime:/var/lib/gvm/data-objects/
 
 Vérifier si la liste des ports est déjà synchronisée.
 ```
@@ -369,7 +375,11 @@ sudo -u gvm gvmd --rebuild-gvmd-data=all
 ```
 Impossible de trouver la configuration.
 
-Ce problème est similaire à Impossible de trouver port_list. Il sera déclenché si gvmd n’est pas en mesure de charger les configurations d’analyse à partir de le système de fichiers dans sa base de données. Tout d’abord, vous devez vérifier si l’analyse Les configurations ont été téléchargées à partir du flux.
+Ce problème est similaire à Impossible de trouver port_list.
+
+Il sera déclenché si gvmd n’est pas en mesure de charger les configurations d’analyse à partir de le système de fichiers dans sa base de données.
+
+Tout d’abord, vous devez vérifier si l’analyse Les configurations ont été téléchargées à partir du flux.
 
 Vérifier si les configurations d’analyse sont déjà synchronisées.
 ```
@@ -381,7 +391,9 @@ Synchronisation des objets de données traités par gvmd.
 ```
 sudo -u gvm greenbone-feed-sync --type GVMD_DATA
 ```
-Parce que les configurations d’analyse font référence aux VT chargeant également les configurations d’analyse nécessite des VT synchronisés à partir du flux. Vous pouvez vérifier si les VT sont déjà chargé en consultant la page de l’interface utilisateur Web Secinfo ‣ NVTs.
+Parce que les configurations d’analyse font référence aux VT chargeant également les configurations d’analyse nécessite des VT synchronisés à partir du flux.
+
+Vous pouvez vérifier si les VT sont déjà chargé en consultant la page de l’interface utilisateur Web Secinfo ‣ NVTs.
 
 S’il n’y a pas de VT visibles dans l’interface utilisateur Web, ils doivent être téléchargés à partir du nourrir.
 
@@ -389,7 +401,9 @@ Synchronisation des VT traités par le scanner openvas.
 ```
 sudo -u gvm greenbone-nvt-sync
 ```
-Le chargement des VT à partir du système de fichiers peut prendre un certain temps. À partir de plusieurs minutes en heures en fonction des performances de votre système et du nombre de VT. Vous peut suivre le processus de chargement des VT en consultant les fichiers :
+Le chargement des VT à partir du système de fichiers peut prendre un certain temps.
+
+À partir de plusieurs minutes en heures en fonction des performances de votre système et du nombre de VT. Vous peut suivre le processus de chargement des VT en consultant les fichiers :
 ```
 et./var/log/gvm/ospd-openvas.log/var/log/gvm/gvmd.log
 ```
@@ -399,13 +413,19 @@ Définition de l' Feed Import Owner.
 ```
 gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value `gvmd --get-users --verbose | grep admin | awk '{print $2}'`
 ```
-Si toutes ces étapes ne résolvent pas le problème, il s’agit très probablement d’un problème plus important. par exemple avec la base de données PostgreSQL. Par conséquent, les fichiers et doivent être inspectés pour détecter d’éventuels messages d’erreur et d’avertissement./var/log/gvm/ospd-openvas.log/var/log/gvm/gvmd.log
+Si toutes ces étapes ne résolvent pas le problème, il s’agit très probablement d’un problème plus important. par exemple avec la base de données PostgreSQL.
+
+Par conséquent, les fichiers et doivent être inspectés pour détecter d’éventuels messages d’erreur et d’avertissement./var/log/gvm/ospd-openvas.log/var/log/gvm/gvmd.log
 
 Les vulnérabilités sont introuvables.
 
 Un rapport d’analyse ne contient aucun résultat ou certaines vulnérabilités connues n’en contiennent pas. apparaissent dans le rapport.
 
-Cela peut avoir plusieurs raisons. Très probablement, la synchronisation du flux n’est pas C’est encore terminé. Les données de flux ont été téléchargées dans le système de fichiers du local machine put gvmd et ospd-openvas n’avaient pas assez de ressources pour les charger dans leurs bases de données et leur mémoire. Cela peut être vérifié en regardant sur la page SecInfo ‣ NVT si les VT sont répertoriés ici et sur la page Administration ‣ État du flux pour un processus de synchronisation dans l’interface utilisateur Web.
+Cela peut avoir plusieurs raisons. Très probablement, la synchronisation du flux n’est pas C’est encore terminé.
+
+Les données de flux ont été téléchargées dans le système de fichiers du local machine put gvmd et ospd-openvas n’avaient pas assez de ressources pour les charger dans leurs bases de données et leur mémoire.
+
+Cela peut être vérifié en regardant sur la page SecInfo ‣ NVT si les VT sont répertoriés ici et sur la page Administration ‣ État du flux pour un processus de synchronisation dans l’interface utilisateur Web.
 
 Note :
 ```
