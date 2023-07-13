@@ -1,6 +1,6 @@
 ![OpenVAS](./images/OpenVAS.png)
 
-# OpenVAS
+# OPENVAS
 
 Prérequis :
 
@@ -19,6 +19,8 @@ Conditions préalables :
 - Note.
 
 Si vous avez installer une DEBIAN 12 de base, (sudo) n'est pas installé.
+
+Procéder à l'installation de celui-ci.
 
 ```
 su - root
@@ -40,22 +42,6 @@ Curl est requis pour télécharger des fichiers à partir de ce guide.
 ```
 sudo apt install curl
 ```
-Installation de docker-compose. 
-
-Si cette étape est déjà réalisée passer à la suivante qui est : [(Ajouter l’utilisateur actuel au groupe docker... )](#balise_01)
-
-docker-compose version 1.29.0 ou plus récente est requis pour démarrer et se connecter les services de Greenbone Community Edition. La description du service L’orchestration s’effectue à l’aide de fichiers de composition. Un fichier de composition pour Greenbone Community Edition est fourni ultérieurement.
-
-
-Installer le paquet Debian docker-compose.
-```
-sudo apt install python3 python3-pip
-python3 -m pip install --user docker-compose
-```
-Coup monté.
-
-Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker. Pour modifier le groupe Effectivement, déconnectez-vous et reconnectez-vous ou utilisez SU.
-
 <a name="balise_01"></a>
 Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe pour l’environnement shell actuel.
 ```
