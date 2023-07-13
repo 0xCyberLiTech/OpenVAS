@@ -294,7 +294,7 @@ Afficher les messages de journal de tous les services à partir des conteneurs e
 ```
 docker-compose -f docker-compose.yml -p greenbone-community-edition logs -f
 ```
-![openvas-05](./images/openvas-05.png)
+![openvas-14](./images/openvas-14.png)
 
 Le flux de journaux peut être arrêté en appuyant sur . Ctrl + c
 
