@@ -427,8 +427,11 @@ Les données de flux ont été téléchargées dans le système de fichiers du l
 
 Cela peut être vérifié en regardant sur la page SecInfo ‣ NVT si les VT sont répertoriés ici et sur la page Administration ‣ État du flux pour un processus de synchronisation dans l’interface utilisateur Web.
 
-Note :
+Rappel :
 
+```
+cd ~/greenbone-community-container/
+```
 - (Télécharger les conteneurs communautaires Greenbone)
 ```
 docker-compose -f docker-compose.yml -p greenbone-community-edition pull
