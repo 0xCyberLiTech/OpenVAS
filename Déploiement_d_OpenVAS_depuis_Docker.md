@@ -428,10 +428,21 @@ Les données de flux ont été téléchargées dans le système de fichiers du l
 Cela peut être vérifié en regardant sur la page SecInfo ‣ NVT si les VT sont répertoriés ici et sur la page Administration ‣ État du flux pour un processus de synchronisation dans l’interface utilisateur Web.
 
 Note :
+
+- (Télécharger les conteneurs communautaires Greenbone)
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition pull (Télécharger les conteneurs communautaires Greenbone)
-docker-compose -f docker-compose.yml -p greenbone-community-edition up -d (Démarrer les conteneurs communautaires Greenbone)
-docker-compose -f docker-compose.yml -p greenbone-community-edition stop (Stopper les conteneurs communautaires Greenbone)
-docker-compose -f docker-compose.yml -p greenbone-community-edition down (Supprimer les conteneurs communautaires Greenbone)
+docker-compose -f docker-compose.yml -p greenbone-community-edition pull
+```
+- (Démarrer les conteneurs communautaires Greenbone)
+```
+docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
+```
+- (Stopper les conteneurs communautaires Greenbone)
+```
+docker-compose -f docker-compose.yml -p greenbone-community-edition stop
+```
+(Supprimer les conteneurs communautaires Greenbone)
+```
+docker-compose -f docker-compose.yml -p greenbone-community-edition down
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
