@@ -280,7 +280,7 @@ curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.y
 
 Lancement des conteneurs communautaires Greenbone.
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
+docker compose -f docker-compose.yml -p greenbone-community-edition up -d
 ```
 ![openvas-12](./images/openvas-12.png)
 
@@ -292,7 +292,7 @@ Pour obtenir un flux continu de la sortie du journal de tous les services, exéc
 
 Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition logs -f
+docker compose -f docker-compose.yml -p greenbone-community-edition logs -f
 ```
 ![openvas-15](./images/openvas-15.png)
 
@@ -310,7 +310,7 @@ Pour mettre à jour l’utilisateur administrateur avec un mot de passe de votre
 
 Mise à jour du mot de passe de l’utilisateur administrateur.
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition \
+docker compose -f docker-compose.yml -p greenbone-community-edition \
     exec -u gvmd gvmd gvmd --user=admin --new-password=admin
 ```
 Démarrage de la gestion des vulnérabilités.
@@ -436,21 +436,21 @@ mkdir ~/greenbone-community-container/
 ```
 ```
 cyberlitech@0xCLT:~$
-docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition pull
+docker compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition pull
 ```
 - (Démarrer les conteneurs communautaires Greenbone)
 ```
 cyberlitech@0xCLT:~$
-docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition up -d
+docker compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition up -d
 ```
 - (Stopper les conteneurs communautaires Greenbone)
 ```
 cyberlitech@0xCLT:~$
-docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition stop
+docker compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition stop
 ```
 - (Supprimer les conteneurs communautaires Greenbone)
 ```
 cyberlitech@0xCLT:~$
-docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition down
+docker compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition down
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
