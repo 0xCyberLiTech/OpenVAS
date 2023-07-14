@@ -25,7 +25,7 @@ Procéder à l'installation de celui-ci.
 ```
 su - root
 apt install sudo
-adduser cyberlitech sudo
+usermod -aG sudo cyberlitech
 init 6
 ```
 Se connecter au terminal, avec le user (ex, cyberlitech).
