@@ -429,23 +429,28 @@ Cela peut être vérifié en regardant sur la page SecInfo ‣ NVT si les VT son
 
 Rappel :
 
-```
-cd ~/greenbone-community-container/
-```
 - (Télécharger les conteneurs communautaires Greenbone)
+
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition pull
+mkdir ~/greenbone-community-container/
+```
+```
+cyberlitech@0xCLT:~$
+docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition pull
 ```
 - (Démarrer les conteneurs communautaires Greenbone)
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition up -d
+cyberlitech@0xCLT:~$
+docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition up -d
 ```
 - (Stopper les conteneurs communautaires Greenbone)
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition stop
+cyberlitech@0xCLT:~$
+docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition stop
 ```
 - (Supprimer les conteneurs communautaires Greenbone)
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition down
+cyberlitech@0xCLT:~$
+docker-compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition down
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
