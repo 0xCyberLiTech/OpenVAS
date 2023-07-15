@@ -16,7 +16,7 @@ Vous trouverez ici un tutoriel sur l’installation de Docker, Docker-compose & 
 
 Conditions préalables :
 
-- Note.
+- Rappel .
 
 Si vous avez installer une DEBIAN 12 de base, (sudo) n'est pas installé.
 
@@ -41,11 +41,6 @@ La commande sudo est utilisée pour exécuter des commandes qui nécessitent un 
 Curl est requis pour télécharger des fichiers à partir de ce guide.
 ```
 sudo apt install curl
-```
-<a name="balise_01"></a>
-Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe pour l’environnement shell actuel.
-```
-sudo usermod -aG docker $USER && su $USER
 ```
 Pour télécharger le fichier de composition docker Greenbone Community Edition, un Le répertoire de destination doit être créé.
 
