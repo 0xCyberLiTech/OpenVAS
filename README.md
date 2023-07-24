@@ -16,27 +16,30 @@
 
 <a name="balise_01"></a>
 # - A. Qu'est-ce qu'un scanner de vulnérabilités.
-
+<p style="text-align:justify;">Texte justifié :
 En sécurité informatique, un scanner de vulnérabilités est un programme conçu pour identifier des vulnérabilités dans une application, un système d'exploitation ou un réseau.
-
+...</p>
 ## Utilisation.
 
 Les scanners de vulnérabilités peuvent être utilisés dans des objectifs licites ou illicites :
-
+<p style="text-align:justify;">Texte justifié :
 - Objectifs licites : les experts en sécurité informatique ou les entreprises utilisent les scanners de vulnérabilités pour trouver les failles de sécurité des systèmes informatiques et des systèmes de communication de leurs entreprises dans le but de les corriger avant que les pirates informatiques ne les exploitent ;
-
+...</p>
+<p style="text-align:justify;">Texte justifié :
 - Objectifs illicites : les pirates informatiques utilisent les mêmes outils pour trouver les failles dans les systèmes des entreprises pour les exploiter à leur avantage.
-
+...</p>
 Cet outil peut être une brique intégrée d'une solution de sécurité plus large : un SIEM ou un SOC par exemple.
 
 <a name="balise_02"></a>
 # - B. Principes de fonctionnement :
 
 Les scanners de vulnérabilités se présentent sous plusieurs formes :
+<p style="text-align:justify;">Texte justifié :
 Logiciel à installer sur son système, machine virtuelle pré-configurée (virtual appliance) ou encore en SaaS dans le Cloud.
-
+...</p>
+<p style="text-align:justify;">Texte justifié :
 Un scanner de vulnérabilités se "lance" sur une ou plusieurs cibles, dans un réseau interne ou sur Internet. Ces cibles (URL, adresse IP ou sous-réseau) sont renseignées par l'utilisateur lorsqu'il désire mener son scan. La plupart des outils suivent le schéma de scan suivant :
-
+...</p>
 - Cartographie des cibles actives (Attente d'une réponse ICMP, ARP, TCP, etc. pour déterminer si la cible répondra au scanner)
 - Détection des ports TCP et UDP accessibles sur la cible (scan de ports)
 - Détection des services actifs (SSH, HTTP, etc.) sur chacun de ces ports et de leurs versions (phase de footprinting)
