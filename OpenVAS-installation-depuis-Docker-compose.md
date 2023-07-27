@@ -10,7 +10,7 @@ Vous trouverez ici un tutoriel sur l’installation de Docker, Docker compose v2
 
 - Installation manuelle de Docker Engine & Docker-compose-plugin v2, [disponible ici](https://github.com/0xCyberLiTech/Docker/blob/main/README.md#balise-01)
 
-- Installation manuelle de Portainer, [disponible ici](https://github.com/0xCyberLiTech/Docker/blob/main/README.md#installation-manuelle-de-portainer)
+- Installation manuelle de Portainer, [disponible ici](https://github.com/0xCyberLiTech/Docker/blob/main/PORTAINER-Installation-manuelle.md)
 
 
 Conditions préalables :
