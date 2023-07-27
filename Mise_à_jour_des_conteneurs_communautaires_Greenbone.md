@@ -1,6 +1,6 @@
 ![OpenVAS](./images/OpenVAS.png)
 
-# Mise à jour des conteneurs communautaires Greenbone.
+## Mise à jour des conteneurs communautaires Greenbone.
 
 Pour mettre à jour les conteneurs communautaires Greenbone vers la dernière version, il est nécessaire de lancer la commande suivante :
 
