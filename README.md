@@ -4,18 +4,16 @@
 
 ## Sommaire :
 
-| Cat | Etapes |
-|------|------| 
-| - A. | [Qu'est-ce qu'un scanner de vulnérabilités.](#balise_01) |
-| - B. | [Principes de fonctionnement.](#balise_02) |
-| - C. | [Cibles.](#balise_03) |
-| - D. | [Méthodes de détection.](#balise_04) |
-| - E. | [Restitution des résultats.](#balise_05) |
-| - F. | [Déploiement d'OpenVAS depuis Docker.](Déploiement_d_OpenVAS_depuis_Docker.md) |
-| - G. | [Mise à jour des conteneurs communautaires Greenbone.](Mise_à_jour_des_conteneurs_communautaires_Greenbone.md) |
+- 01 - [Qu'est-ce qu'un scanner de vulnérabilités.](#balise_01)
+- 02 - [Principes de fonctionnement.](#balise_02)
+- 03 - [Cibles.](#balise_03)
+- 04 - [Méthodes de détection.](#balise_04)
+- 05 - [Restitution des résultats.](#balise_05)
+- 06 - [Déploiement d'OpenVAS depuis Docker.](Déploiement_d_OpenVAS_depuis_Docker.md)
+- 07 - [Mise à jour des conteneurs communautaires Greenbone.](Mise_à_jour_des_conteneurs_communautaires_Greenbone.md)
 
 <a name="balise_01"></a>
-# - A. Qu'est-ce qu'un scanner de vulnérabilités.
+## - 01 Qu'est-ce qu'un scanner de vulnérabilités.
 
 En sécurité informatique, un scanner de vulnérabilités est un programme conçu pour identifier des vulnérabilités dans une application, un système d'exploitation ou un réseau.
 
@@ -30,7 +28,7 @@ Les scanners de vulnérabilités peuvent être utilisés dans des objectifs lici
 Cet outil peut être une brique intégrée d'une solution de sécurité plus large : un SIEM ou un SOC par exemple.
 
 <a name="balise_02"></a>
-# - B. Principes de fonctionnement :
+## - 02 Principes de fonctionnement :
 
 Les scanners de vulnérabilités se présentent sous plusieurs formes :
 
@@ -50,7 +48,7 @@ Un scanner de vulnérabilités se "lance" sur une ou plusieurs cibles, dans un r
 Un scanner de vulnérabilités est donc un outil complexe qui peut faire appel à de nombreux programmes spécifiques pour chacune des tâches pré-citées.
 
 <a name="balise_03"></a>
-# - C. Cibles.
+## - 03 Cibles.
 
 Un scanner de vulnérabilités est théoriquement capable de tester tout élément joignable par une adresse IP :
 
@@ -67,7 +65,7 @@ Un scanner de vulnérabilités est théoriquement capable de tester tout éléme
 
 Le fait de pouvoir atteindre un équipement n'implique cependant pas forcément que son niveau de sécurité puisse être audité correctement. Pour cela, le scanner doit embarquer les modules de sécurité idoines dans son catalogue. Par exemple, si une cible ne possède que le port UDP 161 ouvert avec le service SNMP, un scanner pourra reconnaître que cette cible est active, mais ne pourra juger son niveau de sécurité qu'en incorporant des modules d'attaque contre SNMP.
 <a name="balise_04"></a>
-# - D. Méthodes de détection.
+## - 04 Méthodes de détection.
 
 Pour établir la présence d'une vulnérabilité, un scanner dispose de plusieurs méthodes.
 
@@ -145,7 +143,7 @@ Les scanners Web sont cependant limités puisque des opérations complexes, comm
 En pratique, les scanners Web peuvent néanmoins remonter des informations pertinentes pour des technologies très répandues, telles que les CMS. Des outils spécialisés pour chaque famille de CMS peuvent alors être utilisés, comme WPScan [archive] pour l'analyse de sites WordPress.
 
 <a name="balise_05"></a>
-# - E. Restitution des résultats.
+## - 05 Restitution des résultats.
 
 La visualisation et la restitution des résultats se fait traditionnellement via deux paradigmes [réf. nécessaire]. Premièrement, une vue par vulnérabilité permettant de lister toutes les vulnérabilités identifiées dans le scan et de donner pour chacune d'elles la liste des machines affectées. Deuxièmement, une vue par machine listant les cibles de l'audit associées à la liste de leurs vulnérabilités respectives.
 
