@@ -9,7 +9,7 @@
 - 03 - [Cibles.](#balise_03)
 - 04 - [Méthodes de détection.](#balise_04)
 - 05 - [Restitution des résultats.](#balise_05)
-- 06 - [Déploiement d'OpenVAS depuis Docker.](Déploiement_d_OpenVAS_depuis_Docker.md)
+- 06 - [OpenVAS installation depuis Docker-compose.](OpenVAS-installation-depuis-Docker-compose.md)
 - 07 - [Mise à jour des conteneurs communautaires Greenbone.](Mise_à_jour_des_conteneurs_communautaires_Greenbone.md)
 
 <a name="balise_01"></a>
