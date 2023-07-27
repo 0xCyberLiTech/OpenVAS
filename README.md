@@ -2,7 +2,7 @@
 
 ## OpenVAS.
 
-## Sommaire :
+👋 Sommaire des sujets abordés :
 
 - 01 - [Qu'est-ce qu'un scanner de vulnérabilités.](#balise_01)
 - 02 - [Principes de fonctionnement.](#balise_02)
