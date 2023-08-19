@@ -448,45 +448,96 @@ docker compose -f greenbone-community-container/docker-compose.yml -p greenbone-
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
 
-## Actualité sur les vulnérabilités
+## Actualité sur les vulnérabilités à ce jour :
 
-Article rédigé par Dominique Filippone. Chef des actualités LMI/
+## AMD :
 
-Vulnérabilité de Processeurs Intel | AMD :
+AMD contraint de réduire les performances de ses processeurs à cause d’une faille de sécurité.
 
-Alors que la faille Downfall met à mal des milliards de processeurs Intel de la génération 6 à la génération 11, les utilisateurs de systèmes basés sur des puces AMD sont aussi sous pression.
+Mauvaise nouvelle pour les propriétaires de processeurs AMD. Une faille de sécurité a été découverte sur les puces, et en la corrigeant, AMD a dû réduire les performances de tous ses processeurs Zen.
 
-Cette faille découverte par des chercheurs suisses, est potentiellement exploitable sur toutes ses puces AMD depuis 2017.
+AMD a récemment dévoilé une vulnérabilité nommée “Inception”, qui manipule un processeur en créant une instruction qui l’incite à répéter une fonction. Cette faille peut potentiellement conduire à des fuites de données, ce qui représente une menace sérieuse pour les organisations qui traitent des informations confidentielles. Cette vulnérabilité touche tous les processeurs Zen, c'est-à-dire une grande partie des utilisateurs de puces AMD.
 
-Coïncidence ou pas ? Quelques jours après la découverte de la vulnérabilité Downfall ciblant les processeurs Intel, des chercheurs en sécurité de l'école polytechnique fédérale (ETH) de Zurich ont détaillé dans une étude une faille à laquelle sont exposés les processeurs AMD conçus depuis 2017. Baptisée Inception, cette vulnérabilité CVE-2023-20569 présente selon la société fabless un niveau de risque modéré. Cela ne signifie cependant pas qu'elle est sans danger, mais nécessite un accès local au système pour être potentiellement exploité ce qui en limite de fait la portée. Tous les processeurs AMD depuis 2017 sont touchés, incluant les derniers modèles Zen 4 Epyc et Ryzen. Les chercheurs indiquent que les puces Intel ne sont pas concernées par un possible exploit lié à Inception.
+L’entreprise a rapidement pris des mesures pour remédier à la vulnérabilité, mais les correctifs ont été accompagnés d’une conséquence inattendue : une baisse significative des performances du processeur, en particulier pour certaines applications.
 
-Les résultats de l'étude menée depuis un an et demi par les chercheurs - et résumés dans un article - mettent en lumière deux actions conjointes ouvrant la voie par un attaquant sans privilèges système particuliers, à exfiltrer des données. Tout d'abord, déclencher une erreur de prédiction en faisant en sorte que le noyau devine mal le chemin d'exécution (phantom speculation identifiée en tant que CVE-2022-23825), et d'autre part en manipulant ces erreurs (training in transient execution) pour faire fuiter des informations d'un noyau système à une vitesse de 39 octets par seconde sur du matériel vulnérable.
+Lire également – AMD Ryzen : cette faille permet de voler vos mots de passe et ne sera pas corrigée avant la fin d’année
 
-Des actions d'atténuation possibles :
+AMD DIMINUE LES PERFORMANCES DE SES PROCESSEURS POUR AMÉLIORER LEUR SÉCURITÉ
+Phoronix, une source bien connue de tests de Linux et de matériel, s'est penché sur l'impact des nouvelles mesures d'atténuation du microcode sur les performances. Les résultats, en particulier pour le processeur EPYC 7763 d'AMD, dressent un tableau plutôt inquiétant pour de nombreux utilisateurs.
 
-« L'association de ces deux éléments donne naissance à un nouveau type d'attaque appelé Inception : nous pouvons injecter des prévisions erronées futures par le biais d'une prévision erronée antérieure que nous déclenchons », indiquent les chercheurs. « Cette attaque fait leaker des données arbitraires à partir d'un processus non privilégié sur tous les processeurs AMD Zen. Inception fait croire au processeur qu'une instruction XOR est une instruction d'appel récursif qui déborde le tampon de la pile de retour avec une cible contrôlée par l'attaquant ».
+En effet, les benchmarks réalisés par Phoronix révèlent que le correctif de la faille « Inception » peut entraîner une baisse des performances pouvant aller jusqu'à 54 %. Cette réduction substantielle de la puissance peut avoir un impact significatif sur les applications qui reposent sur le traitement des données, et donc de nombreuses industries.
 
-Pour contourner Inception, les chercheurs en sécurité avancent des solutions. A commencer par installer une mise à jour du microcode d'AMD pour les processeurs Zen 3 et 4 (les puces Zen 1 et 2 ne sont pas concernées). Il est recommandé dans tous les cas d'activer la fonction « safe RET » dans le noyau pour le protéger de processus utilisateur et d'hôtes de machines virtuelles invitées, sachant que des protections supplémentaires de niveau IBPB peuvent aussi être envisagées. « L'atténuation fonctionne en s'assurant que toutes les instructions RET spéculent vers un endroit contrôlé, de la même manière que la spéculation est contrôlée dans la séquence Retpoline », peut-on aussi lire dans des notes du kernel Linux concernant ce hack.
+Évidemment, l'ampleur de la dégradation des performances varie en fonction de l'application utilisée. Les applications courantes telles que Blender et Mozilla Firefox ne sont que peut impactées, et certaines ne présentent même aucun changement perceptible. Cependant, les tâches plus gourmandes en ressources, telles que celles qui impliquent des processus lourds en données comme MariaDB, ont connu une baisse significative des performances, dépassant la barre des 50 %.
 
-https://www.lemondeinformatique.fr/actualites/auteur-dominique-filippone-484.html
+AMD n’est d’ailleurs pas le seul à faire face à de tels problèmes, puisqu’Intel avait lui aussi dû récemment sacrifier plus de 50% des performances de certaines puces pour combler la faille « Downfall ».
 
-## Faille Inception : le correctif affecte les performances des CPU Ryzen AMD
-Mark Hachman, IDG NS (adapté par Jean Elyan) , publié le 17 Aout 2023
+Heureusement, il y a une bonne nouvelle pour les joueurs. Phoronix a réalisé le test 3DMark Wildlife Extreme qui a révélé une baisse insignifiante des performances, ce qui est de bon augure pour les jeux vidéo. Les gamers ne devraient donc pas être impactés par cette réduction de la puissance des processeurs sur les applications gourmandes.
 
-Selon les premiers tests effectués par Phoronix, le microcode utilisé pour corriger la récente vulnérabilité Inception d'AMD ne semble pas affecter sérieusement les performances courantes des processeurs Ryzen y compris pour le jeu. Il en va tout autre de l'édition et de la retouche photo et dans une moindre mesure de la compression zip et du temps de compilation du noyau Linux.
+Autre info concernant AMD :
 
-La faille Inception affecte tous les processeurs Ryzen et Epyc d'AMD. (crédit : Willis Lai / Foundry - IDG)
-Potentiellement exploitable sur toutes les puces AMD depuis 2017, la faille Inception découverte il y a quelques jours commence à dévoiler certaines de ses conséquences. En particulier des soucis de performance concernant les CPU Ryzen de la société fabless. En effet, si les gamers devraient être relativement épargnés, le correctif pourrait avoir un impact plus gênant sur les outils de retouche d'images exécutés par des PC sous Ryzen. Dans d’autres tests effectués après la découverte d'Inception, Phoronix, avait constaté de fortes baisses de performances des processeurs Intel Core dans les applications côté serveur.
+La faille Zenbleed rend indiscrètes les puces Ryzen et Epyc d'AMD.
 
-Bien que découvertes à peu près en même temps, les deux vulnérabilités ont l'air différentes. Downfall donne la capacité à un attaquant partageant le même PC Intel que la victime d'attaquer d'autres utilisateurs, et, théoriquement, d'accéder à leurs données. Le trou de sécurité Inception force également un PC embarquant une puce Ryzen à déboucher sur de la fuite de données, mais le principal vecteur d'attaque serait le fait d’un malware. Cependant, concernant le bogue Inception d'AMD, tous les processeurs Ryzen et Epyc sont affectés, alors que les puces Core de 12e et 13e génération d'Intel ne sont pas vulnérables au bogue Downfall. Pour le grand public, la menace de ces deux bogues est bien réelle, même si la probabilité qu’un utilisateur soit ciblé est statistiquement faible.
+Alaina Yee, IDG NS (adapté par Jean Elyan) , publié le 25 Juillet 2023
 
-Un protocole de test basé sur le microcode Family 19h des CPU
-Dans l’attente de voir les mesures d'atténuation des deux failles effectivement intégrées dans les futurs processeurs AMD et Intel, le microcode doit être corrigé manuellement par un patch. C'est ce correctif qui peut ralentir un PC, parfois de façon spectaculaire. Pour mesurer l'impact de Downfall, Phoronix avait choisi des benchmarks différents de ceux utilisés pour la vulnérabilité AMD Inception. Les tests relatifs à Downfall étaient concentrés sur des benchmarks côté serveur. Dans le cas d'Inception, Phoronix a également réalisé plusieurs tests pour mesurer l'impact du microcode sur un processeur Ryzen 9 7950X, répandu sur les PC grand public.
+Un chercheur a découvert une faille dans l'architecture Zen 2 des puces Ryzen et Epyc d'AMD. Exploitable à distance, elle peut aboutir à des vols de données sensibles. Le fournisseur prévoit une mise à jour du firmware, mais pas avant l'automne pour les puces grand public.
 
-Il faut néanmoins souligner une chose importante à propos des tests de Phoronix. Les tests sur la puce Ryzen ont été exécutés sous ce que Phoronix appelle le « safe RET sans microcode ». Il s’agit d’une atténuation purement basée sur le noyau qui utilise le microcode du CPU antérieur à la version Family 19h sans l'atténuation Inception. Selon Phoronix, cela s'explique en partie par le fait qu'AMD déploie un nouveau microcode pour les processeurs Zen 3 et Zen 4, mais que les puces Zen 1 et Zen 2 ne requièrent qu'une atténuation basée sur le noyau. D'autre part, Phoronix a effectué une série de tests sur un processeur AMD Epyc, pour lequel l'atténuation était disponible. Quand Phoronix a analysé les résultats pour un « safe RET » sans microcode » et un « safe RET » avec le correctif du microcode, les résultats étaient pratiquement identiques. À prendre comme on veut…
+Spectre, Meltdown, ces noms de vulnérabilités touchant les puces Intel et AMD résonnent encore dans la tête des spécialistes de la cybersécurité. Il faudra peut-être compter sur une autre faille répondant au nom de « Zenbleed ». Découverte par Tavis Ormandy, chercheur chez Google, elle touche les puces sous architecture Zen 2 d’AMD et permet de voler des mots de passe et des clés de chiffrement.
 
-Jusqu'à 28 % de baisse de performance avec GIMP
+La brèche affecte les puces grand public sous l’appellation Ryzen et celles dédiées aux serveurs sous la marque Epyc. Dans le détail, la famille Ryzen touchée comprend la série 3000 (classique, pro et threadripper), la série 4000 (Pro, avec Radeon Graphics), la série 5000 avec Radeon Graphics, la série 7020 avec Radeao Graphics. Pour la gamme Epyc, seule la série Rome semble concernée.
 
-La bonne nouvelle, c’est que, jusqu'à présent, les jeux Ryzen ne semblent pas affectés, avec une différence statistiquement insignifiante de 1 % sur le benchmark Wild Life de 3DMark. La compression à l'aide de 7Zip a entraîné une baisse de 5 % des performances. Le temps de compilation d'un noyau Linux a été allongé de 8 % après l'application du microcode. À noter que, à l'instar du bogue Intel Downfall, les utilisateurs qui travaillent avec des applications de photographie et de retouche d'images ont des raisons de s'inquiéter.
+Une extraction de données sensibles à distance.
 
-Même si les tests de Phoronix ne révèlent qu'une baisse de 4 % avec le logiciel de photographie Darktable RAW, les performances de GIMP, concurrent de Photoshop, ont été fortement affectées. Les performances de l'outil de rotation de GIMP ont chuté de 28 %. De même, Phoronix a constaté une baisse de 24 % lors de l'utilisation du masque de flou avec la commande « unsharp-mask », et le temps de redimensionnement d'une image a pris 18 % de plus après application du correctif. Rien ne dit qu'AMD et Intel ne pourront pas optimiser les performances de leurs puces respectives au fil du temps. Mais pour l'instant, les créatifs devront s'accommoder des inconvénients de ces deux derniers bogues.
+Tavis Ormandy souligne dans un message avoir informé AMD du l’existence de la faille Zenbleed à la mi-mai. Ce qui la distingue des autres failles connues, c’est qu’il n’est pas nécessaire d’avoir un accès physique au PC. Elle peut-être activée via un Javascript sur une page Web. Une fois exécutée, un attaquant est capable de voir n’importe quelle opération du processeur, y compris celles qui se déroulent dans des sandbox ou des machines virtuelles.
+
+La faille est identifiée comme CVE-2023-20593 et elle est causée par la mauvaise gestion d'une instruction appelée « vzeroupper » lors de l'exécution spéculative, une technique d'amélioration des performances courante utilisée dans tous les processeurs récents. Le chercheur a mis au point un exploit capable « d’extraire des datas à 30 Ko par cœur, par seconde ». Et d’ajouter « c'est assez rapide pour surveiller les clés de chiffrement et les mots de passe lorsque les utilisateurs se connectent ! »
+
+Des mises à jour du firmware d’ici la fin de l’année
+
+Aujourd’hui, AMD n’a publié qu’une mise à jour du firmaware pour les puces serveurs Epyc de seconde génération, ainsi qu’un bulletin de sécurité et un calendrier de publication des mesures d’atténuation. Par contre pour les puces à destination du grand public, un patch sera livré d’ici la fin de l’année par l’intermédiaire des constructeurs de PC (comme Dell ou HP) et les fabricants de carte-mère. Les puces Threadripper 3000 seront les premières à recevoir la mise à jour du firmware en octobre, puis les puces mobiles Ryzen 4000 en novembre. Pour les autres, il faudra attendre décembre 2023.
+
+Pour ceux qui ne souhaitent pas attendre, Tavis Ormandy donne une solution de contournement en modifiant certains paramètres logiciels. Cependant, il prévient que l’impact sur les performances des CPU n’est pas connu. Il recommande aussi aux utilisateurs de vérifier régulièrement les mises à jour proposées par AMD.
+
+## Intel :
+
+Le Monde - Publié le 09 août 2023 à 11h13
+
+https://www.lemonde.fr/pixels/article/2023/08/09/une-faille-de-securite-importante-decouverte-sur-des-processeurs-intel_6184900_4408996.html
+
+Une faille de sécurité importante découverte sur des processeurs Intel.
+
+Baptisée Downfall, la vulnérabilité permet de contourner les barrières protégeant des informations confidentielles, comme les mots de passe, dans la mémoire des processeurs.
+
+Vous pouvez partager un article en cliquant sur les icônes de partage en haut à droite de celui-ci. 
+La reproduction totale ou partielle d’un article, sans l’autorisation écrite et préalable du Monde, est strictement interdite. 
+Pour plus d’informations, consultez nos conditions générales de vente. 
+Pour toute demande d’autorisation, contactez syndication@lemonde.fr. 
+En tant qu’abonné, vous pouvez offrir jusqu’à cinq articles par mois à l’un de vos proches grâce à la fonctionnalité « Offrir un article ». 
+
+https://www.lemonde.fr/pixels/article/2023/08/09/une-faille-de-securite-importante-decouverte-sur-des-processeurs-intel_6184900_4408996.html
+
+Intel a annoncé mercredi 9 août avoir publié un premier correctif pour une importante faille de sécurité, qui touche plusieurs générations de processeurs commercialisés jusqu’en 2021 par le géant de l’électronique.
+
+Les détails de la vulnérabilité, baptisée Downfall (« chute », en anglais), doivent être rendus publics ce même jour par son découvreur, un chercheur en sécurité de Google, lors de la conférence Black Hat de Las Vegas, l’un des principaux évènements mondiaux consacrés à la cybersécurité.
+
+Dans la mémoire d’un processeur, il existe des protections isolant les informations les plus sensibles (mots de passe, certificats de chiffrement…) des autres. La faille qui a été découverte permet de contourner ces mesures de protection, en détournant une fonctionnalité qui, en temps normal, permet d’accélérer l’accès à certaines informations disséminées dans le processeur, rapporte Wired.
+
+Vous pouvez partager un article en cliquant sur les icônes de partage en haut à droite de celui-ci.
+
+La reproduction totale ou partielle d’un article, sans l’autorisation écrite et préalable du Monde, est strictement interdite. 
+
+Pour plus d’informations, consultez nos conditions générales de vente. 
+Pour toute demande d’autorisation, contactez syndication@lemonde.fr. 
+
+La faille existe sur les processeurs des générations Skylake, Tiger Lake, et Ice Lake, entre la 6 éme génération et la 11 éme génération commercialisés principalement entre 2015 et 2021.
+
+Les dernières générations de processeurs Intel ne sont pas concernées entre la 12 éme et 14 éme génération.
+
+Failles difficiles à corriger
+
+Les failles de sécurité touchant les processeurs sont généralement considérées comme particulièrement problématiques, parce que le déploiement de correctifs est plus long et complexe que pour les failles touchant un logiciel.
+
+Les mises à jour du code faisant fonctionner les processeurs sont plus difficiles à effectuer, et leur déploiement dépend aussi de la célérité et du bon vouloir des constructeurs de PC qui intègrent ces processeurs dans leurs machines.
+
+En 2018, deux failles similaires permettant d’accéder à des informations confidentielles stockées en mémoire, Meltdown et Spectre, avaient été découvertes. Elles concernaient de très grandes quantités de processeurs, et étaient considérées comme particulièrement sévères car dures à corriger.
+
+Intel estime qu’il serait difficile d’utiliser Downfall pour conduire des attaques et dérober des informations confidentielles, mais le chercheur ayant découvert la vulnérabilité considère pour sa part que son utilisation est à la portée d’acteurs ayant suffisamment de ressources. Typiquement, des services de renseignement.
