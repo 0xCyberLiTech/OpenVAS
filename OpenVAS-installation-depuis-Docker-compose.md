@@ -483,6 +483,8 @@ Un chercheur a découvert une faille dans l'architecture Zen 2 des puces Ryzen e
 
 Spectre, Meltdown, ces noms de vulnérabilités touchant les puces Intel et AMD résonnent encore dans la tête des spécialistes de la cybersécurité. Il faudra peut-être compter sur une autre faille répondant au nom de « Zenbleed ». Découverte par Tavis Ormandy, chercheur chez Google, elle touche les puces sous architecture Zen 2 d’AMD et permet de voler des mots de passe et des clés de chiffrement.
 
+Plus précisément, Zenbleed concerne les séries AMD Ryzen 3000, 4000, 5000 et 7020, plus les séries Ryzen Pro 3000 et 4000. La gamme de processeurs EPYC Rome, utilisée dans les datacenters, est également atteinte. En exploitant la vulnérabilité, un hacker peut récupérer des données présentes sur la machine à la vitesse de 30 kb par seconde et par cœur du processeur. Assez rapide pour voler des mots de passe ou des clés de chiffrement qui transitent par le composant
+
 La brèche affecte les puces grand public sous l’appellation Ryzen et celles dédiées aux serveurs sous la marque Epyc. Dans le détail, la famille Ryzen touchée comprend la série 3000 (classique, pro et threadripper), la série 4000 (Pro, avec Radeon Graphics), la série 5000 avec Radeon Graphics, la série 7020 avec Radeao Graphics. Pour la gamme Epyc, seule la série Rome semble concernée.
 
 Une extraction de données sensibles à distance.
