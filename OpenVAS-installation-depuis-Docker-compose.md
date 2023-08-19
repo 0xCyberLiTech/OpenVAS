@@ -447,3 +447,25 @@ cyberlitech@0xCLT:~$
 docker compose -f greenbone-community-container/docker-compose.yml -p greenbone-community-edition down
 ```
 Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
+
+## Actualité sur les vulnérabilités
+
+Vulnérabilité de Processeurs Intel | AMD :
+
+Alors que la faille Downfall met à mal des milliards de processeurs Intel de la génération 6 à la génération 11, les utilisateurs de systèmes basés sur des puces AMD sont aussi sous pression.
+
+Cette faille découverte par des chercheurs suisses, est potentiellement exploitable sur toutes ses puces AMD depuis 2017.
+
+Coïncidence ou pas ? Quelques jours après la découverte de la vulnérabilité Downfall ciblant les processeurs Intel, des chercheurs en sécurité de l'école polytechnique fédérale (ETH) de Zurich ont détaillé dans une étude une faille à laquelle sont exposés les processeurs AMD conçus depuis 2017. Baptisée Inception, cette vulnérabilité CVE-2023-20569 présente selon la société fabless un niveau de risque modéré. Cela ne signifie cependant pas qu'elle est sans danger, mais nécessite un accès local au système pour être potentiellement exploité ce qui en limite de fait la portée. Tous les processeurs AMD depuis 2017 sont touchés, incluant les derniers modèles Zen 4 Epyc et Ryzen. Les chercheurs indiquent que les puces Intel ne sont pas concernées par un possible exploit lié à Inception.
+
+Les résultats de l'étude menée depuis un an et demi par les chercheurs - et résumés dans un article - mettent en lumière deux actions conjointes ouvrant la voie par un attaquant sans privilèges système particuliers, à exfiltrer des données. Tout d'abord, déclencher une erreur de prédiction en faisant en sorte que le noyau devine mal le chemin d'exécution (phantom speculation identifiée en tant que CVE-2022-23825), et d'autre part en manipulant ces erreurs (training in transient execution) pour faire fuiter des informations d'un noyau système à une vitesse de 39 octets par seconde sur du matériel vulnérable.
+
+Des actions d'atténuation possibles :
+
+« L'association de ces deux éléments donne naissance à un nouveau type d'attaque appelé Inception : nous pouvons injecter des prévisions erronées futures par le biais d'une prévision erronée antérieure que nous déclenchons », indiquent les chercheurs. « Cette attaque fait leaker des données arbitraires à partir d'un processus non privilégié sur tous les processeurs AMD Zen. Inception fait croire au processeur qu'une instruction XOR est une instruction d'appel récursif qui déborde le tampon de la pile de retour avec une cible contrôlée par l'attaquant ».
+
+Pour contourner Inception, les chercheurs en sécurité avancent des solutions. A commencer par installer une mise à jour du microcode d'AMD pour les processeurs Zen 3 et 4 (les puces Zen 1 et 2 ne sont pas concernées). Il est recommandé dans tous les cas d'activer la fonction « safe RET » dans le noyau pour le protéger de processus utilisateur et d'hôtes de machines virtuelles invitées, sachant que des protections supplémentaires de niveau IBPB peuvent aussi être envisagées. « L'atténuation fonctionne en s'assurant que toutes les instructions RET spéculent vers un endroit contrôlé, de la même manière que la spéculation est contrôlée dans la séquence Retpoline », peut-on aussi lire dans des notes du kernel Linux concernant ce hack.
+
+Article rédigé par Dominique Filippone. Chef des actualités LMI
+
+https://www.lemondeinformatique.fr/actualites/auteur-dominique-filippone-484.html
