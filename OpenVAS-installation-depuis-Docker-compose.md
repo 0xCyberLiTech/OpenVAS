@@ -450,6 +450,8 @@ Source : https://greenbone.github.io/docs/latest/22.4/container/index.html
 
 ## Actualité sur les vulnérabilités
 
+Article rédigé par Dominique Filippone. Chef des actualités LMI/
+
 Vulnérabilité de Processeurs Intel | AMD :
 
 Alors que la faille Downfall met à mal des milliards de processeurs Intel de la génération 6 à la génération 11, les utilisateurs de systèmes basés sur des puces AMD sont aussi sous pression.
@@ -466,6 +468,25 @@ Des actions d'atténuation possibles :
 
 Pour contourner Inception, les chercheurs en sécurité avancent des solutions. A commencer par installer une mise à jour du microcode d'AMD pour les processeurs Zen 3 et 4 (les puces Zen 1 et 2 ne sont pas concernées). Il est recommandé dans tous les cas d'activer la fonction « safe RET » dans le noyau pour le protéger de processus utilisateur et d'hôtes de machines virtuelles invitées, sachant que des protections supplémentaires de niveau IBPB peuvent aussi être envisagées. « L'atténuation fonctionne en s'assurant que toutes les instructions RET spéculent vers un endroit contrôlé, de la même manière que la spéculation est contrôlée dans la séquence Retpoline », peut-on aussi lire dans des notes du kernel Linux concernant ce hack.
 
-Article rédigé par Dominique Filippone. Chef des actualités LMI
-
 https://www.lemondeinformatique.fr/actualites/auteur-dominique-filippone-484.html
+
+## Faille Inception : le correctif affecte les performances des CPU Ryzen AMD
+Mark Hachman, IDG NS (adapté par Jean Elyan) , publié le 17 Aout 2023
+
+Selon les premiers tests effectués par Phoronix, le microcode utilisé pour corriger la récente vulnérabilité Inception d'AMD ne semble pas affecter sérieusement les performances courantes des processeurs Ryzen y compris pour le jeu. Il en va tout autre de l'édition et de la retouche photo et dans une moindre mesure de la compression zip et du temps de compilation du noyau Linux.
+
+La faille Inception affecte tous les processeurs Ryzen et Epyc d'AMD. (crédit : Willis Lai / Foundry - IDG)
+Potentiellement exploitable sur toutes les puces AMD depuis 2017, la faille Inception découverte il y a quelques jours commence à dévoiler certaines de ses conséquences. En particulier des soucis de performance concernant les CPU Ryzen de la société fabless. En effet, si les gamers devraient être relativement épargnés, le correctif pourrait avoir un impact plus gênant sur les outils de retouche d'images exécutés par des PC sous Ryzen. Dans d’autres tests effectués après la découverte d'Inception, Phoronix, avait constaté de fortes baisses de performances des processeurs Intel Core dans les applications côté serveur.
+
+Bien que découvertes à peu près en même temps, les deux vulnérabilités ont l'air différentes. Downfall donne la capacité à un attaquant partageant le même PC Intel que la victime d'attaquer d'autres utilisateurs, et, théoriquement, d'accéder à leurs données. Le trou de sécurité Inception force également un PC embarquant une puce Ryzen à déboucher sur de la fuite de données, mais le principal vecteur d'attaque serait le fait d’un malware. Cependant, concernant le bogue Inception d'AMD, tous les processeurs Ryzen et Epyc sont affectés, alors que les puces Core de 12e et 13e génération d'Intel ne sont pas vulnérables au bogue Downfall. Pour le grand public, la menace de ces deux bogues est bien réelle, même si la probabilité qu’un utilisateur soit ciblé est statistiquement faible.
+
+Un protocole de test basé sur le microcode Family 19h des CPU
+Dans l’attente de voir les mesures d'atténuation des deux failles effectivement intégrées dans les futurs processeurs AMD et Intel, le microcode doit être corrigé manuellement par un patch. C'est ce correctif qui peut ralentir un PC, parfois de façon spectaculaire. Pour mesurer l'impact de Downfall, Phoronix avait choisi des benchmarks différents de ceux utilisés pour la vulnérabilité AMD Inception. Les tests relatifs à Downfall étaient concentrés sur des benchmarks côté serveur. Dans le cas d'Inception, Phoronix a également réalisé plusieurs tests pour mesurer l'impact du microcode sur un processeur Ryzen 9 7950X, répandu sur les PC grand public.
+
+Il faut néanmoins souligner une chose importante à propos des tests de Phoronix. Les tests sur la puce Ryzen ont été exécutés sous ce que Phoronix appelle le « safe RET sans microcode ». Il s’agit d’une atténuation purement basée sur le noyau qui utilise le microcode du CPU antérieur à la version Family 19h sans l'atténuation Inception. Selon Phoronix, cela s'explique en partie par le fait qu'AMD déploie un nouveau microcode pour les processeurs Zen 3 et Zen 4, mais que les puces Zen 1 et Zen 2 ne requièrent qu'une atténuation basée sur le noyau. D'autre part, Phoronix a effectué une série de tests sur un processeur AMD Epyc, pour lequel l'atténuation était disponible. Quand Phoronix a analysé les résultats pour un « safe RET » sans microcode » et un « safe RET » avec le correctif du microcode, les résultats étaient pratiquement identiques. À prendre comme on veut…
+
+Jusqu'à 28 % de baisse de performance avec GIMP
+
+La bonne nouvelle, c’est que, jusqu'à présent, les jeux Ryzen ne semblent pas affectés, avec une différence statistiquement insignifiante de 1 % sur le benchmark Wild Life de 3DMark. La compression à l'aide de 7Zip a entraîné une baisse de 5 % des performances. Le temps de compilation d'un noyau Linux a été allongé de 8 % après l'application du microcode. À noter que, à l'instar du bogue Intel Downfall, les utilisateurs qui travaillent avec des applications de photographie et de retouche d'images ont des raisons de s'inquiéter.
+
+Même si les tests de Phoronix ne révèlent qu'une baisse de 4 % avec le logiciel de photographie Darktable RAW, les performances de GIMP, concurrent de Photoshop, ont été fortement affectées. Les performances de l'outil de rotation de GIMP ont chuté de 28 %. De même, Phoronix a constaté une baisse de 24 % lors de l'utilisation du masque de flou avec la commande « unsharp-mask », et le temps de redimensionnement d'une image a pris 18 % de plus après application du correctif. Rien ne dit qu'AMD et Intel ne pourront pas optimiser les performances de leurs puces respectives au fil du temps. Mais pour l'instant, les créatifs devront s'accommoder des inconvénients de ces deux derniers bogues.
