@@ -34,19 +34,28 @@ Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une c
 
 La commande sudo est utilisée pour exécuter des commandes qui nécessitent un privilège accès sur le système.
 
-- Installer curl :
+Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker. Pour modifier le groupe Effectivement, déconnectez-vous et reconnectez-vous ou utilisez SU.
+
+Ci celà n'est pas dèja fait :
+
+```
+sudo usermod -aG docker $USER && su $USER
+```
+- Installer le paquet curl :
 
 Curl est requis pour télécharger des fichiers à partir de ce guide.
 ```
 sudo apt install curl
 ```
-Pour télécharger le fichier de composition docker Greenbone Community Edition, un Le répertoire de destination doit être créé.
+Pour télécharger le fichier docker-compose.yml de (Greenbone Community Edition).
+
+Le répertoire de destination doit être créé.
 
 Créer un répertoire de téléchargement.
 ```
-mkdir ~/greenbone-community-container/
+export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
 ```
-Fichier de composition Docker.
+Fichier docker-compose.yml.
 
 Pour exécuter Greenbone Community Edition avec des conteneurs, les éléments suivants sont composés doit être utilisé:
 
@@ -262,18 +271,25 @@ Lancement des conteneurs communautaires Greenbone.
 
 À l’aide du fichier docker compose, les images du conteneur peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
 
-Téléchargement des conteneurs communautaires Greenbone.
+Télécharger :
+
+Il est possible de simplement copier et coller le fichier de composition docker.
+
+Alternativement Il peut être téléchargé directement avec la commande suivante :
+
+Téléchargement du fichier docker-compose.yml
 ```
-cd ~/greenbone-community-container/
-```
-```
-curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
+cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
 ```
 ![openvas-13](./images/openvas-13.png)
 
 Lancement des conteneurs communautaires Greenbone.
+
+À l’aide du fichier docker-compose.yml, les images du conteneur peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
+
+Téléchargement des conteneurs communautaires Greenbone
 ```
-sudo docker compose -f docker-compose.yml -p greenbone-community-edition up -d
+docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 ```
 ![openvas-12](./images/openvas-12.png)
 
@@ -281,7 +297,15 @@ sudo docker compose -f docker-compose.yml -p greenbone-community-edition up -d
 
 ![openvas-04](./images/openvas-04.png)
 
-Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante commander:
+Téléchargement des conteneurs communautaires Greenbone :
+```
+docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+```
+Lancement des conteneurs communautaires Greenbone
+```
+docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+```
+Ou pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante commander :
 
 Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
 ```
