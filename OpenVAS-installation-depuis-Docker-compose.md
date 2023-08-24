@@ -301,12 +301,12 @@ docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-editio
 ```
 ![openvas-04](./images/openvas-04.png)
 
-Ou pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante commander :
-
-Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
+Ou pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante :
 ```
 sudo docker compose -f docker-compose.yml -p greenbone-community-edition logs -f
 ```
+Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
+
 ![openvas-15](./images/openvas-15.png)
 
 Le flux du journal de logs peut être arrêté en appuyant sur . Ctrl + c
