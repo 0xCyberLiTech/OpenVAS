@@ -289,7 +289,7 @@ Lancement des conteneurs communautaires Greenbone.
 
 Téléchargement des conteneurs communautaires Greenbone
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 ```
 ![openvas-12](./images/openvas-12.png)
 
@@ -297,7 +297,7 @@ docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-editio
 
 Lancement des conteneurs communautaires Greenbone
 ```
-docker-compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 ```
 ![openvas-04](./images/openvas-04.png)
 
