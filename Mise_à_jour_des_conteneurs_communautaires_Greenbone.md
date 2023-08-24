@@ -47,13 +47,13 @@ Pour télécharger les dernières images de conteneur de données de flux, exéc
 
 Téléchargement des conteneurs de données de flux Greenbone Community Edition.
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+docker compose -f docker-compose.yml -p greenbone-community-edition pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
 ```
 Pour copier les données des images vers les volumes exécutés.
 
 Démarrage des conteneurs de données de flux Greenbone Community.
 ```
-docker-compose -f docker-compose.yml -p greenbone-community-edition up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+docker compose -f docker-compose.yml -p greenbone-community-edition up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
 ```
 Chargement des modifications de flux.
 
