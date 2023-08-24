@@ -301,7 +301,7 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-editio
 ```
 ![openvas-04](./images/openvas-04.png)
 
-Ou pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante :
+Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante :
 ```
 sudo docker compose -f docker-compose.yml -p greenbone-community-edition logs -f
 ```
