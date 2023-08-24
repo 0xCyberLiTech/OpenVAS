@@ -269,7 +269,7 @@ Le tableau suivant décrit les conteneurs fournis du fichier de composition dock
 
 Lancement des conteneurs communautaires Greenbone.
 
-À l’aide du fichier docker compose, les images du conteneur peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
+À l’aide du fichier docker-compose.yml, les images du conteneur peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
 
 Télécharger :
 
