@@ -43,7 +43,7 @@ Le répertoire de destination doit être créé.
 
 Créer un répertoire de téléchargement.
 ```
-export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
+export DOWNLOAD_DIR=$HOME/Containers/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
 ```
 Fichier docker-compose.yml.
 
