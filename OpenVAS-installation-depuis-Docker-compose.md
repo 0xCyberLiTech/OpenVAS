@@ -36,11 +36,6 @@ La commande sudo est utilisée pour exécuter des commandes qui nécessitent un 
 
 Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker. Pour modifier le groupe Effectivement, déconnectez-vous et reconnectez-vous ou utilisez SU.
 
-Ci celà n'est pas dèja fait :
-
-```
-sudo usermod -aG docker $USER && su $USER
-```
 - Installer le paquet curl :
 
 Curl est requis pour télécharger des fichiers à partir de ce guide.
