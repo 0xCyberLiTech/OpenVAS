@@ -19,7 +19,6 @@ Conditions préalables :
 Si vous avez installer une DEBIAN 12 de base, (sudo) n'est pas installé.
 
 Procéder à l'installation de celui-ci.
-
 ```
 su - root
 apt install sudo
@@ -30,11 +29,7 @@ Se connecter au terminal, avec le user (ex, cyberlitech).
 
 Veuillez suivre le guide étape par étape.
 
-Les étapes ultérieures peuvent nécessiter des paramètres ou sortie d’une commande précédente.
-
-La commande sudo est utilisée pour exécuter des commandes qui nécessitent un privilège accès sur le système.
-
-Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker. Pour modifier le groupe Effectivement, déconnectez-vous et reconnectez-vous ou utilisez SU.
+La commande sudo est utilisée pour cette procédure.
 
 - Installer le paquet curl :
 
