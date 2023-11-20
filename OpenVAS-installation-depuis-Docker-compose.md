@@ -29,7 +29,7 @@ Se connecter au terminal, avec le user (ex, cyberlitech).
 
 Veuillez suivre le guide étape par étape.
 
-[Accès à GREEBONE ](https://greenbone.github.io/docs/latest/)
+- Info utile - [Accès à GREEBONE.](https://greenbone.github.io/docs/latest/)
 
 La commande sudo est utilisée pour cette procédure.
 
