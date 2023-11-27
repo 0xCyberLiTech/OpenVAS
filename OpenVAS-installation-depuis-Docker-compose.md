@@ -360,7 +360,10 @@ curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-green
 ```
 Pour exécuter le script, la commande ci-dessus doit être exécutée.
 
-Exécuter l'installation et démarrer le script
+Exécuter l'installation et démarrer le script.
+
+Contenu du script setup-and-start-greenbone-community-edition.sh.
+
 ```
 #!/bin/bash
 # Copyright (C) 2022 - 2023 Greenbone AG
