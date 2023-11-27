@@ -269,7 +269,6 @@ volumes:
   redis_socket_vol:
 ```
 - Télécharger
--------------
 
 Il est possible de simplement copier et coller le fichier Docker Compose. Alternativement, il peut être téléchargé directement avec la commande suivante :
 
@@ -280,7 +279,6 @@ cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/d
 ```
 
 - Description
--------------
 
 Le tableau suivant décrit en détail les conteneurs fournis du fichier Docker Compose et leurs services.
 
