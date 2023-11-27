@@ -304,7 +304,6 @@ Le tableau suivant décrit en détail les conteneurs fournis du fichier Docker C
 | report-formats |  | Conteneur qui copie les formats de rapport dans le volume au démarrage. Affiche la licence et se ferme par la suite.data_objects_vol |
 
 - Démarrage des conteneurs communautaires Greenbone :
------------------------------------------------------
 
 À l'aide du fichier Docker Compose, les images des conteneurs peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
 
@@ -319,7 +318,6 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-editio
 Le flux de journaux peut être arrêté en appuyant sur Ctrl-C.
 
 - Configuration d'un utilisateur administrateur :
------------------------------------------------
 
 Avertissement
 
@@ -333,7 +331,6 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-editio
     exec -u gvmd gvmd gvmd --user=admin --new-password=<password>
 ```
 - Démarrage de la gestion des vulnérabilités :
-----------------------------------------------
 
 Une fois les services démarrés et toutes les données de flux chargées, l'interface Web de Greenbone Security Assistant – GSA – peut être ouverte dans le navigateur.
 
@@ -347,8 +344,7 @@ https://greenbone.github.io/docs/latest/_images/GSA-22.4.png
 
 Greenbone Security Assistant après la première connexion
 
-Configurer et démarrer le script
---------------------------------
+- Configurer et démarrer le script
 
 Note
 
@@ -360,7 +356,7 @@ Téléchargement du script d'installation et de démarrage dans le répertoire d
 ```
 curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
 ```
-Pour exécuter le script, la commande suivante doit être exécutée
+Pour exécuter le script, la commande ci-dessus doit être exécutée.
 
 Exécuter l'installation et démarrer le script
 ```
