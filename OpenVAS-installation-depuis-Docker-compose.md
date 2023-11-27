@@ -78,73 +78,18 @@ Ajouter l'utilisateur actuel au groupe Docker et appliquer les modifications de 
 sudo usermod -aG docker $USER && su $USER
 ```
 
+Pour télécharger le fichier de composition du docker Greenbone Community Edition, un répertoire de destination doit être créé.
 
+- Créer un répertoire de téléchargement :
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Pour télécharger le fichier docker-compose.yml de (Greenbone Community Edition).
-
-Le répertoire de destination doit être créé.
-
-Créer un répertoire de téléchargement.
 ```
-export DOWNLOAD_DIR=$HOME/Containers/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
+export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
 ```
-Fichier docker-compose.yml.
 
-Pour exécuter Greenbone Community Edition avec des conteneurs, les éléments suivants sont composés doit être utilisé:
+Pour exécuter Greenbone Community Edition avec des conteneurs, le fichier de composition suivant doit être utilisé :
 
-Fichier de composition Docker.
+- Fichier de composition Docker :
+
 ```
 services:
   vulnerability-tests:
@@ -237,7 +182,7 @@ services:
     image: greenbone/gsa:stable
     restart: on-failure
     ports:
-      - 9392:80
+      - 127.0.0.1:9392:80
     volumes:
       - gvmd_socket_vol:/run/gvmd
     depends_on:
@@ -246,7 +191,6 @@ services:
   ospd-openvas:
     image: greenbone/ospd-openvas:stable
     restart: on-failure
-    init: true
     hostname: ospd-openvas.local
     cap_add:
       - NET_ADMIN # for capturing packages in promiscuous mode
@@ -284,8 +228,6 @@ services:
   mqtt-broker:
     restart: on-failure
     image: greenbone/mqtt-broker
-    ports:
-      - 1883:1883
     networks:
       default:
         aliases:
@@ -329,9 +271,21 @@ volumes:
   ospd_openvas_socket_vol:
   redis_socket_vol:
 ```
-Description.
+- Télécharger
+-------------
 
-Le tableau suivant décrit les conteneurs fournis du fichier de composition docker et leurs services en détail.
+Il est possible de simplement copier et coller le fichier Docker Compose. Alternativement, il peut être téléchargé directement avec la commande suivante :
+
+- Téléchargement du fichier docker-compose :
+
+```
+cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
+```
+
+- Description
+-------------
+
+Le tableau suivant décrit en détail les conteneurs fournis du fichier Docker Compose et leurs services.
 
 | Conteneur |  Service |  Description    |
 |-----------|----------|-----------------|
@@ -352,74 +306,154 @@ Le tableau suivant décrit les conteneurs fournis du fichier de composition dock
 | data-objects |  | Conteneur qui copie les configurations d’analyse, les stratégies de conformité et les listes de ports dans le volume au démarrage. Affiche la licence et se ferme par la suite.data_objects_vol |
 | report-formats |  | Conteneur qui copie les formats de rapport dans le volume au démarrage. Affiche la licence et se ferme par la suite.data_objects_vol |
 
-Lancement des conteneurs communautaires Greenbone.
+- Démarrage des conteneurs communautaires Greenbone :
+-----------------------------------------------------
 
-À l’aide du fichier docker-compose.yml, les images du conteneur peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
+À l'aide du fichier Docker Compose, les images des conteneurs peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
 
-Télécharger :
+- Téléchargement des conteneurs communautaires Greenbone :
 
-Il est possible de simplement copier et coller le fichier de composition docker.
-
-Alternativement Il peut être téléchargé directement avec la commande suivante :
-
-Téléchargement du fichier docker-compose.yml
-```
-cd $DOWNLOAD_DIR && curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
-```
-![openvas-13](./images/openvas-13.png)
-
-Lancement des conteneurs communautaires Greenbone.
-
-À l’aide du fichier docker-compose.yml, les images du conteneur peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
-
-Téléchargement des conteneurs communautaires Greenbone
 ```
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 ```
-![openvas-12](./images/openvas-12.png)
 
-![openvas-03](./images/openvas-03.png)
-
-Lancement des conteneurs communautaires Greenbone
+Démarrage des conteneurs communautaires Greenbone
 ```
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 ```
-![openvas-04](./images/openvas-04.png)
 
-Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez la commande suivante :
+Le flux de journaux peut être arrêté en appuyant sur Ctrl-C.
+
+- Configuration d'un utilisateur administrateur :
+-----------------------------------------------
+
+Avertissement
+
+Par défaut, un utilisateur admin avec le mot de passe admin est créé. Ceci n'est pas sécurisé et il est fortement recommandé de définir un nouveau mot de passe.
+
+Pour mettre à jour l'utilisateur administrateur avec un mot de passe de votre choix au lieu du mot de passe généré, la commande suivante peut être utilisée :
+
+Mise à jour du mot de passe de l'utilisateur administrateur
+
 ```
-sudo docker compose -f docker-compose.yml -p greenbone-community-edition logs -f
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition \
+    exec -u gvmd gvmd gvmd --user=admin --new-password=<password>
 ```
-Afficher les messages de journal de tous les services à partir des conteneurs en cours d’exécution.
+- Démarrage de la gestion des vulnérabilités :
+----------------------------------------------
 
-![openvas-15](./images/openvas-15.png)
-
-Le flux du journal de logs peut être arrêté en appuyant sur . Ctrl + c
-
-Configuration d’un utilisateur administrateur.
-
-Avertissement :
-
-Par défaut, un administrateur utilisateur avec le mot de passe admin est créé. 
-
-Ce n’est pas sûr. Et il est fortement recommandé de définir un nouveau mot de passe.
-
-Pour mettre à jour l’utilisateur administrateur avec un mot de passe de votre choix au lieu du mot de passe généré, la commande suivante peut être utilisée :
-
-Mise à jour du mot de passe de l’utilisateur administrateur.
-```
-sudo docker compose -f docker-compose.yml -p greenbone-community-edition \
-    exec -u gvmd gvmd gvmd --user=admin --new-password=admin
-```
-Démarrage de la gestion des vulnérabilités.
-
-Une fois que les services ont démarré et que toutes les données de flux ont été chargées, l’interface Web de Greenbone Security Assistant – GSA – peut être ouverte dans le navigateur.
+Une fois les services démarrés et toutes les données de flux chargées, l'interface Web de Greenbone Security Assistant – GSA – peut être ouverte dans le navigateur.
 
 Ouverture de Greenbone Security Assistant dans le navigateur.
+
 ```
 xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 ```
-Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d’identification Créé auparavant, il est possible de commencer par l’analyse des vulnérabilités.
+
+Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d'identification créées précédemment, il est possible de commencer l'analyse des vulnérabilités.
+
+https://greenbone.github.io/docs/latest/_images/GSA-22.4.png
+
+Greenbone Security Assistant après la première connexion
+
+Configurer et démarrer le script
+--------------------------------
+
+Note
+
+N'oubliez pas de suivre d'abord les instructions décrites dans les prérequis.
+
+Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un seul script. Ce script peut être téléchargé directement avec la commande suivante :
+
+Téléchargement du script d'installation et de démarrage dans le répertoire de travail actuel
+
+```
+curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
+```
+
+Pour exécuter le script, la commande suivante doit être exécutée
+
+Exécuter l'installation et démarrer le script
+
+```
+#!/bin/bash
+# Copyright (C) 2022 - 2023 Greenbone AG
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+DOWNLOAD_DIR=$HOME/greenbone-community-container
+
+installed() {
+    # $1 should be the command to look for. If $2 is set, we have arguments
+    local failed=0
+    if [ -z "$2" ]; then
+        if ! [ -x "$(command -v $1)" ]; then
+            failed=1
+        fi
+    else
+        local ret=0
+        $@ &> /dev/null || ret=$?
+        if [ "$ret" -ne 0 ]; then
+            failed=1
+        fi
+    fi
+
+    if [ $failed -ne 0 ]; then
+        echo "$@ is not available. See https://greenbone.github.io/docs/latest/$RELEASE/container/#prerequisites."
+        exit 1
+    fi
+
+}
+
+RELEASE="22.4"
+
+installed curl
+installed docker
+installed docker compose
+
+echo "Using Greenbone Community Containers $RELEASE"
+
+mkdir -p $DOWNLOAD_DIR && cd $DOWNLOAD_DIR
+
+echo "Downloading docker-compose file..."
+curl -f -O https://greenbone.github.io/docs/latest/_static/docker-compose-$RELEASE.yml
+
+echo "Pulling Greenbone Community Containers $RELEASE"
+docker compose -f $DOWNLOAD_DIR/docker-compose-$RELEASE.yml -p greenbone-community-edition pull
+echo
+
+echo "Starting Greenbone Community Containers $RELEASE"
+docker compose -f $DOWNLOAD_DIR/docker-compose-$RELEASE.yml -p greenbone-community-edition up -d
+echo
+
+read -s -p "Password for admin user: " password
+docker compose -f $DOWNLOAD_DIR/docker-compose-$RELEASE.yml -p greenbone-community-edition \
+    exec -u gvmd gvmd gvmd --user=admin --new-password=$password
+
+echo
+echo "The feed data will be loaded now. This process may take several minutes up to hours."
+echo "Before the data is not loaded completely, scans will show insufficient or erroneous results."
+echo "See https://greenbone.github.io/docs/latest/$RELEASE/container/workflows.html#loading-the-feed-changes for more details."
+echo
+echo "Press Enter to open the Greenbone Security Assistant web interface in the web browser."
+read
+xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
+```
 
 ![openvas-06](./images/openvas-06.png)
 
