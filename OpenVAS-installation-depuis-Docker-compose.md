@@ -33,12 +33,98 @@ Veuillez suivre le guide étape par étape.
 
 La commande sudo est utilisée pour cette procédure.
 
-- Installer le paquet curl :
+- Installer les packages ca-certificates, curl et gnupg pour Debian :
 
 Curl est requis pour télécharger des fichiers à partir de ce guide.
 ```
-sudo apt install curl
+sudo apt install ca-certificates curl gnupg
 ```
+- Désinstaller les paquets pour Debian en conflit :
+
+```
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
+```
+
+- Préparation de l'installation de Docker :
+
+```
+sudo install -m 0755 -d /etc/apt/keyrings
+```
+```
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+```
+```
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+```
+```
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+```
+sudo apt update
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Pour télécharger le fichier docker-compose.yml de (Greenbone Community Edition).
 
 Le répertoire de destination doit être créé.
