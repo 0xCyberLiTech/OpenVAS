@@ -4,7 +4,7 @@
 
 Prérequis :
 
-Cette procédure à été testée depuis une machine sous (Debian 12) avec Docker, Docker compose v2 et Portainer.
+Cette procédure à été testée depuis une machine sous (Debian 12.2.0).
 
 Vous trouverez ici un tutoriel sur l’installation de Docker, Docker compose v2 & Portainer.
 
@@ -16,22 +16,27 @@ Conditions préalables :
 
 - Rappel .
 
-Si vous avez installer une DEBIAN 12 de base, (sudo) n'est pas installé.
+Si vous avez installer une DEBIAN 12.2.0 de base, (sudo) n'est pas installé.
 
 Procéder à l'installation de celui-ci.
 ```
 su - root
 apt install sudo
-usermod -aG sudo cyberlitech
+usermod -aG sudo $USER
+```
+Redémarrer votre machine.
+```
 init 6
 ```
-Se connecter au terminal, avec le user (ex, cyberlitech).
+Se connecter à votre session $USER.
 
 Veuillez suivre le guide étape par étape.
 
 - Info utile - [Accès à GREEBONE.](https://greenbone.github.io/docs/latest/)
 
-La commande sudo est utilisée pour cette procédure.
+- Depuis cette session nous utiliserons la commande sudo.
+
+- Préparation de l'installation de Docker si celle-ci n'est pas déjà installée :
 
 - Installer les packages ca-certificates, curl et gnupg pour Debian :
 
@@ -40,12 +45,9 @@ Curl est requis pour télécharger des fichiers à partir de ce guide.
 sudo apt install ca-certificates curl gnupg
 ```
 - Désinstaller les paquets pour Debian en conflit :
-
 ```
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
 ```
-- Préparation de l'installation de Docker :
-
 ```
 sudo install -m 0755 -d /etc/apt/keyrings
 ```
@@ -76,6 +78,8 @@ Ajouter l'utilisateur actuel au groupe Docker et appliquer les modifications de 
 ```
 sudo usermod -aG docker $USER && su $USER
 ```
+- Passons maintenant au déploiement d'OpenVAS :
+
 Pour télécharger le fichier de composition du docker Greenbone Community Edition, un répertoire de destination doit être créé.
 
 - Créer un répertoire de téléchargement :
