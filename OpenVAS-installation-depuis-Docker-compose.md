@@ -73,11 +73,9 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 Pour permettre à l'utilisateur actuel d'exécuter Docker et donc de démarrer les conteneurs, il doit être ajouté au groupe d'utilisateurs Docker. Pour que le changement de groupe soit effectif, déconnectez-vous et reconnectez-vous ou utilisez su.
 
 Ajouter l'utilisateur actuel au groupe Docker et appliquer les modifications de groupe pour l'environnement shell actuel.
-
 ```
 sudo usermod -aG docker $USER && su $USER
 ```
-
 Pour télécharger le fichier de composition du docker Greenbone Community Edition, un répertoire de destination doit être créé.
 
 - Créer un répertoire de téléchargement :
@@ -85,7 +83,6 @@ Pour télécharger le fichier de composition du docker Greenbone Community Editi
 ```
 export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p $DOWNLOAD_DIR
 ```
-
 Pour exécuter Greenbone Community Edition avec des conteneurs, le fichier de composition suivant doit être utilisé :
 
 - Fichier de composition Docker :
@@ -312,16 +309,13 @@ Le tableau suivant décrit en détail les conteneurs fournis du fichier Docker C
 À l'aide du fichier Docker Compose, les images des conteneurs peuvent être téléchargées (extraites) et les conteneurs peuvent être démarrés en arrière-plan.
 
 - Téléchargement des conteneurs communautaires Greenbone :
-
 ```
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 ```
-
 Démarrage des conteneurs communautaires Greenbone
 ```
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 ```
-
 Le flux de journaux peut être arrêté en appuyant sur Ctrl-C.
 
 - Configuration d'un utilisateur administrateur :
@@ -334,7 +328,6 @@ Par défaut, un utilisateur admin avec le mot de passe admin est créé. Ceci n'
 Pour mettre à jour l'utilisateur administrateur avec un mot de passe de votre choix au lieu du mot de passe généré, la commande suivante peut être utilisée :
 
 Mise à jour du mot de passe de l'utilisateur administrateur
-
 ```
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition \
     exec -u gvmd gvmd gvmd --user=admin --new-password=<password>
@@ -345,11 +338,9 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-editio
 Une fois les services démarrés et toutes les données de flux chargées, l'interface Web de Greenbone Security Assistant – GSA – peut être ouverte dans le navigateur.
 
 Ouverture de Greenbone Security Assistant dans le navigateur.
-
 ```
 xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 ```
-
 Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d'identification créées précédemment, il est possible de commencer l'analyse des vulnérabilités.
 
 https://greenbone.github.io/docs/latest/_images/GSA-22.4.png
@@ -366,15 +357,12 @@ N'oubliez pas de suivre d'abord les instructions décrites dans les prérequis.
 Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un seul script. Ce script peut être téléchargé directement avec la commande suivante :
 
 Téléchargement du script d'installation et de démarrage dans le répertoire de travail actuel
-
 ```
 curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
 ```
-
 Pour exécuter le script, la commande suivante doit être exécutée
 
 Exécuter l'installation et démarrer le script
-
 ```
 #!/bin/bash
 # Copyright (C) 2022 - 2023 Greenbone AG
@@ -454,7 +442,6 @@ echo "Press Enter to open the Greenbone Security Assistant web interface in the 
 read
 xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 ```
-
 ![openvas-06](./images/openvas-06.png)
 
 # Dépannage :
