@@ -44,7 +44,6 @@ sudo apt install ca-certificates curl gnupg
 ```
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove $pkg; done
 ```
-
 - Préparation de l'installation de Docker :
 
 ```
@@ -65,11 +64,19 @@ echo \
 ```
 sudo apt update
 ```
+- Installer les packages Docker pour Debian :
+```
+sudo apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+- Installation :
 
+Pour permettre à l'utilisateur actuel d'exécuter Docker et donc de démarrer les conteneurs, il doit être ajouté au groupe d'utilisateurs Docker. Pour que le changement de groupe soit effectif, déconnectez-vous et reconnectez-vous ou utilisez su.
 
+Ajouter l'utilisateur actuel au groupe Docker et appliquer les modifications de groupe pour l'environnement shell actuel.
 
-
-
+```
+sudo usermod -aG docker $USER && su $USER
+```
 
 
 
