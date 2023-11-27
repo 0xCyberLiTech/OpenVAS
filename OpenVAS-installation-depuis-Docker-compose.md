@@ -36,7 +36,7 @@ Veuillez suivre le guide étape par étape.
 
 - Depuis cette session nous utiliserons la commande sudo.
 
-- Préparation de l'installation de Docker si celle-ci n'est pas déjà installée :
+- Préparation de l'installation de Docker si celui-ci n'est pas déjà installé :
 
 - Installer les packages ca-certificates, curl et gnupg pour Debian :
 
