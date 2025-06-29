@@ -1,7 +1,5 @@
 ![OpenVAS](./images/OpenVAS.png)
 
-# 🔍 OpenVAS — Scanner de vulnérabilités
-
 > Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) dans vos environnements.
 
 ---
