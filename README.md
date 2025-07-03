@@ -137,12 +137,6 @@ Un scanner peut analyser tout **dispositif joignable par IP** :
 
 ---
 
-## 📚 Source
-
-[Wikipedia — Scanner de vulnérabilités](https://fr.wikipedia.org/wiki/Scanner_de_vuln%C3%A9rabilit%C3%A9)
-
----
-
 ## 🌐 À propos de moi
 
 - 💡 Passionné par Debian GNU/Linux depuis plusieurs années
