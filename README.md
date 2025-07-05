@@ -1,151 +1,97 @@
-![OpenVAS](./images/OpenVAS.png)
+<div align="center">
 
+<a href="https://github.com/0xCyberLiTech">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&pause=1000&color=33FF33&center=true&vCenter=true&width=700&lines=SCANNER+DE+VULNÉRABILITÉS;OpenVAS+•+Greenbone+(GVM);Détection+•+Analyse+•+Sécurité" alt="Typing SVG" />
+</a>
+
+<p align="center">
+  <em>Guide pour comprendre et utiliser OpenVAS (Greenbone).</em><br>
+  <b>🛡️ Audit – 🔍 Détection – 🔐 Remédiation</b>
+</p>
+
+</div>
+
+---
+
+### 🧭 **Navigation Rapide**
 > Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) dans vos environnements.
 
----
+<div align="center">
 
-## 🧭 Sommaire
+| Section | Description | Accès Rapide |
+|:---:|:---|:---:|
+| **Introduction** | Qu'est-ce qu'un scanner de vulnérabilités ? | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](#-1-quest-ce-quun-scanner-de-vulnérabilités) |
+| **Fonctionnement** | Les principes et phases d'un scan de sécurité. | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](#-2-principes-de-fonctionnement) |
+| **Installation** | Guide d'installation avec Docker Compose. | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](OpenVAS-installation-depuis-Docker-compose.md) |
+| **Mise à jour** | Maintenir à jour les conteneurs Greenbone. | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](Mise_à_jour_des_conteneurs_communautaires_Greenbone.md) |
 
-1. [🛠️ Qu'est-ce qu'un scanner de vulnérabilités](#01---quest-ce-quun-scanner-de-vulnérabilités)
-2. [⚙️ Principes de fonctionnement](#02---principes-de-fonctionnement)
-3. [🎯 Cibles](#03---cibles)
-4. [🔍 Méthodes de détection](#04---méthodes-de-détection)
-5. [📊 Restitution des résultats](#05---restitution-des-résultats)
-6. [🐳 Installation avec Docker Compose](OpenVAS-installation-depuis-Docker-compose.md)
-7. [🔄 Mise à jour des conteneurs Greenbone](Mise_à_jour_des_conteneurs_communautaires_Greenbone.md)
-
----
-
-## 01 - Qu'est-ce qu'un scanner de vulnérabilités
-
-Un **scanner de vulnérabilités** est un programme permettant de détecter des failles dans des systèmes, réseaux ou applications.
-
-### 🎯 Utilisation
-
-| Légale ✅ | Illégale ❌ |
-|----------|-------------|
-| Audit interne, tests de sécurité, conformité | Recherche de failles pour exploitation non autorisée |
-
-> Les scanners peuvent être utilisés dans un **SIEM**, un **SOC** ou intégrés dans des stratégies de **cybersécurité préventive**.
+</div>
 
 ---
 
-## 02 - Principes de fonctionnement
-
-Un scanner peut être :
-
-- Une application installable
-- Une appliance virtuelle
-- Un service SaaS
-
-### 🔁 Phases classiques d’un scan :
-
-1. Découverte de la cible (ping, ARP, TCP…)
-2. Scan de ports ouverts (TCP/UDP)
-3. Détection des services actifs (et leurs versions)
-4. Crawl web (si appli web)
-5. Sélection et exécution des modules de sécurité
-6. Génération du rapport
+### 🛠️ 1. Qu'est-ce qu'un scanner de vulnérabilités ?
+> Un **scanner de vulnérabilités** est un programme permettant de détecter des failles dans des systèmes, réseaux ou applications. Son utilisation peut être légale (audit, tests de sécurité) ou illégale (recherche de failles pour exploitation). Il s'intègre souvent dans des stratégies de cybersécurité préventive au sein d'un **SIEM** ou d'un **SOC**.
 
 ---
 
-## 03 - Cibles
-
-Un scanner peut analyser tout **dispositif joignable par IP** :
-
-- 🖥️ Ordinateurs, serveurs
-- 📱 Smartphones
-- 🌐 Sites Web
-- 📸 Caméras IP
-- 🔌 Objets connectés, automates, robots
-- ☎️ Téléphonie IP, IPBX
-
-> 📌 Attention : la qualité du scan dépend des **modules embarqués** (ex: SNMP, SIP, etc.)
+### ⚙️ 2. Principes de fonctionnement
+Un scanner, qu'il soit une application, une appliance virtuelle ou un service SaaS, suit généralement ces étapes :
+1.  **Découverte** de la cible (ping, ARP...).
+2.  **Scan de ports** ouverts (TCP/UDP).
+3.  **Détection des services** et de leurs versions.
+4.  **Crawl web** (pour les applications web).
+5.  **Exécution des modules** de tests de sécurité.
+6.  **Génération** du rapport.
 
 ---
 
-## 04 - Méthodes de détection
-
-### 📇 1. Footprinting de version
-
-- Analyse de bannières, signatures réseau
-- Croisement avec des bases comme **CVE**, **OSVDB**, **DSA**, **CPE**
-
-> ⚠️ Sujet à **faux positifs** ou **faux négatifs**
+### 🎯 3. Cibles
+> Tout dispositif joignable par une adresse IP peut être analysé : serveurs, smartphones, sites web, objets connectés, téléphonie IP, etc. La qualité du scan dépend des **modules embarqués** (SNMP, SIP, etc.).
 
 ---
 
-### ⚔️ 2. Exploitation active
+### 🔍 4. Méthodes de détection
 
-- Utilise des **exploits connus** (ex: Metasploit, exploit-db)
-- Fiable, mais parfois **intrusif/dangereux**
+#### 1. Footprinting de version
+Analyse les bannières et signatures réseau pour les croiser avec des bases de données de vulnérabilités (**CVE**, **CPE**). Cette méthode peut cependant générer des **faux positifs** ou **faux négatifs**.
 
----
+#### 2. Exploitation active
+Tente d'utiliser des **exploits connus** (ex: Metasploit) pour confirmer une faille. C'est une méthode fiable, mais potentiellement **intrusive**.
 
-### ⚙️ 3. Scan de configuration
+#### 3. Scan de configuration
+Analyse les paramètres exposés (SSL, DNS, mots de passe par défaut). Moins risqué, mais peut manquer de contexte.
 
-- Analyse les **paramètres exposés** (SSL, DNS, mots de passe par défaut, etc.)
-- Peu risqué, mais peut manquer de **contexte**
+#### 4. Scans authentifiés
+Utilise un compte utilisateur pour inspecter le système de l'intérieur, ce qui permet de détecter des vulnérabilités logicielles **non exposées** de manière très fiable.
 
----
-
-### 🔐 4. Scans authentifiés
-
-- Nécessite un **compte utilisateur** pour inspection interne
-- Très fiable pour détecter les vulnérabilités **logicielles non exposées**
+#### 5. Spécificité Web
+Nécessite des modules spécialisés (**OWASP**) pour détecter des failles de type **XSS, SQLi, LFI**, etc., après un crawling complet du site.
 
 ---
 
-### 🌐 5. Spécificité Web
+### 📊 5. Restitution des résultats
+Les résultats sont classés par criticité (Critique, Majeure, Moyenne, Mineure) sur la base du score **CVSS v3**.
 
-- Nécessite des modules spécialisés type **OWASP**
-- Scanners dédiés : **Burp Suite**, **ZAP**, **Wapiti**, etc.
+| Niveau | Description |
+|:---:|:---|
+| 🔴 **Critique** | Exploitable facilement, contrôle à distance possible. |
+| 🟠 **Majeure** | Exploitable, mais avec des conditions spécifiques. |
+| 🟡 **Moyenne** | Impact limité ou conditions d'exploitation complexes. |
+| 🟢 **Mineure** | Peu d’impact, nécessite souvent une chaîne d’exploits. |
 
-> Détection des failles type **XSS, SQLi, LFI, RFI**, etc. après **crawling** du site.
-
----
-
-## 05 - Restitution des résultats
-
-### 📁 Deux vues principales :
-
-- Par vulnérabilité ➜ machines affectées
-- Par machine ➜ vulnérabilités détectées
-
-### 📉 Classification par criticité :
-
-| Niveau       | Description |
-|--------------|-------------|
-| 🔴 Critique  | Exploitable facilement, contrôle à distance possible |
-| 🟠 Majeure   | Exploitable, mais avec conditions |
-| 🟡 Moyenne   | Impact limité ou conditions spécifiques |
-| 🟢 Mineure   | Peu d’impact, nécessite une chaîne d’exploits |
-
-> Basé sur le **CVSS v3** : score de 0 à 10 prenant en compte vecteur, complexité, privilèges, interactions, périmètre et impacts.
-
-### 📌 Un rapport contient généralement :
-
-- 🔹 Nom de la vulnérabilité
-- 🔹 Criticité
-- 🔹 Cible
-- 🔹 Description & impact
-- 🔹 Référence (CVE, DSA…)
-- 🔹 Exploitabilité
-- 🔹 Recommandations
-- 🔹 Taux de confiance
-- 🔹 Liens pour approfondir
+> Un rapport détaillé contient le nom de la vulnérabilité, sa criticité, la cible, une description, des références (CVE), des recommandations et des liens pour approfondir.
 
 ---
 
-## 🌐 À propos de moi
+### 👨‍💻 **À propos de moi**
 
-- 💡 Passionné par Debian GNU/Linux depuis plusieurs années
-- 🎓 Autodidacte, avec un fort esprit de transmission
-- 🔐 Intéressé par la cybersécurité, les solutions open source et la performance système
-- 🧪 Toujours partant pour tester une nouvelle stack technique
+> * 💡 Passionné par Debian GNU/Linux depuis plusieurs années
+> * 🎓 Autodidacte, avec un fort esprit de transmission
+> * 🔐 Intéressé par la cybersécurité, les solutions open source et la performance système
+> * 🧪 Toujours partant pour tester une nouvelle stack technique
 
 ---
 
 <p align="center">
-  🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessible à tous.
+  <b>🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessibles à tous. 🔒</b>
 </p>
