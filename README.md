@@ -13,7 +13,7 @@
 
 ---
 
-### 👨‍💻 **À propos de moi**
+### 👨‍💻 **À propos de moi.**
 
 > Ce dépôt constitue mon laboratoire numérique où je consigne rigoureusement mes apprentissages et expérimentations.
 > Passionné par l'écosystème Linux et la cybersécurité, je documente mon parcours et mes projets sur mon GitHub.
@@ -43,7 +43,7 @@
 
 ---
 
-## 🧭 Sommaire
+## 🧭 Sommaire :
 
 1. [🛠️ Qu'est-ce qu'un scanner de vulnérabilités](#01---quest-ce-quun-scanner-de-vulnérabilités)
 2. [⚙️ Principes de fonctionnement](#02---principes-de-fonctionnement)
@@ -59,7 +59,7 @@
 
 Un **scanner de vulnérabilités** est un programme permettant de détecter des failles dans des systèmes, réseaux ou applications.
 
-### 🎯 Utilisation
+### 🎯 Utilisation.
 
 | Légale ✅ | Illégale ❌ |
 |----------|-------------|
@@ -69,7 +69,7 @@ Un **scanner de vulnérabilités** est un programme permettant de détecter des 
 
 ---
 
-## 02 - Principes de fonctionnement
+## 02 - Principes de fonctionnement.
 
 Un scanner peut être :
 
@@ -88,7 +88,7 @@ Un scanner peut être :
 
 ---
 
-## 03 - Cibles
+## 03 - Cibles.
 
 Un scanner peut analyser tout **dispositif joignable par IP** :
 
@@ -105,7 +105,7 @@ Un scanner peut analyser tout **dispositif joignable par IP** :
 
 ## 04 - Méthodes de détection
 
-### 📇 1. Footprinting de version
+### 📇 1. Footprinting de version.
 
 - Analyse de bannières, signatures réseau
 - Croisement avec des bases comme **CVE**, **OSVDB**, **DSA**, **CPE**
@@ -114,28 +114,28 @@ Un scanner peut analyser tout **dispositif joignable par IP** :
 
 ---
 
-### ⚔️ 2. Exploitation active
+### ⚔️ 2. Exploitation active.
 
 - Utilise des **exploits connus** (ex: Metasploit, exploit-db)
 - Fiable, mais parfois **intrusif/dangereux**
 
 ---
 
-### ⚙️ 3. Scan de configuration
+### ⚙️ 3. Scan de configuration.
 
 - Analyse les **paramètres exposés** (SSL, DNS, mots de passe par défaut, etc.)
 - Peu risqué, mais peut manquer de **contexte**
 
 ---
 
-### 🔐 4. Scans authentifiés
+### 🔐 4. Scans authentifiés.
 
 - Nécessite un **compte utilisateur** pour inspection interne
 - Très fiable pour détecter les vulnérabilités **logicielles non exposées**
 
 ---
 
-### 🌐 5. Spécificité Web
+### 🌐 5. Spécificité Web.
 
 - Nécessite des modules spécialisés type **OWASP**
 - Scanners dédiés : **Burp Suite**, **ZAP**, **Wapiti**, etc.
@@ -144,7 +144,7 @@ Un scanner peut analyser tout **dispositif joignable par IP** :
 
 ---
 
-## 05 - Restitution des résultats
+## 05 - Restitution des résultats.
 
 ### 📁 Deux vues principales :
 
