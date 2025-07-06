@@ -1,3 +1,42 @@
+<div align="center">
+
+<a href="https://github.com/0xCyberLiTech">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&pause=1000&color=33FF33&center=true&vCenter=true&width=650&lines=SUPERVISION+D'INFRASTRUCTURES;Monitorer+•+Analyser+•+Gérer;Zabbix+•+Nagios+•+Prometheus" alt="Typing SVG" />
+</a>
+
+<p align="center">
+  <em>Un dépôt pédagogique sur la supervision des infrastructures numériques.</em><br>
+  <b>📊 Monitoring – 📈 Performance – ⚙️ Fiabilité</b>
+</p>
+
+</div>
+
+---
+
+### 👨‍💻 **À propos de moi**
+
+> Ce dépôt constitue mon laboratoire numérique où je consigne rigoureusement mes apprentissages et expérimentations.
+> Passionné par l'écosystème Linux et la cybersécurité, je documente mon parcours et mes projets sur mon GitHub.
+> Vous y trouverez des guides pratiques sur la supervision (Zabbix, Nagios), la conteneurisation (Docker) et la sécurisation de serveurs Debian.
+> Mon objectif : partager mes connaissances de manière claire et pédagogique.
+> N'hésitez pas à y jeter un œil : https://github.com/0xcyberlitech
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=linux,debian,bash,docker,nginx,grafana,prometheus,git,vim" />
+  </a>
+</p>
+
+---
+
+### 💡 **Qu'est-ce que la Supervision ?**
+
+> La **supervision des infrastructures numériques**, ou **monitoring informatique**, est un processus essentiel qui consiste à surveiller, analyser et gérer en continu l'ensemble des composants d'un système d'information. L'objectif principal est de garantir leur **disponibilité**, leur **performance** et leur **sécurité**, en gardant un œil constant sur la santé de l'environnement numérique (serveurs, applications, réseaux, etc.).
+
+---
+
+
+
 ![OpenVAS](./images/OpenVAS.png)
 
 > Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) dans vos environnements.
