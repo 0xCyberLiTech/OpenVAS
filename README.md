@@ -29,13 +29,19 @@
 
 ---
 
+### 🎯 **Objectif de ce dépôt.**
+
+> Ce dépôt a pour vocation de centraliser un ensemble de notions clés autour d'OpenVAS (Open Vulnerability Assessment System). Il s’adresse aux passionnés, étudiants et professionnels souhaitant mieux comprendre
+> les principes de l'analyse de vulnérabilités, apprendre à installer, configurer et utiliser OpenVAS pour identifier les faiblesses de leurs systèmes, et se familiariser avec les concepts et outils essentiels
+> pour renforcer la sécurité de leurs infrastructures informatiques.
+
+---
+
 ### 💡 **Qu'est-ce que la Supervision ?**
 
 > La **supervision des infrastructures numériques**, ou **monitoring informatique**, est un processus essentiel qui consiste à surveiller, analyser et gérer en continu l'ensemble des composants d'un système d'information. L'objectif principal est de garantir leur **disponibilité**, leur **performance** et leur **sécurité**, en gardant un œil constant sur la santé de l'environnement numérique (serveurs, applications, réseaux, etc.).
 
 ---
-
-
 
 ![OpenVAS](./images/OpenVAS.png)
 
