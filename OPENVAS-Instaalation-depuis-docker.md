@@ -85,7 +85,7 @@ cd $DOWNLOAD_DIR
 
 > ⚠️ **Important**  
 > Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`, disponible dans la documentation officielle :  
-> https://greenbone.github.io/docs/latest/container/container.html
+> https://greenbone.github.io/docs/latest/22.4/container/index.html
 
 ---
 
@@ -181,8 +181,6 @@ Utilisez les identifiants définis précédemment pour vous connecter.
 ## ✅ Auteur
 
 - GitHub : [0xCyberLiTech](https://github.com/0xCyberLiTech)
-
-https://greenbone.github.io/docs/latest/22.4/container/index.html
 
 ---
 
