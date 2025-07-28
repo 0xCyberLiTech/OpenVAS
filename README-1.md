@@ -57,6 +57,16 @@ Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de v
 
 ---
 
+<div align="center" style="margin-bottom: 10px;">
+
+🟢 **Actif** – Dépôt totalement accessible  
+🟠 **Partiel** – Dépôt partiellement accessible  
+🔴 **Inactif** – Dépôt inaccessible ou indisponible
+
+</div>
+
+---
+
 ## 🧭 Sommaire :
 
 | 🗂️ **Catégorie**        | 📄 **Description**                                      | 🔗 **Accès rapide**                                                                                                                                      |
