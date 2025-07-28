@@ -50,7 +50,7 @@
 
 ## 🧰 Prérequis
 
-- Tuto validé sur Debian 12.
+- Tuto validé sur **Debian 12**.
 - Docker + Docker Compose doivent être installés.
 
 | Catégorie | Sujet | Accès Rapide |
