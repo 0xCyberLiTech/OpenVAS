@@ -311,11 +311,11 @@ Le tableau suivant décrit en détail les conteneurs fournis du fichier Docker C
 
 - Téléchargement des conteneurs communautaires Greenbone :
 ```
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 ```
 Démarrage des conteneurs communautaires Greenbone
 ```
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 ```
 Le flux de journaux peut être arrêté en appuyant sur Ctrl-C.
 
