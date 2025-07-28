@@ -119,13 +119,13 @@ curl -f -O -L https://greenbone.github.io/docs/latest/_static/docker-compose.yml
 
 À l’aide du fichier docker compose, les images du conteneur peuvent être téléchargées (extraites).
 
-### ▶️ Téléchargement des conteneurs communautaires Greenbone :
+### ➤ Téléchargement des conteneurs communautaires Greenbone :
 
 ```bash
 # sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ```
-### ▶️ Lancement des conteneurs communautaires Greenbone :
+### ➤ Lancement des conteneurs communautaires Greenbone :
 
 ```bash
 # sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
@@ -138,14 +138,14 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 
 Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez ce qui suit commander :
 
-### ▶️ Afficher les messages de journal de tous les services des conteneurs en cours d’exécution
+### ➤ Afficher les messages de journal de tous les services des conteneurs en cours d’exécution
 
 ```bash
 # sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
      docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
 ```
 
-### ▶️ Le flux de journaux peut être arrêté en appuyant sur (Ctrl-C)
+### ➤ Le flux de journaux peut être arrêté en appuyant sur (Ctrl-C)
 
 ---
 
@@ -193,13 +193,13 @@ Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un s
 
 Ceci Le script peut être téléchargé directement avec la commande suivante :
 
-### ▶️ Téléchargement du script d’installation et de démarrage sur le répertoire de travail actuel.
+### ➤ Téléchargement du script d’installation et de démarrage sur le répertoire de travail actuel.
 
 ```bash
 curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
 ```
 
-### ▶️ Pour exécuter le script, la commande suivante doit être exécutée.
+### ➤ Pour exécuter le script, la commande suivante doit être exécutée.
 
 Exécuter le programme d’installation et démarrer le script.
 
