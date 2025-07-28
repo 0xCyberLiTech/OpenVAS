@@ -57,6 +57,8 @@ Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de v
 
 ---
 
+### 🧭 **Sommaire**
+
 <div align="center" style="margin-bottom: 10px;">
 
 🟢 **Actif** – Dépôt totalement accessible  
@@ -66,8 +68,6 @@ Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de v
 </div>
 
 ---
-
-## 🧭 Sommaire :
 
 | 🗂️ **Catégorie**        | 📄 **Description**                                      | 🔗 **Accès rapide**                                                                                                                                      |
 |--------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
