@@ -45,9 +45,7 @@
 
 ---
 
-### 💡 **Mise à jour des conteneurs Greenbone.**
-
-## 🔄 Mise à jour des conteneurs Greenbone
+## 💡 **Mise à jour des conteneurs Greenbone.**
 
 > Mettre à jour régulièrement les conteneurs **Greenbone / OpenVAS** permet d’obtenir les dernières signatures de vulnérabilités, correctifs de sécurité et améliorations du scanner.  
 > Cela garantit la **fiabilité** et la **pertinence des résultats d’audit**.
