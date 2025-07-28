@@ -65,7 +65,7 @@
 
 | 🗂️ **Catégorie**        | 📄 **Description**                                      | 🔗 **Accès rapide**                                                                                                                                      |
 |--------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **SCANNER**              | Qu'est-ce qu'un scanner de vulnérabilités               | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
+| **SCANNER**              | Qu'est-ce qu'un scanner de vulnérabilités               | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">](https://github.com/0xCyberLiTech/OpenVAS/blob/main/OPENVAS-Qu-est-ce-qu-un-scanner-de-vun%C3%A9rabilit%C3%A9s.md) |
 | **FONCTIONNEMENT**       | Principes de fonctionnement                             | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
 | **CIBLAGE**              | Cibles possibles à scanner                              | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
 | **DETECTION**            | Méthodes de détection utilisées                         | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
