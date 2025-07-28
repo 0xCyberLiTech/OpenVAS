@@ -45,11 +45,76 @@
 
 ---
 
-### 💡 **Introduction :**
+### 💡 **Mise à jour des conteneurs Greenbone.**
 
-> Ce dépôt est dédié à OpenVAS, un scanner de vulnérabilités réseau open source issu de la suite Greenbone Vulnerability Management (GVM). Il regroupe une documentation structurée autour de l'installation, de l'utilisation et de la compréhension d'OpenVAS, afin de faciliter sa prise en main dans un contexte de supervision et d'audit de sécurité.
+## 🔄 Mise à jour des conteneurs Greenbone
 
-Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de vulnérabilités, les méthodes de détection, la restitution des résultats, ainsi que des guides pratiques pour le déploiement via Docker et la mise à jour des conteneurs Greenbone.
+> Mettre à jour régulièrement les conteneurs **Greenbone / OpenVAS** permet d’obtenir les dernières signatures de vulnérabilités, correctifs de sécurité et améliorations du scanner.  
+> Cela garantit la **fiabilité** et la **pertinence des résultats d’audit**.
+
+---
+
+## 🧰 Étapes de mise à jour
+
+### 1. 🔍 Vérifier l'état actuel des conteneurs
+
+docker ps
+
+---
+
+### 2. ⬇️ Récupérer les dernières images Docker officielles
+
+docker compose pull
+
+---
+
+### 3. ♻️ Redémarrer les services avec les nouvelles images
+
+docker compose down  
+docker compose up -d
+
+> ✅ Cela supprime les anciens conteneurs et relance les nouveaux avec les dernières versions disponibles.
+
+---
+
+### 4. 🔄 Mettre à jour les feeds Greenbone (bases de données)
+
+#### a) 📱 Via l’interface Web (GSA) :
+
+Connectez-vous à l’interface web de Greenbone, puis allez dans :  
+`Administration → Feed Status → Update Feeds`
+
+#### b) 🖥️ Via le terminal dans le conteneur :
+
+docker exec -it gvm bash  
+greenbone-feed-sync --type GVMD_DATA  
+greenbone-feed-sync --type SCAP  
+greenbone-feed-sync --type CERT
+
+> 🕒 Cette opération peut prendre quelques minutes selon la taille des mises à jour.
+
+---
+
+## 📌 Remarques
+
+- Le nom `gvm` correspond au nom du conteneur principal.  
+  Adaptez-le si vous utilisez une autre configuration.
+- Un redémarrage du conteneur peut être utile après la mise à jour :
+
+docker restart gvm
+
+---
+
+## ✅ Vérification post-mise à jour
+
+- Depuis l’interface web, allez dans `Feed Status` pour vérifier que tous les feeds sont **à jour**.
+- Vous pouvez aussi consulter les logs du conteneur :
+
+docker logs -f gvm
+
+---
+
+🔒 *Maintenir les feeds à jour est une bonne pratique essentielle pour des audits pertinents et fiables.*
 
 ---
 
