@@ -45,14 +45,6 @@
 
 ---
 
-### 💡 **Introduction :**
-
-> Ce dépôt est dédié à OpenVAS, un scanner de vulnérabilités réseau open source issu de la suite Greenbone Vulnerability Management (GVM). Il regroupe une documentation structurée autour de l'installation, de l'utilisation et de la compréhension d'OpenVAS, afin de faciliter sa prise en main dans un contexte de supervision et d'audit de sécurité.
-
-Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de vulnérabilités, les méthodes de détection, la restitution des résultats, ainsi que des guides pratiques pour le déploiement via Docker et la mise à jour des conteneurs Greenbone.
-
----
-
 > Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) dans vos environnements.
 
 ---
