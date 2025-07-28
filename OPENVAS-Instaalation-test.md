@@ -49,8 +49,6 @@ Avoir Docker + docker compose d'installé et exécuter cette procédure sous **s
 
 Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker.
 
-Pour effectuer la modification du groupe Pour être efficace, soit vous déconnecter et vous reconnecter, soit utiliser SU.
-
 Ajouter l’utilisateur actuel au groupe docker et appliquer les modifications de groupe à l’environnement de shell actuel :
 
 ```bash
