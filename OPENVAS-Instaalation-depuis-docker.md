@@ -51,7 +51,7 @@
 ## 🧰 Prérequis
 
 - Tuto validé sur **Debian 12**.
-- Docker + Docker Compose doivent être installés.
+- **Docker** + **Docker Compose** doivent être installés au paravent :
 
 | Catégorie | Sujet | Accès Rapide |
 |:---:|:---|:---:|
