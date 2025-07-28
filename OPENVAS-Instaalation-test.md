@@ -1,11 +1,13 @@
 <div align="center">
 
+  ![OpenVAS](./images/OpenVAS.png)
+
   <a href="https://github.com/0xCyberLiTech">
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&pause=1000&color=D14A4A&center=true&vCenter=true&width=650&lines=AUDIT+DE+SÉCURITÉ+AUTOMATISÉ;Identifier+•+Analyser+•+Sécuriser;OpenVAS+•+Pentesting+•+Rapports" alt="Typing SVG" />
   </a>
   
   <p align="center">
-    <em>Un dépôt pédagogique sur les scanners de vulnérabilités.</em><br>
+    <em>Tuto - Déploiement de Greenbone Community Edition (OpenVAS) via Docker sur Debian 12..</em><br>
     <b>📊 Monitoring – 📈 Performance – ⚙️ Fiabilité</b>
   </p>
   
@@ -44,7 +46,7 @@
 ---
 
 
-# 🛡️ Déploiement de Greenbone Community Edition (OpenVAS) via Docker
+# 🛡️ Déploiement de Greenbone Community Edition (OpenVAS) via Docker sur Debian 12.
 
 ## 🧰 Prérequis
 
