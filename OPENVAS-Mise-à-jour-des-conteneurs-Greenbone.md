@@ -7,7 +7,7 @@
   </a>
   
   <p align="center">
-    <em>Un dépôt pédagogique sur les scanners de vulnérabilités.</em><br>
+    <em>Mise à jour des conteneurs Greenbone.</em><br>
     <b>📊 Monitoring – 📈 Performance – ⚙️ Fiabilité</b>
   </p>
   
