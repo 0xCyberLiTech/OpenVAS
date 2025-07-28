@@ -46,10 +46,11 @@
 ---
 
 
-## 🛡️ Déploiement de Greenbone Community Edition (OpenVAS) via Docker sur Debian 12.
+## 🛡️ Déploiement de Greenbone Community Edition (OpenVAS) via Docker.
 
 ## 🧰 Prérequis
 
+- Tuto validé sur Debian 12.
 - Docker + Docker Compose doivent être installés.
 
 | Catégorie | Sujet | Accès Rapide |
