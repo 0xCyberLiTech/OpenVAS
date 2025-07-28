@@ -45,9 +45,11 @@
 
 ---
 
-### 💡 **Qu'est-ce que la Supervision ?**
+### 💡 **Introduction :**
 
-> La **supervision des infrastructures numériques**, ou **monitoring informatique**, est un processus essentiel qui consiste à surveiller, analyser et gérer en continu l'ensemble des composants d'un système d'information. L'objectif principal est de garantir leur **disponibilité**, leur **performance** et leur **sécurité**, en gardant un œil constant sur la santé de l'environnement numérique (serveurs, applications, réseaux, etc.).
+> Ce dépôt est dédié à OpenVAS, un scanner de vulnérabilités réseau open source issu de la suite Greenbone Vulnerability Management (GVM). Il regroupe une documentation structurée autour de l'installation, de l'utilisation et de la compréhension d'OpenVAS, afin de faciliter sa prise en main dans un contexte de supervision et d'audit de sécurité.
+
+Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de vulnérabilités, les méthodes de détection, la restitution des résultats, ainsi que des guides pratiques pour le déploiement via Docker et la mise à jour des conteneurs Greenbone.
 
 ---
 
