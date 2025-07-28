@@ -52,3 +52,7 @@
 Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de vulnérabilités, les méthodes de détection, la restitution des résultats, ainsi que des guides pratiques pour le déploiement via Docker et la mise à jour des conteneurs Greenbone.
 
 ---
+
+<p align="center">
+  <b>🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessibles à tous. 🔒</b>
+</p>
