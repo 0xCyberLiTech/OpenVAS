@@ -71,12 +71,12 @@ Vous y trouverez un sommaire détaillé couvrant les fondements du scanning de v
 
 | 🗂️ **Catégorie**        | 📄 **Description**                                      | 🔗 **Accès rapide**                                                                                                                                      |
 |--------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **SCANNER**              | Qu'est-ce qu'un scanner de vulnérabilités               | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">](#01---quest-ce-quun-scanner-de-vulnérabilités) |
-| **FONCTIONNEMENT**       | Principes de fonctionnement                             | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">](#02---principes-de-fonctionnement)           |
-| **CIBLAGE**              | Cibles possibles à scanner                              | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">](#03---cibles)                                 |
-| **DETECTION**            | Méthodes de détection utilisées                         | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">](#04---méthodes-de-détection)                 |
-| **RESULTATS**            | Restitution des résultats de scan                       | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">](#05---restitution-des-résultats)             |
-| **INSTALLATION**         | Installation avec Docker Compose                        | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=docker&logoColor=white">](OPENVAS-Instaalation-depuis-docker.md)   |
+| **SCANNER**              | Qu'est-ce qu'un scanner de vulnérabilités               | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
+| **FONCTIONNEMENT**       | Principes de fonctionnement                             | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
+| **CIBLAGE**              | Cibles possibles à scanner                              | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
+| **DETECTION**            | Méthodes de détection utilisées                         | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
+| **RESULTATS**            | Restitution des résultats de scan                       | [<img src="https://img.shields.io/badge/EXPLORER-red?style=for-the-badge&logo=github&logoColor=white">]() |
+| **INSTALLATION**         | Installation avec Docker Compose                        | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=docker&logoColor=white">](OPENVAS-Instaalation-depuis-docker.md) |
 | **MAJ CONTAINERS**       | Mise à jour des conteneurs Greenbone                    | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=docker&logoColor=white">](OPENVAS-Mise-à-jour-des-conteneurs-Greenbone.md) |
 
 ---
