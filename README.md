@@ -45,7 +45,7 @@
 
 ---
 
-> Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) dans vos environnements.
+> Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) dans vos environnements Debian 12.
 
 ---
 
