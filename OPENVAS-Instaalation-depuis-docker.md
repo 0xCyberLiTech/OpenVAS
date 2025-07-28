@@ -109,65 +109,107 @@ Coller le contenu du fichier officiel :
 Créer un répertoire et télécharger le fichier :
 
 ```bash
-mkdir -p ~/Docker-containers && cd ~/Docker-containers
+# mkdir -p ~/Docker-containers && cd ~/Docker-containers
 curl -f -O -L https://greenbone.github.io/docs/latest/_static/docker-compose.yml --output-dir "$DOWNLOAD_DIR"
 ```
 
 ---
 
-## ▶️ Lancement des conteneurs
+## 🔧 Lancement des conteneurs communautaires Greenbone :
 
-Télécharger les images Docker :
+À l’aide du fichier docker compose, les images du conteneur peuvent être téléchargées (extraites).
+
+### ▶️ Téléchargement des conteneurs communautaires Greenbone :
 
 ```bash
-sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+# sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ```
-
-Démarrer les conteneurs en arrière-plan :
+### ▶️ Lancement des conteneurs communautaires Greenbone :
 
 ```bash
-sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+# sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
 ---
 
 ## 📋 Logs et supervision
 
-Afficher les logs des services :
+Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez ce qui suit commander :
+
+### ▶️ Afficher les messages de journal de tous les services des conteneurs en cours d’exécution
 
 ```bash
-sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
+# sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
+     docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
 ```
 
-Arrêtez l’affichage avec `Ctrl + C`.
+### ▶️ Le flux de journaux peut être arrêté en appuyant sur (Ctrl-C)
 
 ---
 
-## 🔐 Configuration de l’utilisateur admin
+## 🔐 Configuration d’un utilisateur administrateur (admin).
+
+⚠️ Avertissement :
 
 Par défaut, un utilisateur `admin` avec le mot de passe `admin` est créé.
 
 > 🔐 **Il est fortement recommandé de le changer immédiatement.**
 
-Changer le mot de passe :
+Mise à jour du mot de passe de l’utilisateur administrateur.
 
 ```bash
-sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml     exec -u gvmd gvmd gvmd --user=admin --new-password='MonMotDePasse'
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml \
+    exec -u gvmd gvmd gvmd --user=admin --new-password='<password>'
 ```
 
-> ⚠️ Si le mot de passe contient des caractères spéciaux, entourez-le de **guillemets simples** `'...'`
+Note :
+
+⚠️ Veuillez faire attention si votre mot de passe comprend des caractères spéciaux.
 
 ---
 
-## 🌍 Accès à l’interface Web
+## 🌍 Accès à l’interface Web :
 
-Lancer l’interface Greenbone Security Assistant (GSA) dans votre navigateur :
+Démarrage de la gestion des vulnérabilités.
+
+Une fois que les services ont démarré et que toutes les données du flux ont été chargées, l’interface Web de Greenbone Security Assistant – GSA – peut être ouverte dans le navigateur.
 
 ```bash
 xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 ```
 
-Utilisez les identifiants définis précédemment pour vous connecter.
+Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d’identification Créé auparavant, il est possible de commencer par l’analyse des vulnérabilités.
+
+
+## 📋 Script d’installation et de démarrage :
+
+Note :
+
+N’oubliez pas de suivre d’abord les instructions décrites dans les conditions préalables.
+
+Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un seul script. 
+
+Ceci Le script peut être téléchargé directement avec la commande suivante :
+
+### ▶️ Téléchargement du script d’installation et de démarrage sur le répertoire de travail actuel.
+
+```bash
+curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
+```
+
+### ▶️ Pour exécuter le script, la commande suivante doit être exécutée.
+
+Exécuter le programme d’installation et démarrer le script.
+
+```bash
+chmod +x setup-and-start-greenbone-community-edition.sh
+```
+
+```bash
+./setup-and-start-greenbone-community-edition.sh
+```
 
 ---
 
