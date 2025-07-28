@@ -45,7 +45,7 @@
 
 ## Prérequis :
 
-Avoir Docker + docker compose d'installé et opérationnel/
+Avoir Docker + docker compose d'installé et exécuter cette procédure sous **su**.
 
 Pour permettre à l’utilisateur actuel d’exécuter docker et donc de démarrer le conteneurs, ils doivent être ajoutés au groupe d’utilisateurs Docker.
 
