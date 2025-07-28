@@ -178,12 +178,6 @@ Utilisez les identifiants définis précédemment pour vous connecter.
 
 ---
 
-## ✅ Auteur
-
-- GitHub : [0xCyberLiTech](https://github.com/0xCyberLiTech)
-
----
-
 <p align="center">
   <b>🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessibles à tous. 🔒</b>
 </p>
