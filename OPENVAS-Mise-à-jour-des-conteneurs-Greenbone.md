@@ -47,6 +47,21 @@
 
 # 🛠️ Mise à jour des conteneurs communautaires Greenbone (GCE)
 
+## 🔧 Prérequis
+
+- Docker ≥ 20.x
+- Docker Compose (plugin) ≥ 2.x
+- Accès à internet stable (la première synchronisation peut être longue)
+
+## 📂 Installation initiale (si ce n'est pas déjà fait)
+
+```bash
+git clone https://github.com/greenbone/community-container.git $HOME/greenbone-community-container
+cd $HOME/greenbone-community-container
+```
+
+---
+
 ## 🔄 Mise à jour et lancement des conteneurs
 
 ```bash
@@ -64,27 +79,23 @@ Ces données sont fournies via le **Greenbone Community Feed**.
 
 ### 🧠 Deux étapes de synchronisation :
 
-1. **Téléchargement des nouvelles données** (via mise à jour des images de conteneurs).
+1. **Téléchargement des nouvelles données** (mise à jour des images).
 2. **Chargement en mémoire et en base** (réalisé automatiquement par les démons).
 
-⏳ Ces étapes peuvent prendre **de quelques minutes à plusieurs heures**, notamment lors de la première synchronisation.
+⏳ Ces étapes peuvent prendre **de quelques minutes à plusieurs heures**, surtout lors de la première synchronisation.
 
 ---
 
 ## 🐳 Téléchargement des images de données
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull \
-  notus-data vulnerability-tests scap-data \
-  dfn-cert-data cert-bund-data report-formats data-objects
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull   notus-data vulnerability-tests scap-data   dfn-cert-data cert-bund-data report-formats data-objects
 ```
 
 ## 🚀 Démarrage des conteneurs de données
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d \
-  notus-data vulnerability-tests scap-data \
-  dfn-cert-data cert-bund-data report-formats data-objects
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d   notus-data vulnerability-tests scap-data   dfn-cert-data cert-bund-data report-formats data-objects
 ```
 
 ---
@@ -98,28 +109,28 @@ Surveillez les **logs** pour vérifier la progression.
 
 ### ✅ **Tests de vulnérabilité (VTs)**
 
-📌 Si le chargement est en cours (`ospd-openvas.log`) :
+📌 Chargement en cours (`ospd-openvas.log`) :
 
-```bash
+```text
 Loading VTs. Scans will be [requested|queued] until VTs are loaded. This may
 take a few minutes, please wait...
 ```
 
-📌 Une fois terminé :
+📌 Chargement terminé :
 
-```bash
+```text
 Finished loading VTs. The VT cache has been updated from version X to Y.
 ```
 
-📌 gvmd synchronise ensuite avec :
+📌 Synchronisation avec `gvmd` :
 
-```bash
+```text
 OSP service has different VT status (version X) from database (version Y, Z VTs). Starting update
 ```
 
-📌 Puis :
+📌 Mise à jour terminée :
 
-```bash
+```text
 Updating VTs in database ... done (X VTs).
 ```
 
@@ -127,15 +138,15 @@ Updating VTs in database ... done (X VTs).
 
 ### 🛡️ **Données SCAP** (CPE & CVE)
 
-📌 Début du chargement (`gvmd.log`) :
+📌 Début (`gvmd.log`) :
 
-```bash
+```text
 update_scap: Updating data from feed
 ```
 
-📌 Fin du chargement :
+📌 Fin :
 
-```bash
+```text
 update_scap_end: Updating SCAP info succeeded
 ```
 
@@ -143,15 +154,15 @@ update_scap_end: Updating SCAP info succeeded
 
 ### 📋 **Données CERT** (DFN-CERT, CERT-Bund)
 
-📌 Début du chargement :
+📌 Début :
 
-```bash
+```text
 sync_cert: Updating data from feed
 ```
 
-📌 Fin du chargement :
+📌 Fin :
 
-```bash
+```text
 sync_cert: Updating CERT info succeeded.
 ```
 
@@ -161,13 +172,13 @@ sync_cert: Updating CERT info succeeded.
 
 📌 Listes de ports :
 
-```bash
+```text
 Port list All IANA assigned TCP (33d0cd82-57c6-11e1-8ed1-406186ea4fc5) has been created by admin
 ```
 
 📌 Formats de rapports :
 
-```bash
+```text
 Report format XML (a994b278-1f62-11e1-96ac-406186ea4fc5) has been created by admin
 ```
 
@@ -175,7 +186,7 @@ Report format XML (a994b278-1f62-11e1-96ac-406186ea4fc5) has been created by adm
 
 > ⚠️ Nécessite que les VTs soient déjà chargés et l’option *Importer le propriétaire* activée.
 
-```bash
+```text
 Scan config Full and fast (daba56c8-73ec-11df-a475-002264764cea) has been created by admin
 ```
 
@@ -183,7 +194,7 @@ Scan config Full and fast (daba56c8-73ec-11df-a475-002264764cea) has been create
 
 ## 🧪 Vérification des services
 
-Pensez à utiliser la commande suivante pour consulter les logs d’un service :
+Pour consulter les logs d’un service :
 
 ```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f <nom_du_service>
@@ -191,14 +202,40 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f <nom_du_service>
 
 ---
 
-## 📚 Ressources utiles
+## 🔁 Redémarrage complet des conteneurs (si besoin)
 
-- [Greenbone Docs](https://greenbone.github.io/)
-- [Dépôt officiel Greenbone Docker](https://github.com/greenbone/community-edition)
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml down
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
+```
 
 ---
 
-🎯 _Document rédigé pour la mise en œuvre et la maintenance du Greenbone Community Edition via Docker Compose._
+## 🧾 Services lancés par Docker Compose
+
+- `gvmd` : Gestionnaire principal de vulnérabilités
+- `ospd-openvas` : Moteur de scan
+- `postgres` : Base de données
+- `redis` : Cache
+- Services de données :
+  - `notus-data`
+  - `vulnerability-tests`
+  - `scap-data`
+  - `dfn-cert-data`
+  - `cert-bund-data`
+  - `report-formats`
+  - `data-objects`
+
+---
+
+## 📚 Ressources utiles
+
+- [📘 Documentation Greenbone](https://greenbone.github.io/)
+- [📦 Dépôt Docker Community Edition](https://github.com/greenbone/community-edition)
+
+---
+
+🎯 *Document rédigé pour la mise en œuvre et la maintenance de la Greenbone Community Edition via Docker Compose.*
 
 ---
 
