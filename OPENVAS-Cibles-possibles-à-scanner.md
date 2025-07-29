@@ -7,7 +7,7 @@
   </a>
   
   <p align="center">
-    <em>Mise à jour des conteneurs Greenbone.</em><br>
+    <em>Cibles possibles à scanner avec OpenVAS.</em><br>
     <b>📊 Monitoring – 📈 Performance – ⚙️ Fiabilité</b>
   </p>
   
