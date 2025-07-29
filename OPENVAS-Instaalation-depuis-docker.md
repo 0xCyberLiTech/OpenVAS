@@ -126,7 +126,10 @@ curl -f -O -L https://greenbone.github.io/docs/latest/_static/docker-compose.yml
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ```
 
-  ![OpenVAS](./images/docker-01.png)
+<div align="center">
+  ![docker-01.png](./images/docker-01.png)
+  ![docker-02.png](./images/docker-02.png)
+</div>
 
 ### ➤ Lancement des conteneurs communautaires Greenbone :
 
