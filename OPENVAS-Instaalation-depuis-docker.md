@@ -104,13 +104,47 @@ Coller le contenu du fichier officiel :
 
 ---
 
-### 2️⃣ Téléchargement automatique
-
-Créer un répertoire et télécharger le fichier :
+### 2️⃣ Téléchargement du fichier **docker-compose.yml**.
 
 ```bash
-# mkdir -p ~/Docker-containers && cd ~/Docker-containers
 curl -f -O -L https://greenbone.github.io/docs/latest/_static/docker-compose.yml --output-dir "$DOWNLOAD_DIR"
+```
+Note : Accès à distance à l’interface Web.
+
+Lors de l’utilisation du fichier docker compose, le serveur web est configuré pour écouter uniquement sur l’adresse locale de l’hôte (127.0.0.1). Pour autoriser l’accès à distance sur tous les interfaces de l’hôte, le fichier de composition doit être modifié pour configurer le Serveur GSAD pour écouter sur toutes les interfaces réseau.
+
+La modification suivante du fichier docker compose doit être appliquée :
+
+```bash
+cd $DOWNLOAD_DIR
+```
+
+```bash
+nano docker-compose.yml
+```
+
+Autorisation d’accès sur toutes les interfaces hôtes.
+Localiser la section **  gsa: ** et apporter les modifications nécessaires :
+
+**Avant modification :**
+
+```bash
+  gsa:
+    image: registry.community.greenbone.net/community/gsa:stable
+    restart: on-failure
+    ports:
+      - 127.0.0.1:9392:80
+```
+
+**Après modification :**
+
+```bash
+  gsa:
+    image: registry.community.greenbone.net/community/gsa:stable
+    restart: on-failure
+    ports:
+      - 127.0.0.1:9392:80
+      - 9392:80
 ```
 
 ---
@@ -122,7 +156,6 @@ curl -f -O -L https://greenbone.github.io/docs/latest/_static/docker-compose.yml
 ### ➤ Téléchargement des conteneurs communautaires Greenbone :
 
 ```bash
-# sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition pull
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ```
 
@@ -202,27 +235,6 @@ xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 
 Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d’identification Créé auparavant, il est possible de commencer par l’analyse des vulnérabilités.
 
-Note : Accès à distance à l’interface Web.
-
-Lors de l’utilisation du fichier docker compose, le serveur web est configuré pour écouter uniquement sur l’adresse locale de l’hôte (127.0.0.1). Pour autoriser l’accès à distance sur tous les interfaces de l’hôte, le fichier de composition doit être modifié pour configurer le Serveur GSAD pour écouter sur toutes les interfaces réseau.
-
-
-La modification suivante du fichier docker compose doit être appliquée :
-
-Autorisation d’accès sur toutes les interfaces hôtes.
-
-```bash
-  gsa:
-    image: greenbone/gsa:stable
-    restart: on-failure
-    ports:
--      - 127.0.0.1:9392:80
-+      - 9392:80
-    volumes:
-      - gvmd_socket_vol:/run/gvmd
-    depends_on:
-      - gvmd
-```
 
 Partir de zéro :
 
@@ -258,6 +270,16 @@ chmod +x setup-and-start-greenbone-community-edition.sh
 
 ```bash
 ./setup-and-start-greenbone-community-edition.sh
+```
+
+## 📋 Repartir de zéro :
+
+Pour repartir de zéro, les conteneurs doivent être arrêtés. Par la suite, le Les conteneurs et les volumes doivent être supprimés pour supprimer toutes les données. Tout cela peut être fait En courant :
+
+Supprimer les conteneurs et les volumes (toutes les données).
+
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml down -v
 ```
 
 ---
