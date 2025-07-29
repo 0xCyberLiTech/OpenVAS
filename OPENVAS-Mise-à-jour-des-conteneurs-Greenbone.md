@@ -45,11 +45,7 @@
 
 ---
 
-## 💡 **Mise à jour des conteneurs Greenbone.**
-
-# Flux de travail :
-
-## Mise à jour des conteneurs communautaires Greenbone :
+## 💡 **Mise à jour des conteneurs communautaires Greenbone :**
 
 
 ```bash
