@@ -168,7 +168,6 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 <div align="center">
 
   ![docker-01.png](./images/docker-01.png)
-  ![docker-02.png](./images/docker-02.png)
 
 </div>
 
