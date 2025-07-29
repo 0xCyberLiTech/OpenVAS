@@ -57,6 +57,9 @@
 
 ```bash
 git clone https://github.com/greenbone/community-container.git $HOME/greenbone-community-container
+```
+
+```bash
 cd $HOME/greenbone-community-container
 ```
 
@@ -66,7 +69,13 @@ cd $HOME/greenbone-community-container
 
 ```bash
 export DOWNLOAD_DIR=$HOME/greenbone-community-container
+```
+
+```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
+```
+
+```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
@@ -206,6 +215,9 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f <nom_du_service>
 
 ```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml down
+```
+
+```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
