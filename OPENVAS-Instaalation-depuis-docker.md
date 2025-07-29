@@ -53,10 +53,14 @@
 - Tuto validé sur **Debian 12**.
 - **Docker** + **Docker Compose** doivent être installés au paravent :
 
-| Catégorie | Sujet | Accès Rapide |
-|:---:|:---|:---:|
-| **Tutos & Outils** | Installation manuelle de Docker & Docker Compose | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](https://github.com/0xCyberLiTech/Docker/blob/main/DOCKER-et-DOCKER-COMPOSE-Installation-manuelle.md) |
-| **Tutos & Outils** | Installation manuelle de Portainer | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](https://github.com/0xCyberLiTech/Docker/blob/main/PORTAINER-Installation-manuelle.md) |
+<div align="center">
+
+  | Catégorie | Sujet | Accès Rapide |
+  |:---:|:---|:---:|
+  | **Tutos & Outils** | Installation manuelle de Docker & Docker Compose | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](https://github.com/0xCyberLiTech/Docker/blob/main/DOCKER-et-DOCKER-COMPOSE-Installation-manuelle.md) |
+  | **Tutos & Outils** | Installation manuelle de Portainer | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](https://github.com/0xCyberLiTech/Docker/blob/main/PORTAINER-Installation-manuelle.md) |
+
+</div>
 
 - Exécuter la procédure sous **`su`** pour éviter les problèmes de permission.
 - Ajouter l’utilisateur courant au groupe `docker` :
