@@ -140,6 +140,12 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
+<div align="center">
+
+  ![docker-03.png](./images/docker-03.png)
+
+</div>
+
 ---
 
 ## 📋 Logs et supervision
