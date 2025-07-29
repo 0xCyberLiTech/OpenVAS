@@ -68,7 +68,7 @@ sudo usermod -aG docker $USER && su $USER
 - Installer les dépendances nécessaires :
 
 ```bash
-sudo apt install ca-certificates curl gnupg
+sudo apt install apt-transport-https ca-certificates curl gnupg
 ```
 
 ---
