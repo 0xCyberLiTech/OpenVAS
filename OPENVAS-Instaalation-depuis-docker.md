@@ -83,9 +83,9 @@ mkdir -p $DOWNLOAD_DIR
 cd $DOWNLOAD_DIR
 ```
 
-> ⚠️ **Important**  
-> Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`, disponible dans la documentation officielle :  
-> https://greenbone.github.io/docs/latest/22.4/container/index.html
+> ⚠️ **Important**  ⚠️
+> Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`.
+> ⚠️ **Important**  ⚠️
 
 ---
 
