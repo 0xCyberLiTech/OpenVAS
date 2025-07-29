@@ -47,73 +47,175 @@
 
 ## 💡 **Mise à jour des conteneurs Greenbone.**
 
-> Mettre à jour régulièrement les conteneurs **Greenbone / OpenVAS** permet d’obtenir les dernières signatures de vulnérabilités, correctifs de sécurité et améliorations du scanner.  
-> Cela garantit la **fiabilité** et la **pertinence des résultats d’audit**.
+# Flux de travail :
 
----
+## Mise à jour des conteneurs communautaires Greenbone :
 
-## 🧰 Étapes de mise à jour
 
-### 1. 🔍 Vérifier l'état actuel des conteneurs
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
+```
 
-docker ps
+Lancement des conteneurs communautaires Greenbone
 
----
 
-### 2. ⬇️ Récupérer les dernières images Docker officielles
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
+```
 
-docker compose pull
+## Exécution d’une synchronisation de flux :
 
----
+Pour l’analyse de vulnérabilité proprement dite, les tests de vulnérabilité, des informations de sécurité telles que les CVE, les listes de ports et les configurations d’analyse sont requises. Toutes ces données sont fournies par le Greenbone Community Feed via des images de conteneur de données.
 
-### 3. ♻️ Redémarrer les services avec les nouvelles images
+Une synchronisation d’alimentation se compose toujours de deux parties :
 
-docker compose down  
-docker compose up -d
+- Téléchargement des modifications via l’extraction de nouvelles images de conteneur.
+- Chargement des modifications dans la mémoire et une base de données par un démon.
 
-> ✅ Cela supprime les anciens conteneurs et relance les nouveaux avec les dernières versions disponibles.
+Les deux étapes peuvent prendre un certain temps, de quelques minutes à des heures, en particulier pour le synchronisation initiale. Ce n’est que si les deux étapes sont terminées que les données synchronisées est à jour et peut être utilisé.
 
----
+La première étape se fait via le docker compose pull. La deuxième étape consiste à Effectué automatiquement lorsque les démons sont en cours d’exécution.
 
-### 4. 🔄 Mettre à jour les feeds Greenbone (bases de données)
+## Téléchargement des modifications du flux :
 
-#### a) 📱 Via l’interface Web (GSA) :
+Les données du Greenbone Community Feed sont fournies via plusieurs images de conteneur. Lorsque ces images sont démarrées, elles copient les données dans le fichier Docker volumes automatiquement. Ensuite, les données sont récupérées à partir de la volumes par les démons en cours d’exécution.
 
-Connectez-vous à l’interface web de Greenbone, puis allez dans :  
-`Administration → Feed Status → Update Feeds`
+Pour télécharger les dernières images de conteneur de données de flux, exécutez :
 
-#### b) 🖥️ Via le terminal dans le conteneur :
+Téléchargement des conteneurs de données de flux Greenbone Community Edition
 
-docker exec -it gvm bash  
-greenbone-feed-sync --type GVMD_DATA  
-greenbone-feed-sync --type SCAP  
-greenbone-feed-sync --type CERT
 
-> 🕒 Cette opération peut prendre quelques minutes selon la taille des mises à jour.
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+```
 
----
+Pour copier les données des images vers les volumes, exécutez :
 
-## 📌 Remarques
+Démarrage des conteneurs de données de flux Greenbone Community
 
-- Le nom `gvm` correspond au nom du conteneur principal.  
-  Adaptez-le si vous utilisez une autre configuration.
-- Un redémarrage du conteneur peut être utile après la mise à jour :
 
-docker restart gvm
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+```
 
----
+## Chargement des modifications du flux :
 
-## ✅ Vérification post-mise à jour
+Important :
 
-- Depuis l’interface web, allez dans `Feed Status` pour vérifier que tous les feeds sont **à jour**.
-- Vous pouvez aussi consulter les logs du conteneur :
+Lorsque le contenu du flux a été téléchargé, les nouvelles données doivent être chargées par le démons correspondants. Cela peut prendre de quelques minutes à des heures, en particulier pour le chargement initial des données. Sans données chargées, les analyses contiendront résultats incomplets et erronés.
 
-docker logs -f gvm
+Une fois les conteneurs de la communauté Greenbone démarrés, les démons en cours d’exécution récupérera toujours le contenu du flux et chargera les données automatiquement.
 
----
+### Données des tests de vulnérabilité :
 
-🔒 *Maintenir les feeds à jour est une bonne pratique essentielle pour des audits pertinents et fiables.*
+Si le journal (de ospd-openvas) contient la sortie suivante, l’OpenVAS Le scanner commence à charger les nouvelles données VT :
 
+message de chargement du journal VT ospd-openvas.
+
+
+```bash
+Loading VTs. Scans will be [requested|queued] until VTs are loaded. This may
+take a few minutes, please wait...
+```
+
+Le chargement des données VT est terminé si le message de journal se trouve :
+
+ospd-openvas VTs chargement du message de journal terminé.
+
+
+```bash
+Finished loading VTs. The VT cache has been updated from version X to Y.
+```
+
+Une fois que le scanner a connaissance des données VT, les données seront demandées par gvmd. Ceci Le message de journal suivant s’affichera :
+
+Message de chargement du journal des VT gvmd.
+
+
+```bash
+OSP service has different VT status (version X) from database (version (Y), Z VTs). Starting update
+```
+
+Lorsque gvmd a fini de charger tous les VT, le message suivant s’affiche :
+
+Message de chargement du journal de fin des VT gvmd.
+
+
+```bash
+Updating VTs in database ... done (X VTs).
+```
+
+## Données SCAP :
+
+gvmd commence à charger les données SCAP contenant les informations CPE et CVE lorsque le message suivant se trouve dans les journaux :
+
+Message du journal de chargement des données SCAP gvmd.
+
+
+```bash
+update_scap: Updating data from feed
+```
+
+Les données SCAP sont chargées et la synchronisation est terminée lorsque le journal (gvmd) Contient le message suivant :
+
+gvmd Chargement des données SCAP message de fin du journal.
+
+
+```bash
+update_scap_end: Updating SCAP info succeeded
+```
+
+## Données CERT :
+
+gvmd commence à charger les données CERT contenant les avis DFN-CERT et CERT-Bund lorsque le message suivant se trouve dans les journaux :
+
+Message du journal de chargement des données CERT gvmd
+
+
+```bash
+sync_cert: Updating data from feed
+```
+
+Les données CERT sont chargées et la synchronisation est terminée lorsque le journal (gvmd) Contient le message suivant :
+
+Message de fin de chargement des données CERT gvmd.
+
+
+```bash
+sync_cert: Updating CERT info succeeded.
+```
+
+## Données GVMD :
+
+Le journal contient plusieurs messages lors du chargement des données gvmd. Pour les listes de ports, Ces messages sont similaires à :
+
+Message de journal chargé de la liste des ports gvmd.
+
+
+```bash
+Port list All IANA assigned TCP (33d0cd82-57c6-11e1-8ed1-406186ea4fc5) has been created by admin
+```
+
+Pour les formats de rapport :
+
+Message de journal chargé au format de rapport gvmd.
+
+
+```bash
+Report format XML (a994b278-1f62-11e1-96ac-406186ea4fc5) has been created by admin
+```
+
+Indice :
+
+Les configurations de balayage ne peuvent être chargées que si les données VT sont disponibles dans gvmd et un flux L’option Importer le propriétaire est définie.
+
+Pour les configurations d’analyse :
+
+Message de journal chargé de la configuration d’analyse gvmd.
+
+```bash
+Scan config Full and fast (daba56c8-73ec-11df-a475-002264764cea) has been created by admin
+```
 ---
 
 <p align="center">
