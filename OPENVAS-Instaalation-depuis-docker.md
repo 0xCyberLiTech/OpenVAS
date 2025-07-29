@@ -202,6 +202,35 @@ xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
 
 Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d’identification Créé auparavant, il est possible de commencer par l’analyse des vulnérabilités.
 
+Note : Accès à distance à l’interface Web.
+
+Lors de l’utilisation du fichier docker compose, le serveur web est configuré pour écouter uniquement sur l’adresse locale de l’hôte (127.0.0.1). Pour autoriser l’accès à distance sur tous les interfaces de l’hôte, le fichier de composition doit être modifié pour configurer le Serveur GSAD pour écouter sur toutes les interfaces réseau.
+
+
+La modification suivante du fichier docker compose doit être appliquée :
+
+Autorisation d’accès sur toutes les interfaces hôtes.
+
+```bash
+  gsa:
+    image: greenbone/gsa:stable
+    restart: on-failure
+    ports:
+-      - 127.0.0.1:9392:80
++      - 9392:80
+    volumes:
+      - gvmd_socket_vol:/run/gvmd
+    depends_on:
+      - gvmd
+```
+
+Partir de zéro :
+
+Pour repartir de zéro, les conteneurs doivent être arrêtés. Par la suite, le Les conteneurs et les volumes doivent être supprimés pour supprimer toutes les données. Tout cela peut être fait En courant :
+
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml down -v
+```
 
 ## 📋 Script d’installation et de démarrage :
 
