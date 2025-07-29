@@ -50,6 +50,7 @@
 ## 🔄 Mise à jour et lancement des conteneurs
 
 ```bash
+export DOWNLOAD_DIR=$HOME/greenbone-community-container
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
