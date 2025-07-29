@@ -45,173 +45,160 @@
 
 ---
 
-## 💡 **Mise à jour des conteneurs communautaires Greenbone :**
+# 🛠️ Mise à jour des conteneurs communautaires Greenbone (GCE)
 
+## 🔄 Mise à jour et lancement des conteneurs
 
 ```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
-```
-
-Lancement des conteneurs communautaires Greenbone
-
-
-```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
-## Exécution d’une synchronisation de flux :
+---
 
-Pour l’analyse de vulnérabilité proprement dite, les tests de vulnérabilité, des informations de sécurité telles que les CVE, les listes de ports et les configurations d’analyse sont requises. Toutes ces données sont fournies par le Greenbone Community Feed via des images de conteneur de données.
+## 📥 Synchronisation du **Greenbone Community Feed**
 
-Une synchronisation d’alimentation se compose toujours de deux parties :
+L’analyse de vulnérabilités nécessite des données spécifiques : tests de vulnérabilité (VTs), informations CVE, listes de ports, configurations d’analyse, etc.  
+Ces données sont fournies via le **Greenbone Community Feed**.
 
-- Téléchargement des modifications via l’extraction de nouvelles images de conteneur.
-- Chargement des modifications dans la mémoire et une base de données par un démon.
+### 🧠 Deux étapes de synchronisation :
 
-Les deux étapes peuvent prendre un certain temps, de quelques minutes à des heures, en particulier pour le synchronisation initiale. Ce n’est que si les deux étapes sont terminées que les données synchronisées est à jour et peut être utilisé.
+1. **Téléchargement des nouvelles données** (via mise à jour des images de conteneurs).
+2. **Chargement en mémoire et en base** (réalisé automatiquement par les démons).
 
-La première étape se fait via le docker compose pull. La deuxième étape consiste à Effectué automatiquement lorsque les démons sont en cours d’exécution.
+⏳ Ces étapes peuvent prendre **de quelques minutes à plusieurs heures**, notamment lors de la première synchronisation.
 
-## Téléchargement des modifications du flux :
+---
 
-Les données du Greenbone Community Feed sont fournies via plusieurs images de conteneur. Lorsque ces images sont démarrées, elles copient les données dans le fichier Docker volumes automatiquement. Ensuite, les données sont récupérées à partir de la volumes par les démons en cours d’exécution.
-
-Pour télécharger les dernières images de conteneur de données de flux, exécutez :
-
-Téléchargement des conteneurs de données de flux Greenbone Community Edition
-
+## 🐳 Téléchargement des images de données
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull \
+  notus-data vulnerability-tests scap-data \
+  dfn-cert-data cert-bund-data report-formats data-objects
 ```
 
-Pour copier les données des images vers les volumes, exécutez :
-
-Démarrage des conteneurs de données de flux Greenbone Community
-
+## 🚀 Démarrage des conteneurs de données
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d notus-data vulnerability-tests scap-data dfn-cert-data cert-bund-data report-formats data-objects
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d \
+  notus-data vulnerability-tests scap-data \
+  dfn-cert-data cert-bund-data report-formats data-objects
 ```
 
-## Chargement des modifications du flux :
+---
 
-Important :
+## 🧩 Chargement des données par les démons
 
-Lorsque le contenu du flux a été téléchargé, les nouvelles données doivent être chargées par le démons correspondants. Cela peut prendre de quelques minutes à des heures, en particulier pour le chargement initial des données. Sans données chargées, les analyses contiendront résultats incomplets et erronés.
+Une fois les conteneurs démarrés, les démons chargent automatiquement les données dans leurs bases respectives.  
+Surveillez les **logs** pour vérifier la progression.
 
-Une fois les conteneurs de la communauté Greenbone démarrés, les démons en cours d’exécution récupérera toujours le contenu du flux et chargera les données automatiquement.
+---
 
-### Données des tests de vulnérabilité :
+### ✅ **Tests de vulnérabilité (VTs)**
 
-Si le journal (de ospd-openvas) contient la sortie suivante, l’OpenVAS Le scanner commence à charger les nouvelles données VT :
-
-message de chargement du journal VT ospd-openvas.
-
+📌 Si le chargement est en cours (`ospd-openvas.log`) :
 
 ```bash
 Loading VTs. Scans will be [requested|queued] until VTs are loaded. This may
 take a few minutes, please wait...
 ```
 
-Le chargement des données VT est terminé si le message de journal se trouve :
-
-ospd-openvas VTs chargement du message de journal terminé.
-
+📌 Une fois terminé :
 
 ```bash
 Finished loading VTs. The VT cache has been updated from version X to Y.
 ```
 
-Une fois que le scanner a connaissance des données VT, les données seront demandées par gvmd. Ceci Le message de journal suivant s’affichera :
-
-Message de chargement du journal des VT gvmd.
-
+📌 gvmd synchronise ensuite avec :
 
 ```bash
-OSP service has different VT status (version X) from database (version (Y), Z VTs). Starting update
+OSP service has different VT status (version X) from database (version Y, Z VTs). Starting update
 ```
 
-Lorsque gvmd a fini de charger tous les VT, le message suivant s’affiche :
-
-Message de chargement du journal de fin des VT gvmd.
-
+📌 Puis :
 
 ```bash
 Updating VTs in database ... done (X VTs).
 ```
 
-## Données SCAP :
+---
 
-gvmd commence à charger les données SCAP contenant les informations CPE et CVE lorsque le message suivant se trouve dans les journaux :
+### 🛡️ **Données SCAP** (CPE & CVE)
 
-Message du journal de chargement des données SCAP gvmd.
-
+📌 Début du chargement (`gvmd.log`) :
 
 ```bash
 update_scap: Updating data from feed
 ```
 
-Les données SCAP sont chargées et la synchronisation est terminée lorsque le journal (gvmd) Contient le message suivant :
-
-gvmd Chargement des données SCAP message de fin du journal.
-
+📌 Fin du chargement :
 
 ```bash
 update_scap_end: Updating SCAP info succeeded
 ```
 
-## Données CERT :
+---
 
-gvmd commence à charger les données CERT contenant les avis DFN-CERT et CERT-Bund lorsque le message suivant se trouve dans les journaux :
+### 📋 **Données CERT** (DFN-CERT, CERT-Bund)
 
-Message du journal de chargement des données CERT gvmd
-
+📌 Début du chargement :
 
 ```bash
 sync_cert: Updating data from feed
 ```
 
-Les données CERT sont chargées et la synchronisation est terminée lorsque le journal (gvmd) Contient le message suivant :
-
-Message de fin de chargement des données CERT gvmd.
-
+📌 Fin du chargement :
 
 ```bash
 sync_cert: Updating CERT info succeeded.
 ```
 
-## Données GVMD :
+---
 
-Le journal contient plusieurs messages lors du chargement des données gvmd. Pour les listes de ports, Ces messages sont similaires à :
+### 🧱 **Données GVMD** (Listes, formats, configurations)
 
-Message de journal chargé de la liste des ports gvmd.
-
+📌 Listes de ports :
 
 ```bash
 Port list All IANA assigned TCP (33d0cd82-57c6-11e1-8ed1-406186ea4fc5) has been created by admin
 ```
 
-Pour les formats de rapport :
-
-Message de journal chargé au format de rapport gvmd.
-
+📌 Formats de rapports :
 
 ```bash
 Report format XML (a994b278-1f62-11e1-96ac-406186ea4fc5) has been created by admin
 ```
 
-Indice :
+📌 Configurations d’analyse :
 
-Les configurations de balayage ne peuvent être chargées que si les données VT sont disponibles dans gvmd et un flux L’option Importer le propriétaire est définie.
-
-Pour les configurations d’analyse :
-
-Message de journal chargé de la configuration d’analyse gvmd.
+> ⚠️ Nécessite que les VTs soient déjà chargés et l’option *Importer le propriétaire* activée.
 
 ```bash
 Scan config Full and fast (daba56c8-73ec-11df-a475-002264764cea) has been created by admin
 ```
+
+---
+
+## 🧪 Vérification des services
+
+Pensez à utiliser la commande suivante pour consulter les logs d’un service :
+
+```bash
+docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f <nom_du_service>
+```
+
+---
+
+## 📚 Ressources utiles
+
+- [Greenbone Docs](https://greenbone.github.io/)
+- [Dépôt officiel Greenbone Docker](https://github.com/greenbone/community-edition)
+
+---
+
+🎯 _Document rédigé pour la mise en œuvre et la maintenance du Greenbone Community Edition via Docker Compose._
+
 ---
 
 <p align="center">
