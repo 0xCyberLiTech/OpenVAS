@@ -127,4 +127,6 @@ OpenVAS/GVM est un **outil essentiel de cybersécurité défensive**. Il permet 
 
 ---
 
-> *Ce document peut être intégré dans une documentation technique, un dépôt GitHub ou utilisé en support pédagogique en formation sécurité.*
+<p align="center">
+  <b>🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessibles à tous. 🔒</b>
+</p>
