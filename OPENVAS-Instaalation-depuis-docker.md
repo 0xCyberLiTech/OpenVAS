@@ -83,9 +83,13 @@ mkdir -p $DOWNLOAD_DIR
 cd $DOWNLOAD_DIR
 ```
 
-> ⚠️ **Important**  ⚠️
-> Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`.
-> ⚠️ **Important**  ⚠️
+<div align="center">
+
+  ⚠️ **Important**  ⚠️
+**Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`.**
+⚠️ **Important**  ⚠️
+
+</div>
 
 ---
 
