@@ -159,6 +159,12 @@ Pour obtenir un flux continu de la sortie du journal de tous les services, exéc
      docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
 ```
 
+<div align="center">
+
+  ![docker-04.png](./images/docker-04.png)
+
+</div>
+
 ### ➤ Le flux de journaux peut être arrêté en appuyant sur (Ctrl-C)
 
 ---
