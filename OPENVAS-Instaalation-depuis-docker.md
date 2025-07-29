@@ -84,7 +84,7 @@ cd $DOWNLOAD_DIR
 ```
 
 <div align="center">
-  ⚠️ **Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`.** ⚠️
+  ⚠️ - Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`. - ⚠️
 </div>
 
 ---
