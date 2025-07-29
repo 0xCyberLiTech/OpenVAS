@@ -45,7 +45,105 @@
 
 ---
 
+# 🎯 Cibles Possibles à Scanner avec OpenVAS :
 
+## Objectif du document  
+Fournir un aperçu clair et professionnel des types de cibles que l'on peut évaluer avec **OpenVAS** (via **Greenbone Community Edition**), en illustrant avec des exemples concrets dans des contextes réalistes (entreprise, lab, audit).
+
+---
+
+## 🧭 Introduction :
+
+**OpenVAS** est un scanner de vulnérabilités open source puissant, conçu pour analyser des systèmes et détecter des failles de sécurité. Il est couramment utilisé par les professionnels de la cybersécurité dans le cadre d’audits, de tests de conformité, ou d’évaluations internes.
+
+Pour maximiser la pertinence d'un scan, il est essentiel de bien identifier les **cibles**.
+
+---
+
+## 🛡️ Types de cibles que l’on peut scanner avec OpenVAS :
+
+### 1. Serveurs (Windows / Linux)
+- **But** : Détection des vulnérabilités sur les services exposés, OS, ports ouverts.
+- **Exemples** :
+  - Serveur **Debian 12** hébergeant un site web (Apache/Nginx).
+  - **Windows Server 2019** avec Active Directory.
+- **Scénario pédagogique** :
+  > Déployer une VM Debian avec un service SSH et HTTP. Utiliser OpenVAS pour détecter une version obsolète d’OpenSSH.
+
+---
+
+### 2. Équipements réseau (switch, routeurs, firewalls).
+- **But** : Identifier les faiblesses liées à l’administration à distance (telnet, SNMP, HTTP).
+- **Exemples** :
+  - **Switch Cisco** accessible via Telnet.
+  - **Pare-feu pfSense** avec interface Web.
+- **Scénario pédagogique** :
+  > Simuler un routeur mal configuré avec SNMP public. OpenVAS peut alerter sur l’accès non restreint.
+
+---
+
+### 3. Applications Web (via IP ou nom de domaine)
+- **But** : Détection de vulnérabilités applicatives, mauvaises configurations, certificats expirés.
+- **Exemples** :
+  - CMS **WordPress** auto-hébergé.
+  - Intranet d’entreprise développé en PHP.
+- **Scénario pédagogique** :
+  > Déployer un WordPress sur LAMP avec des plugins vulnérables. OpenVAS détectera les CVE connues.
+
+---
+
+### 4. Équipements IoT ou embarqués
+- **But** : Évaluer la surface d’attaque des objets connectés.
+- **Exemples** :
+  - Caméra IP connectée.
+  - NAS grand public (Synology, QNAP).
+- **Scénario pédagogique** :
+  > Simuler un NAS avec ports ouverts et firmware obsolète. OpenVAS indiquera les failles connues.
+
+---
+
+### 5. Postes clients (tests internes encadrés)
+- **But** : Vérifier les failles au niveau des OS clients ou logiciels installés.
+- **Exemples** :
+  - Windows 10 avec Java non mis à jour.
+  - Station Linux avec navigateur ou service exposé.
+- ⚠️ **Attention** : Ces scans nécessitent un cadre légal strict (test interne contrôlé).
+
+---
+
+### 6. Infrastructure virtuelle ou cloud
+- **But** : Scanner des VM internes ou hébergées chez un fournisseur.
+- **Exemples** :
+  - VM sur **Proxmox**, **VMware**, ou dans un cloud privé.
+  - Instances **OVH / Scaleway / AWS**.
+- **Scénario pédagogique** :
+  > Scanner une instance cloud exposant un port SSH avec une mauvaise configuration (authentification par mot de passe).
+
+---
+
+### 7. Équipements industriels / SCADA (en environnement sécurisé)
+- **But** : Identifier les vulnérabilités sur les systèmes OT (Operational Technology).
+- **Exemples** :
+  - Automate programmable Siemens.
+  - Interface web d’un système de contrôle industriel.
+- ⚠️ **Important** : Ces scans doivent être réalisés avec **grande précaution** pour éviter tout impact sur la production.
+
+---
+
+## ✅ Bonnes pratiques lors de la définition des cibles
+
+- Toujours avoir une **autorisation écrite** pour scanner une cible.
+- Isoler les tests dans un **environnement de lab** avant toute intervention en production.
+- Commencer par des scans **non intrusifs**, puis progresser vers des scans plus complets.
+- Éviter de scanner des cibles sensibles sans plan de mitigation ou supervision.
+
+---
+
+## 📌 Conclusion
+
+OpenVAS est capable de scanner une grande variété de systèmes, des serveurs aux équipements réseau, en passant par les applications web et les postes clients. Bien définir ses cibles permet d’obtenir des résultats pertinents et exploitables, tout en respectant les cadres légaux et techniques.
+
+La richesse des scans dépend directement de la qualité des cibles sélectionnées et de leur configuration.
 
 ---
 
