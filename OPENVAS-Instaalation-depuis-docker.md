@@ -226,7 +226,7 @@ Autorisation d’accès sur toutes les interfaces hôtes.
 
 Partir de zéro :
 
-Pour repartir de zéro, les conteneurs doivent être arrêtés. Par la suite, le Les conteneurs et les volumes doivent être supprimés pour supprimer toutes les données. Tout cela peut être fait En courant :
+Pour repartir de zéro, les conteneurs doivent être arrêtés. Par la suite, le Les conteneurs et les volumes doivent être supprimés pour supprimer toutes les données. Tout cela peut être fait avec la commande suivante :
 
 ```bash
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml down -v
