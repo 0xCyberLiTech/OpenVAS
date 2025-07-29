@@ -79,7 +79,13 @@ sudo apt install apt-transport-https ca-certificates curl gnupg
 
 ```bash
 export DOWNLOAD_DIR=$HOME/greenbone-community-container
+```
+
+```bash
 mkdir -p $DOWNLOAD_DIR
+```
+
+```bash
 cd $DOWNLOAD_DIR
 ```
 
@@ -169,7 +175,6 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ### ➤ Lancement des conteneurs communautaires Greenbone :
 
 ```bash
-# sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml -p greenbone-community-edition up -d
 docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
@@ -188,7 +193,6 @@ Pour obtenir un flux continu de la sortie du journal de tous les services, exéc
 ### ➤ Afficher les messages de journal de tous les services des conteneurs en cours d’exécution
 
 ```bash
-# sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
      docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
 ```
 
