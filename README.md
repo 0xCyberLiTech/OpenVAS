@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/0xCyberLiTech" target="_blank" rel="noopener">
-    <img src="./images/OpenVAS.png" alt="Logo OpenVAS" width="360">
+    <img src="./images/OpenVAS.png" alt="Logo OpenVAS" width="500">
   </a>
 </p>
 
