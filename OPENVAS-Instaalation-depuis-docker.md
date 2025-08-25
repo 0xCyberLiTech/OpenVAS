@@ -307,13 +307,6 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml down -v
 
 ---
 
-## 📚 Références
-
-- 📘 [Documentation officielle Greenbone](https://greenbone.github.io/docs/latest/container/container.html)
-- 🐙 [Dépôt GitHub du projet](https://github.com/greenbone/greenbone-community-container)
-
----
-
 <p align="center">
   <b>🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessibles à tous. 🔒</b>
 </p>
