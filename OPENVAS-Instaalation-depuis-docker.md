@@ -66,7 +66,7 @@
 
 ## 🧰 Prérequis
 
-- Tuto validé sur **Debian 12**.
+- Tuto validé sur **Debian 12 & Debian 13**.
 - **Docker** + **Docker Compose** doivent être installés au paravent :
 
 <div align="center">
