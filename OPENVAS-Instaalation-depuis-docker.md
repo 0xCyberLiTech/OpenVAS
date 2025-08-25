@@ -75,6 +75,8 @@
   |:---:|:---|:---:|
   | **Tutos & Outils** | Installation manuelle de Docker & Docker Compose DEBIAN-12 | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](DOCKER-et-DOCKER-COMPOSE-Installation-manuelle-12.md) |
   | **Tutos & Outils** | Installation manuelle de Docker & Docker Compose DEBIAN-13 | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](DOCKER-et-DOCKER-COMPOSE-Installation-manuelle-13.md) |
+  | **Tutos & Outils** | Script installation docker DEBIAN-12 | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](DOCKER-SCRIPT-INSTALLATION-DOCKER-DEBIAN-12.md) |
+  | **Tutos & Outils** | Script installation docker DEBIAN-13 | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](DOCKER-SCRIPT-INSTALLATION-DOCKER-DEBIAN-13.md) |
   | **Tutos & Outils** | Installation manuelle de Portainer | [<img src="https://img.shields.io/badge/EXPLORER-brightgreen?style=for-the-badge&logo=github&logoColor=white">](PORTAINER-Installation-manuelle.md) |
 
 </div>
