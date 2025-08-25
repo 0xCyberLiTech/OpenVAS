@@ -61,7 +61,7 @@
 
 ---
 
-> Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) vers Debian 12.
+> Guide complet pour comprendre, installer et utiliser OpenVAS (Greenbone Vulnerability Management) vers Debian 12 & Debian 13.
 
 ---
 
