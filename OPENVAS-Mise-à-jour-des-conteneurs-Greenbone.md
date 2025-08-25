@@ -259,7 +259,6 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ## 📚 Ressources utiles
 
 - [📘 Documentation Greenbone](https://greenbone.github.io/)
-- [📦 Dépôt Docker Community Edition](https://github.com/greenbone/community-edition)
 
 ---
 
