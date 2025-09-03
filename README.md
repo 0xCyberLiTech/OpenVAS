@@ -34,7 +34,7 @@
 </div>
 
 <!--
-Optimisation SEO : mots-clés OpenVAS, 0xCyberLiTech, Linux, administration système, sécurité informatique, tutoriels, guides, expertise, formation, vulnérabilité, open source, ressources techniques, étudiants, professionnels, passionnés.
+Optimisation SEO : mots-clés OpenVAS, 0xCyberLiTech, Linux, administration système, sécurité informatique, tutoriels, guides, expertise, formation, cve, vulnérabilité, open source, ressources techniques, étudiants, professionnels, passionnés.
 -->
 
 <div align="center">
