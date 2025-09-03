@@ -62,7 +62,7 @@ Le contenu est structuré, accessible et optimisé SEO pour répondre aux besoin
 
 ---
 
-# 🛠️ Mise à jour des conteneurs communautaires Greenbone (GCE)
+## 🛠️ Mise à jour des conteneurs communautaires Greenbone (GCE)
 ## 🔧 Prérequis
 
 - Docker ≥ 20.x
