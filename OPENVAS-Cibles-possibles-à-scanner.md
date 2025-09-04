@@ -33,10 +33,6 @@
 
 </div>
 
-<!--
-Optimisation SEO : mots-clés OpenVAS, 0xCyberLiTech, Linux, administration système, sécurité informatique, tutoriels, guides, expertise, formation, cve, vulnérabilité, open source, ressources techniques, étudiants, professionnels, passionnés.
--->
-
 <div align="center">
   <img src="https://img.icons8.com/fluency/96/000000/cyber-security.png" alt="CyberSec" width="80"/>
 </div>
@@ -173,3 +169,4 @@ La richesse des scans dépend directement de la qualité des cibles sélectionn�
 <div align="center">
   <b>🔒 Un guide proposé par <a href="https://github.com/0xCyberLiTech">0xCyberLiTech</a> • Pour des tutoriels accessibles à tous. 🔒</b>
 </div>
+
