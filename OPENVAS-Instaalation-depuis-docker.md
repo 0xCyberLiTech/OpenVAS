@@ -173,7 +173,6 @@ Localiser la section **  gsa: ** et apporter les modifications nécessaires :
     image: registry.community.greenbone.net/community/gsa:stable
     restart: on-failure
     ports:
-      - 127.0.0.1:9392:80
       - 9392:80
 ```
 
