@@ -185,7 +185,7 @@ Localiser la section **  gsa: ** et apporter les modifications nécessaires :
 ### ➤ Téléchargement des conteneurs communautaires Greenbone :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
+sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ```
 
 <div align="center">
@@ -197,7 +197,7 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
 ### ➤ Lancement des conteneurs communautaires Greenbone :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
+sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
 ```
 
 <div align="center">
@@ -215,7 +215,7 @@ Pour obtenir un flux continu de la sortie du journal de tous les services, exéc
 ### ➤ Afficher les messages de journal de tous les services des conteneurs en cours d’exécution
 
 ```bash
-     docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
+    sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
 ```
 
 <div align="center">
