@@ -67,21 +67,6 @@ Le contenu est structuré, accessible et optimisé SEO pour répondre aux besoin
 
 - Tuto validé sur **Debian 12 & Debian 13**.
 - **Docker** + **Docker Compose** doivent être installés au paravent :
-
-<div align="center">
-
-  | Catégorie | Sujet | Accès Rapide |
-  |:---:|:---|:---:|
-  | **Tutos & Outils** | Installation manuelle de Docker & Docker Compose DEBIAN-12 | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](DOCKER-et-DOCKER-COMPOSE-Installation-manuelle-12.md) |
-  | **Tutos & Outils** | Installation manuelle de Docker & Docker Compose DEBIAN-13 | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](DOCKER-et-DOCKER-COMPOSE-Installation-manuelle-13.md) |
-  | **Tutos & Outils** | Script installation docker DEBIAN-12 | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](DOCKER-SCRIPT-INSTALLATION-DOCKER-DEBIAN-12.md) |
-  | **Tutos & Outils** | Script installation docker DEBIAN-13 | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](DOCKER-SCRIPT-INSTALLATION-DOCKER-DEBIAN-13.md) |
-  | **Tutos & Outils** | Installation manuelle de Portainer | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](PORTAINER-Installation-manuelle.md) |
-  | **Tutos & Outils** | Installation automatisée de Portainer | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](PORTAINER-Installation-automatisée.md) |
-  | **Tutos & Outils** | Mise à jour automatisée de Portainer | [<img src="https://img.shields.io/badge/EXPLORER-4CAF50?style=for-the-badge&logo=github&logoColor=white">](PORTAINER-Mise-à-jour-automatisée.md) |
-
-</div>
-
 - Exécuter la procédure sous **`su`** pour éviter les problèmes de permission.
 - Ajouter l’utilisateur courant au groupe `docker` :
 
