@@ -508,7 +508,7 @@ Le script officiel télécharge le `compose.yaml`, télécharge et démarre les 
 
 --
 
-## Astuce système — désactiver la mise en veille (Debian)
+## Astuce système - désactiver la mise en veille (Debian)
 
 Sur des systèmes où les scans doivent tourner longtemps, désactivez les cibles de veille :
 
@@ -523,15 +523,6 @@ sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.ta
 - Documentation officielle Greenbone (containeurs) : https://greenbone.github.io/docs/latest/
 - Fichier compose officiel : https://greenbone.github.io/docs/latest/_static/compose.yaml
 - Script officiel : https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh
-
---
-
-## Suite proposée
-
-Si vous souhaitez, je peux :
-- valider/corriger le `compose.yaml` officiel et l'insérer ici;
-- créer un script d'installation personnalisé basé sur ce document;
-- ou committer ce fichier dans le dépôt.
 
 ---
 
