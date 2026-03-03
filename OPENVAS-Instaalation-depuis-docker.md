@@ -62,7 +62,7 @@ Le contenu est structuré, accessible et optimisé SEO pour répondre aux besoin
 
 ---
 
-# Présentation — Installation et déploiement de Greenbone Community Edition (Docker)
+# Installation et déploiement de Greenbone Community Edition (Docker)
 
 Ce document présente, de manière professionnelle et organisée, les étapes nécessaires pour installer Docker et déployer Greenbone Community Edition à l'aide des conteneurs fournis.
 
