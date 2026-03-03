@@ -62,236 +62,476 @@ Le contenu est structuré, accessible et optimisé SEO pour répondre aux besoin
 
 ---
 
-## 🛡️ Déploiement de Greenbone Community Edition (OpenVAS) via Docker.
-## 🧰 Prérequis
+# Présentation — Installation et déploiement de Greenbone Community Edition (Docker)
 
-- Tuto validé sur **Debian 12 & Debian 13**.
-- **Docker** + **Docker Compose** doivent être installés au paravent :
-- Exécuter la procédure sous **`su`** pour éviter les problèmes de permission.
-- Ajouter l’utilisateur courant au groupe `docker` :
+Ce document présente, de manière professionnelle et organisée, les étapes nécessaires pour installer Docker et déployer Greenbone Community Edition à l'aide des conteneurs fournis.
+
+--
+
+## Dépendances d'installation
+
+Avant de commencer, installez les dépendances requises (ex. : `curl`, `ca-certificates`, `gnupg`) :
+
+```bash
+sudo apt update
+sudo apt install -y ca-certificates curl gnupg
+```
+
+Ces outils sont nécessaires pour télécharger des fichiers et ajouter des dépôts sécurisés.
+
+--
+
+## Installation de Docker
+
+Docker est requis pour exécuter les services dans des conteneurs. Les étapes suivantes proviennent du guide officiel d'installation du moteur Docker.
+
+1. Désinstallez les paquets Debian conflictuels :
+
+```bash
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt remove -y $pkg; done
+```
+
+2. Configurez le dépôt Docker :
+
+```bash
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo \ 
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \ 
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \ 
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+```
+
+3. Installez Docker et les paquets associés :
+
+```bash
+sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+```
+
+--
+
+## Mise en place — Permettre l'utilisation de Docker sans sudo
+
+Ajoutez l'utilisateur courant au groupe `docker` pour pouvoir exécuter Docker sans `sudo` :
 
 ```bash
 sudo usermod -aG docker $USER && su $USER
 ```
 
-- Installez les dépendances si cela n’a pas déjà été fait.
+Vous pouvez aussi vous déconnecter/reconnecter pour que la modification de groupe soit prise en compte.
+
+--
+
+## Préparer un répertoire de téléchargement
+
+Créez un répertoire de travail pour télécharger le fichier `compose.yaml` et autres artefacts :
 
 ```bash
-sudo apt install apt-transport-https ca-certificates curl gnupg
+export DOWNLOAD_DIR=$HOME/greenbone-community-container && mkdir -p "$DOWNLOAD_DIR"
 ```
 
----
+--
 
-## 🐳 Déploiement de Greenbone avec Docker
+## Fichier Docker Compose
 
-### 📁 Créer le répertoire de travail
+Important : utilisez toujours la dernière version du fichier `compose.yaml` fournie par Greenbone. Le fichier ci-dessous est fourni à titre d'exemple — il peut évoluer.
 
-```bash
-export DOWNLOAD_DIR=$HOME/greenbone-community-container
-```
+```yaml
+# Fichier d'exemple (extrait)
+name: greenbone-community-edition
 
-```bash
-mkdir -p $DOWNLOAD_DIR
-```
+services:
+  vulnerability-tests:
+    image: registry.community.greenbone.net/community/vulnerability-tests
+    environment:
+      FEED_RELEASE: "24.10"
+      KEEP_ALIVE: 1
+    volumes:
+      - vt_data_vol:/mnt
 
-```bash
-cd $DOWNLOAD_DIR
-```
+  notus-data:
+    image: registry.community.greenbone.net/community/notus-data
+    environment:
+      KEEP_ALIVE: 1
+    volumes:
+      - notus_data_vol:/mnt
 
-<div align="center">
-  ⚠️ - Veillez à toujours utiliser la **dernière version** du fichier `docker-compose.yml`. - ⚠️
-</div>
+  scap-data:
+    image: registry.community.greenbone.net/community/scap-data
+    environment:
+      KEEP_ALIVE: 1
+    volumes:
+      - scap_data_vol:/mnt
 
----
+  cert-bund-data:
+    image: registry.community.greenbone.net/community/cert-bund-data
+    environment:
+      KEEP_ALIVE: 1
+    volumes:
+      - cert_data_vol:/mnt
 
-## 📦 Obtenir le fichier `docker-compose.yml`
+  dfn-cert-data:
+    image: registry.community.greenbone.net/community/dfn-cert-data
+    environment:
+      KEEP_ALIVE: 1
+    volumes:
+      - cert_data_vol:/mnt
+    depends_on:
+      cert-bund-data:
+        condition: service_healthy
 
-### 1️⃣ Méthode manuelle
+  data-objects:
+    image: registry.community.greenbone.net/community/data-objects
+    environment:
+      FEED_RELEASE: "24.10"
+      KEEP_ALIVE: 1
+    volumes:
+      - data_objects_vol:/mnt
 
-Créer le fichier :
+  report-formats:
+    image: registry.community.greenbone.net/community/report-formats
+    environment:
+      FEED_RELEASE: "24.10"
+      KEEP_ALIVE: 1
+    volumes:
+      - data_objects_vol:/mnt
+    depends_on:
+      data-objects:
+        condition: service_healthy
 
-```bash
-nano docker-compose.yml
-```
+  gpg-data:
+    image: registry.community.greenbone.net/community/gpg-data
+    volumes:
+      - gpg_data_vol:/mnt
 
-Coller le contenu du fichier officiel :
-👉 Voir ici : [docker-compose.yml](https://greenbone.github.io/docs/latest/_static/docker-compose.yml)
-
----
-
-### 2️⃣ Téléchargement du fichier **docker-compose.yml**.
-
-```bash
-curl -f -O -L https://greenbone.github.io/docs/latest/_static/docker-compose.yml --output-dir "$DOWNLOAD_DIR"
-```
-Note : Accès à distance à l’interface Web.
-
-Lors de l’utilisation du fichier docker compose, le serveur web est configuré pour écouter uniquement sur l’adresse locale de l’hôte (127.0.0.1). Pour autoriser l’accès à distance sur tous les interfaces de l’hôte, le fichier de composition doit être modifié pour configurer le Serveur GSAD pour écouter sur toutes les interfaces réseau.
-
-La modification suivante du fichier docker compose doit être appliquée :
-
-```bash
-cd $DOWNLOAD_DIR
-```
-
-```bash
-nano docker-compose.yml
-```
-
-Autorisation d’accès sur toutes les interfaces hôtes.
-Localiser la section **  gsa: ** et apporter les modifications nécessaires :
-
-**Avant modification :**
-
-```bash
-  gsa:
-    image: registry.community.greenbone.net/community/gsa:stable
+  redis-server:
+    image: registry.community.greenbone.net/community/redis-server
     restart: on-failure
-    ports:
-      - 127.0.0.1:9392:80
-```
+    volumes:
+      - redis_socket_vol:/run/redis/
 
-**Après modification :**
+  pg-gvm:
+    image: registry.community.greenbone.net/community/pg-gvm:stable
+    restart: on-failure:10
+    volumes:
+      - psql_data_vol:/var/lib/postgresql
+      - psql_socket_vol:/var/run/postgresql
+    depends_on:
+      pg-gvm-migrator:
+        condition: service_completed_successfully
 
-```bash
-  gsa:
-    image: registry.community.greenbone.net/community/gsa:stable
+  pg-gvm-migrator:
+    image: registry.community.greenbone.net/community/pg-gvm-migrator:stable
+    restart: no
+    volumes:
+      - psql_data_vol:/var/lib/postgresql
+      - psql_socket_vol:/var/run/postgresql
+
+  gvmd:
+    image: registry.community.greenbone.net/community/gvmd:stable
     restart: on-failure
+    volumes:
+      - gvmd_data_vol:/var/lib/gvm
+      - scap_data_vol:/var/lib/gvm/scap-data/
+      - cert_data_vol:/var/lib/gvm/cert-data
+      - data_objects_vol:/var/lib/gvm/data-objects/gvmd
+      - vt_data_vol:/var/lib/openvas/plugins
+      - psql_data_vol:/var/lib/postgresql
+      - gvmd_socket_vol:/run/gvmd
+      - ospd_openvas_socket_vol:/run/ospd
+      - psql_socket_vol:/var/run/postgresql
+    depends_on:
+      pg-gvm:
+        condition: service_started
+      scap-data:
+        condition: service_healthy
+      cert-bund-data:
+        condition: service_healthy
+      dfn-cert-data:
+        condition: service_healthy
+      data-objects:
+        condition: service_healthy
+      report-formats:
+        condition: service_healthy
+
+  gsa:
+    image: registry.community.greenbone.net/community/gsa:stable-slim
+    environment:
+      MOUNT_PATH: "/mnt/web"
+      KEEP_ALIVE: 1
+    healthcheck:
+      test: ["CMD-SHELL", "test -e /run/gsa/copying.done"]
+      start_period: 5s
+    volumes:
+      - gsa_data_vol:/mnt/web
+
+  gsad:
+    image: registry.community.greenbone.net/community/gsad:stable
+    restart: on-failure
+    environment:
+      GSAD_ARGS: "--listen=0.0.0.0 --http-only --api-only -f"
+    volumes:
+      - gvmd_socket_vol:/run/gvmd
+    depends_on:
+      gvmd:
+        condition: service_started
+
+  gvm-config:
+    image: registry.community.greenbone.net/community/gvm-config:latest
+    environment:
+      ENABLE_NGINX_CONFIG: true
+      ENABLE_TLS_GENERATION: true
+    volumes:
+      - nginx_config_vol:/mnt/nginx/configs
+      - nginx_certificates_vol:/mnt/nginx/certs
+
+  nginx:
+    image: registry.community.greenbone.net/community/nginx:latest
     ports:
-      - 9392:80
+      - 127.0.0.1:443:443
+      - 127.0.0.1:9392:9392
+    volumes:
+      - nginx_config_vol:/etc/nginx/conf.d:ro
+      - nginx_certificates_vol:/etc/nginx/certs:ro
+      - gsa_data_vol:/usr/share/nginx/html:ro
+    depends_on:
+      gvm-config:
+        condition: service_completed_successfully
+      gsa:
+        condition: service_healthy
+      gsad:
+        condition: service_started
+
+  configure-openvas:
+    image: registry.community.greenbone.net/community/openvas-scanner:stable
+    volumes:
+      - openvas_data_vol:/mnt
+      - openvas_log_data_vol:/var/log/openvas
+    command:
+      - /bin/sh
+      - -c
+      - |
+        printf "table_driven_lsc = yes\nopenvasd_server = http://openvasd:80\n" > /mnt/openvas.conf
+        sed "s/127/128/" /etc/openvas/openvas_log.conf | sed 's/gvm/openvas/' > /mnt/openvas_log.conf
+        chmod 644 /mnt/openvas.conf
+        chmod 644 /mnt/openvas_log.conf
+        touch /var/log/openvas/openvas.log
+        chmod 666 /var/log/openvas/openvas.log
+
+  openvas:
+    image: registry.community.greenbone.net/community/openvas-scanner:stable
+    restart: on-failure
+    volumes:
+      - openvas_data_vol:/etc/openvas
+      - openvas_log_data_vol:/var/log/openvas
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cat /etc/openvas/openvas.conf
+        tail -f /var/log/openvas/openvas.log
+    depends_on:
+      configure-openvas:
+        condition: service_completed_successfully
+
+  openvasd:
+    image: registry.community.greenbone.net/community/openvas-scanner:stable
+    restart: on-failure
+    environment:
+      OPENVASD_MODE: service_notus
+      GNUPGHOME: /etc/openvas/gnupg
+      LISTENING: 0.0.0.0:80
+    volumes:
+      - openvas_data_vol:/etc/openvas
+      - openvas_log_data_vol:/var/log/openvas
+      - gpg_data_vol:/etc/openvas/gnupg
+      - notus_data_vol:/var/lib/notus
+    depends_on:
+      vulnerability-tests:
+        condition: service_healthy
+      notus-data:
+        condition: service_healthy
+      configure-openvas:
+        condition: service_completed_successfully
+      gpg-data:
+        condition: service_completed_successfully
+    networks:
+      default:
+        aliases:
+          - openvasd
+
+  ospd-openvas:
+    image: registry.community.greenbone.net/community/ospd-openvas:stable
+    restart: on-failure
+    hostname: ospd-openvas.local
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined
+    command:
+      [
+        "ospd-openvas",
+        "-f",
+        "--config",
+        "/etc/gvm/ospd-openvas.conf",
+        "--notus-feed-dir",
+        "/var/lib/notus/advisories",
+        "-m",
+        "666",
+      ]
+    volumes:
+      - gpg_data_vol:/etc/openvas/gnupg
+      - vt_data_vol:/var/lib/openvas/plugins
+      - notus_data_vol:/var/lib/notus
+      - ospd_openvas_socket_vol:/run/ospd
+      - redis_socket_vol:/run/redis/
+      - openvas_data_vol:/etc/openvas/
+      - openvas_log_data_vol:/var/log/openvas
+    depends_on:
+      redis-server:
+        condition: service_started
+      gpg-data:
+        condition: service_completed_successfully
+      configure-openvas:
+        condition: service_completed_successfully
+      vulnerability-tests:
+        condition: service_healthy
+      notus-data:
+        condition: service_healthy
+
+  gvm-tools:
+    image: registry.community.greenbone.net/community/gvm-tools
+    volumes:
+      - gvmd_socket_vol:/run/gvmd
+      - ospd_openvas_socket_vol:/run/ospd
+    depends_on:
+      - gvmd
+      - ospd-openvas
+
+volumes:
+  gpg_data_vol: {}
+  scap_data_vol: {}
+  cert_data_vol: {}
+  data_objects_vol: {}
+  gvmd_data_vol: {}
+  psql_data_vol: {}
+  vt_data_vol: {}
+  notus_data_vol: {}
+  psql_socket_vol: {}
+  gvmd_socket_vol: {}
+  ospd_openvas_socket_vol: {}
+  redis_socket_vol: {}
+  openvas_data_vol: {}
+  openvas_log_data_vol: {}
+  gsa_data_vol: {}
+  nginx_config_vol: {}
+  nginx_certificates_vol: {}
 ```
 
----
+> Remarque : pour la version officielle et à jour, consultez : https://greenbone.github.io/docs/latest/
 
-## 🔧 Lancement des conteneurs communautaires Greenbone :
+--
 
-À l’aide du fichier docker compose, les images du conteneur peuvent être téléchargées (extraites).
+## Télécharger le fichier `compose.yaml`
 
-### ➤ Téléchargement des conteneurs communautaires Greenbone :
+Vous pouvez télécharger directement le fichier officiel :
 
 ```bash
-sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
+curl -f -L -o "$DOWNLOAD_DIR/compose.yaml" https://greenbone.github.io/docs/latest/_static/compose.yaml
 ```
 
-<div align="center">
+--
 
-  ![docker-01.png](./images/docker-01.png)
+## Télécharger et démarrer les conteneurs Greenbone
 
-</div>
-
-### ➤ Lancement des conteneurs communautaires Greenbone :
+1. Télécharger les images :
 
 ```bash
-sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
+sudo docker compose -f "$DOWNLOAD_DIR/compose.yaml" pull
 ```
 
-<div align="center">
-
-  ![docker-03.png](./images/docker-03.png)
-
-</div>
-
----
-
-## 📋 Logs et supervision
-
-Pour obtenir un flux continu de la sortie du journal de tous les services, exécutez ce qui suit commander :
-
-### ➤ Afficher les messages de journal de tous les services des conteneurs en cours d’exécution
+2. Lancer les conteneurs en arrière-plan :
 
 ```bash
-    sudo docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
+sudo docker compose -f "$DOWNLOAD_DIR/compose.yaml" up -d
 ```
 
-<div align="center">
-
-  ![docker-04.png](./images/docker-04.png)
-
-</div>
-
-### ➤ Le flux de journaux peut être arrêté en appuyant sur (Ctrl-C)
-
----
-
-## 🔐 Configuration d’un utilisateur administrateur (admin).
-
-⚠️ Avertissement :
-
-Par défaut, un utilisateur `admin` avec le mot de passe `admin` est créé.
-
-> 🔐 **Il est fortement recommandé de le changer immédiatement.**
-
-Mise à jour du mot de passe de l’utilisateur administrateur.
+3. Suivre les logs (flux continu) :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml \
-    exec -u gvmd gvmd gvmd --user=admin --new-password='<password>'
+sudo docker compose -f "$DOWNLOAD_DIR/compose.yaml" logs -f
+# Arrêter le flux : Ctrl-C
 ```
 
-Note :
+--
 
-⚠️ Veuillez faire attention si votre mot de passe comprend des caractères spéciaux.
+## Création / Mise à jour de l'utilisateur administrateur
 
----
-
-## 🌍 Accès à l’interface Web :
-
-Démarrage de la gestion des vulnérabilités.
-
-Une fois que les services ont démarré et que toutes les données du flux ont été chargées, l’interface Web de Greenbone Security Assistant – GSA – peut être ouverte dans le navigateur.
+Par défaut un utilisateur `admin` est créé avec un mot de passe généré. Changez immédiatement ce mot de passe :
 
 ```bash
-xdg-open "http://127.0.0.1:9392" 2>/dev/null >/dev/null &
+docker compose -f "$DOWNLOAD_DIR/compose.yaml" \
+    exec -u gvmd gvmd gvmd --user=admin --new-password='VotreNouveauMotDePasse'
 ```
 
-Le navigateur affichera la page de connexion de GSA et après avoir utilisé les informations d’identification Créé auparavant, il est possible de commencer par l’analyse des vulnérabilités.
+Note : si votre mot de passe contient des caractères spéciaux, mettez-le entre guillemets simples.
 
+--
 
-Partir de zéro :
+## Accéder à l'interface web
 
-Pour repartir de zéro, les conteneurs doivent être arrêtés. Par la suite, le Les conteneurs et les volumes doivent être supprimés pour supprimer toutes les données. Tout cela peut être fait avec la commande suivante :
+Après démarrage et synchronisation des flux, ouvrez :
 
-```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml down -v
+```
+https://127.0.0.1
 ```
 
-## 📋 Script d’installation et de démarrage :
+La synchronisation des flux peut prendre plusieurs minutes à plusieurs heures — les scans ne seront pas immédiatement disponibles.
 
-Note :
+--
 
-N’oubliez pas de suivre d’abord les instructions décrites dans les conditions préalables.
+## Script de configuration et de démarrage (option rapide)
 
-Comme solution rapide, nous fournissons toutes les commandes ci-dessus dans un seul script. 
-
-Ceci Le script peut être téléchargé directement avec la commande suivante :
-
-### ➤ Téléchargement du script d’installation et de démarrage sur le répertoire de travail actuel.
+Greenbone fournit un script `setup-and-start-greenbone-community-edition.sh`. Exemples de commandes :
 
 ```bash
-curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh && chmod u+x setup-and-start-greenbone-community-edition.sh
-```
-
-### ➤ Pour exécuter le script, la commande suivante doit être exécutée.
-
-Exécuter le programme d’installation et démarrer le script.
-
-```bash
-chmod +x setup-and-start-greenbone-community-edition.sh
-```
-
-```bash
+curl -f -O https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh \
+  && chmod u+x setup-and-start-greenbone-community-edition.sh
 ./setup-and-start-greenbone-community-edition.sh
 ```
 
-## 📋 Repartir de zéro :
+Le script officiel télécharge le `compose.yaml`, télécharge et démarre les conteneurs, puis propose de définir le mot de passe `admin`.
 
-Pour repartir de zéro, les conteneurs doivent être arrêtés. Par la suite, le Les conteneurs et les volumes doivent être supprimés pour supprimer toutes les données. Tout cela peut être fait En courant :
+--
 
-Supprimer les conteneurs et les volumes (toutes les données).
+## Astuce système — désactiver la mise en veille (Debian)
+
+Sur des systèmes où les scans doivent tourner longtemps, désactivez les cibles de veille :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml down -v
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
+
+--
+
+## Liens utiles
+
+- Documentation officielle Greenbone (containeurs) : https://greenbone.github.io/docs/latest/
+- Fichier compose officiel : https://greenbone.github.io/docs/latest/_static/compose.yaml
+- Script officiel : https://greenbone.github.io/docs/latest/_static/setup-and-start-greenbone-community-edition.sh
+
+--
+
+## Suite proposée
+
+Si vous souhaitez, je peux :
+- valider/corriger le `compose.yaml` officiel et l'insérer ici;
+- créer un script d'installation personnalisé basé sur ce document;
+- ou committer ce fichier dans le dépôt.
 
 ---
 
