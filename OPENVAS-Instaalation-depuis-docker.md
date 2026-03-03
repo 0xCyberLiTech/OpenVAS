@@ -112,7 +112,7 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 --
 
-## Mise en place — Permettre l'utilisation de Docker sans sudo
+## Mise en place - Permettre l'utilisation de Docker sans sudo
 
 Ajoutez l'utilisateur courant au groupe `docker` pour pouvoir exécuter Docker sans `sudo` :
 
