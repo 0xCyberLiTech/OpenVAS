@@ -472,7 +472,7 @@ docker compose -f $DOWNLOAD_DIR/compose.yaml up -d
 3. Suivre les logs (flux continu) :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/dcompose.yaml logs -f
+docker compose -f $DOWNLOAD_DIR/compose.yaml logs -f
 # Arrêter le flux : Ctrl-C
 ```
 
