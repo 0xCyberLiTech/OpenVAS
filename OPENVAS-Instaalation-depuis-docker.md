@@ -460,19 +460,19 @@ curl -f -O -L https://greenbone.github.io/docs/latest/_static/compose.yaml --out
 1. Télécharger les images :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml pull
+docker compose -f $DOWNLOAD_DIR/compose.yaml pull
 ```
 
 2. Lancer les conteneurs en arrière-plan :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml up -d
+docker compose -f $DOWNLOAD_DIR/compose.yaml up -d
 ```
 
 3. Suivre les logs (flux continu) :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
+docker compose -f $DOWNLOAD_DIR/dcompose.yaml logs -f
 # Arrêter le flux : Ctrl-C
 ```
 
@@ -483,7 +483,7 @@ docker compose -f $DOWNLOAD_DIR/docker-compose.yml logs -f
 Par défaut un utilisateur `admin` est créé avec un mot de passe généré. Changez immédiatement ce mot de passe :
 
 ```bash
-docker compose -f $DOWNLOAD_DIR/docker-compose.yml \
+docker compose -f $DOWNLOAD_DIR/compose.yaml \
     exec -u gvmd gvmd gvmd --user=admin --new-password='<password>'
 ```
 
