@@ -55,6 +55,7 @@ docker compose pull && docker compose up -d
 - **Niveau 2 — Repères Officiels (Ports IANA, Fichiers Debian &amp; Commandes de Validation) :** **Ports :** `TCP 9392` (Interface Web GSA) · `TCP 5432` (PostgreSQL interne) · Socket Redis `/run/redis-openvas/redis.sock` &nbsp;|&nbsp; **Validation officielle :** `sudo gvm-check-setup`.
 - **Niveau 3 — Diagnostic d'Incidents &amp; Ingénierie Avancée :** **Diagnostic & Architecture :** Si un audit demeure bloqué à `0%`, vérifiez que la synchronisation initiale des flux de signatures (`sudo greenbone-feed-sync`) est intégralement terminée et que l'instance Redis dédiée à OpenVAS est active. Contrairement à un IDS/IPS qui analyse les attaques en cours, OpenVAS identifie préventivement les vulnérabilités logicielles et défauts de configuration.
 - **Sources de Vérité Officielles Éditeurs &amp; Standards :** [Documentation Officielle Greenbone Community Edition](https://greenbone.github.io/docs/latest/) &nbsp;·&nbsp; [Base Nationale des Vulnérabilités NIST NVD](https://nvd.nist.gov/)
+- **Livres Blancs &amp; 67 Podcasts Audio R&amp;D :** [Portail 0xCyberLiTech](https://0xcyberlitech.com/) &nbsp;·&nbsp; [Livre Blanc SOC Cockpit v5.5](https://0xcyberlitech.com/soc-rd.html) &nbsp;·&nbsp; [Livre Blanc JARVIS Mark-VII](https://0xcyberlitech.com/jarvis-rd.html) &nbsp;·&nbsp; [Blueprint Logiciel &amp; Matériel RTX 5080](https://0xcyberlitech.com/blueprint-jarvis.html)
 
 </details>
 <!-- CIEL-PEDAGOGY-END -->
